@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('painel.template.main');
 });
 
-Route::get('/painel', function () {
-    return view('painel.template.main');
+Route::get('/teste', function () {
+    return view('painel.login');
 });

@@ -1,1 +1,1 @@
-$(function(){$("#form-horizontal").steps({headerTag:"h3",bodyTag:"fieldset",transitionEffect:"slide"})});
+$(function(){$("#basic-example").steps({headerTag:"h3",bodyTag:"section",transitionEffect:"slide"}),$("#vertical-example").steps({headerTag:"h3",bodyTag:"section",transitionEffect:"slide",stepsOrientation:"vertical"})});

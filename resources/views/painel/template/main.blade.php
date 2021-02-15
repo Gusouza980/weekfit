@@ -19,7 +19,8 @@
         <link href="{{asset('admin/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{asset('admin/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-
+        @toastr_css
+        
     </head>
 
     <body data-sidebar="dark">
@@ -211,7 +212,7 @@
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src="{{asset('admin/images/users/avatar-1.jpg')}}"
                                     alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
+                                <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{session()->get("usuario")["nome"]}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -221,7 +222,7 @@
                                 <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
                                 <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                                <a class="dropdown-item text-danger" href="{{route('painel.sair')}}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
                             </div>
                         </div>
 
@@ -248,17 +249,33 @@
 
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-home-circle"></i><span class="badge rounded-pill bg-info float-end">04</span>
+                                    <i class="bx bx-home-circle"></i>
                                     <span key="t-dashboards">Dashboards</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="index.html" key="t-default">Default</a></li>
-                                    <li><a href="dashboard-saas.html" key="t-saas">Saas</a></li>
-                                    <li><a href="dashboard-crypto.html" key="t-crypto">Crypto</a></li>
-                                    <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
+                                    <li><a href="index.html" key="t-default">Checklist</a></li>
                                 </ul>
                             </li>
 
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">Lançamento</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="index.html" key="t-default">Checklist</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">Calendario</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="index.html" key="t-default">Gefit Academia</a></li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>
@@ -281,22 +298,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
-
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                            <li class="breadcrumb-item active">Dashboard</li>
-                                        </ol>
-                                    </div>
-
+                                    <h4 class="mb-sm-0 font-size-18">@yield("titulo")</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
 
-                        
-                        <!-- end row -->
+                        @yield("conteudo")                  
                     </div>
                     <!-- container-fluid -->
                 </div>
@@ -357,15 +365,16 @@
         <script src="{{asset('admin/libs/metismenu/metisMenu.min.js')}}"></script>
         <script src="{{asset('admin/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('admin/libs/node-waves/waves.min.js')}}"></script>
-
-        <!-- apexcharts -->
-        <script src="{{asset('admin/libs/apexcharts/apexcharts.min.js')}}"></script>
+        @toastr_js
+        @toastr_render
 
         <!-- dashboard init -->
-        <script src="{{asset('admin/js/pages/dashboard.init.js')}}"></script>
+        {{-- <script src="{{asset('admin/js/pages/dashboard.init.js')}}"></script> --}}
 
         <!-- App js -->
         <script src="{{asset('admin/js/app.js')}}"></script>
+        @yield("scripts")
+        
     </body>
 
 

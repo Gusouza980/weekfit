@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/", function(){
+    return view("index");
+});
 
 Route::get('/painel/login', [\App\Http\Controllers\PainelController::class, 'login'])->name("painel.login");
 Route::post('/painel/logar', [\App\Http\Controllers\PainelController::class, 'logar'])->name("painel.logar");

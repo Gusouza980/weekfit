@@ -57,9 +57,9 @@
 
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
-                                        <a href="index.html" class="d-block auth-logo">
-                                            <!-- <img src="{{asset('admin/images/logo-gefit.png')}}" alt="" height="18" class="auth-logo-dark">
-                                            <img src="{{asset('admin/images/logo-gefit.png')}}" alt="" height="18" class="auth-logo-light"> -->
+                                        <a href="index.html" class="md-block auth-logo">
+                                            <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="200" class="mx-auto auth-logo-dark">
+                                            <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="200" class="mx-auto auth-logo-light">
                                         </a>
                                     </div>
                                     <div class="my-auto">
@@ -70,8 +70,8 @@
                                         </div>
             
                                         <div class="mt-4">
-                                            <form action="https://themesbrand.com/skote/layouts/index.html">
-                
+                                            <form action="{{route('painel.logar')}}" method="post">
+                                                @csrf
                                                 <div class="mb-3 text-white">
                                                     <label for="usuario" class="form-label">Usuário</label>
                                                     <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Informe o usuário">

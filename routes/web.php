@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('painel.template.main');
-});
 
-Route::get('/teste', function () {
-    return view('painel.login');
+Route::get('/painel/login', [\App\Http\Controllers\PainelController::class, 'login'])->name("painel.login");
+Route::post('/painel/logar', [\App\Http\Controllers\PainelController::class, 'logar'])->name("painel.logar");
+
+Route::middleware(['painel'])->group(function () {
+    Route::get('/painel', [\App\Http\Controllers\PainelController::class, 'index'])->name("painel.index");
+    Route::get('/painel/sair', [\App\Http\Controllers\PainelController::class, 'sair'])->name("painel.sair");
+
+    Route::get('/painel/dados', [\App\Http\Controllers\PainelController::class, 'dados'])->name("painel.dados");
 });

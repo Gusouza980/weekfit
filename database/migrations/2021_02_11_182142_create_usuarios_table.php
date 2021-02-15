@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string("foto")->nullable();
             $table->string("email", 150)->unique();
             $table->string("usuario", 100)->unique();
-            $table->string("senha", 50);
+            $table->string("senha", 255);
             $table->boolean("admin")->default(false);
             $table->smallInteger("acesso");
             $table->timestamps();

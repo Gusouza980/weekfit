@@ -1,8 +1,6 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="pt-br">
     
-<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Feb 2021 12:49:02 GMT -->
 <head>
         
         <meta charset="utf-8" />
@@ -10,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
+        <meta name="_token" content="{{ csrf_token() }}">
+
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}">
 
@@ -20,7 +20,7 @@
         <!-- App Css-->
         <link href="{{asset('admin/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
         @toastr_css
-        
+        @yield("styles")
     </head>
 
     <body data-sidebar="dark">
@@ -36,21 +36,21 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{route('painel.index')}}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{asset('admin/images/logo.svg')}}" alt="" height="22">
+                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="17">
+                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{route('painel.index')}}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{asset('admin/images/logo-light.svg')}}" alt="" height="22">
+                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('admin/images/logo-light.png')}}" alt="" height="19">
+                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
                                 </span>
                             </a>
                         </div>
@@ -257,6 +257,8 @@
                                 </ul>
                             </li>
 
+                            
+
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
                                     <i class="bx bx-home-circle"></i>
@@ -277,6 +279,25 @@
                                 </ul>
                             </li>
 
+                            @if(session()->get("usuario") && session()->get("usuario")["admin"])
+                                <li class="menu-title" key="t-menu">Administrativo</li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <span key="t-dashboards">Academias</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.academia.cadastro')}}" key="t-default">Cadastro</a></li>
+                                    </ul>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.academias')}}" key="t-default">Consultar</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+
+                            <li class="menu-title" key="t-menu">Configurações</li>
+                            
                         </ul>
                     </div>
                     <!-- Sidebar -->
@@ -377,6 +398,4 @@
         
     </body>
 
-
-<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Feb 2021 12:50:10 GMT -->
 </html>

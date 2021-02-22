@@ -151,6 +151,27 @@ class AcademiaController extends Controller
         return redirect()->back();
     }
 
+    public function usuario_editar(Request $request, Usuario $usuario){
+        if($request->lider == 1 && !$usuario->lider){
+            $lider = Usuario::where([["academia_id", $usuario->academia_id], ["departamento", $request->departamento], ["lider", true]])->count();
+            if($lider){
+                toastr()->error("Já existe um líder para este departamento");
+                return redirect()->back();
+            }
+        }
+
+        $usuario->nome = $request->nome;
+        $usuario->email = $request->email;
+        $usuario->telefone = $request->telefone;
+        $usuario->usuario = $request->usuario;
+        $usuario->departamento = $request->departamento;
+        $usuario->lider = $request->lider;
+        $usuario->save();
+
+        toastr()->success("Usuário salvo com sucesso");
+        return redirect()->back();
+    }
+
     public function atividade_ativo(AtividadeAcademia $atividade){
         if($atividade->ativo){
             $atividade->ativo = false;

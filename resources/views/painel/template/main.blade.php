@@ -41,13 +41,13 @@
                                     <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
+                                    <img src="{{asset('admin/images/logo-g.png')}}" alt="" width="100">
                                 </span>
                             </a>
 
                             <a href="{{route('painel.index')}}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
+                                    <img src="{{asset('admin/images/logo-g.png')}}" alt="" style="max-width: 100%;" width="100">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
@@ -289,8 +289,6 @@
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.academia.cadastro')}}" key="t-default">Cadastro</a></li>
-                                    </ul>
-                                    <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.academias')}}" key="t-default">Consultar</a></li>
                                     </ul>
                                 </li>

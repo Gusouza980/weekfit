@@ -253,7 +253,7 @@
                                     <span key="t-dashboards">Dashboards</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="index.html" key="t-default">Checklist</a></li>
+                                    <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
                                 </ul>
                             </li>
 
@@ -261,11 +261,11 @@
 
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-home-circle"></i>
+                                    <i class="bx bx-check-square"></i>
                                     <span key="t-dashboards">Lançamento</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="index.html" key="t-default">Checklist</a></li>
+                                    <li><a href="{{route('painel.administracao.lancamento')}}" key="t-default">Checklist</a></li>
                                 </ul>
                             </li>
 
@@ -284,7 +284,7 @@
 
                                 <li>
                                     <a href="javascript: void(0);" class="waves-effect">
-                                        <i class="fas fa-dumbbell"></i>
+                                        <i class="fas fa-dumbbell menu-icon"></i>
                                         <span key="t-dashboards">Academias</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
@@ -292,9 +292,21 @@
                                         <li><a href="{{route('painel.academias')}}" key="t-default">Consultar</a></li>
                                     </ul>
                                 </li>
+
+                                <li class="menu-title" key="t-menu">Configurações</li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-tasks menu-icon"></i>
+                                        <span key="t-dashboards">Atividades</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.configuracoes.grupos')}}" key="t-default">Gerenciamento</a></li>
+                                    </ul>
+                                </li>
                             @endif
 
-                            <li class="menu-title" key="t-menu">Configurações</li>
+                            
                             
                         </ul>
                     </div>

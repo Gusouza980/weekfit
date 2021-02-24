@@ -8,6 +8,10 @@ return [
         3 => "Marketing",
         100 => "Proprietário"
     ],
+    'importancia' => [
+        0 => "black",
+        1 => "#dab600"
+    ]
 ];
 
 ?>

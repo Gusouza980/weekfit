@@ -19,15 +19,15 @@ class AtividadeSeeder extends Seeder
         $grupos = \App\Models\Grupo::where("departamento", "0")->get();
         $num_grupos = $grupos->count();
 
-        $peso_atividades = 100 / ($num_grupos * 5 * 2);
         $cont = 1;
         foreach($grupos as $grupo){
             foreach($grupo->subgrupos as $subgrupo){
-                for($i = 0; $i < 2; $i++){
+                $total = random_int(1,4);
+                for($i = 0; $i < $total; $i++){
                     DB::table('atividades')->insert([
                         'subgrupo_id' => $subgrupo->id,
                         'nome' => 'Atividade ' . $cont,
-                        'peso' => $peso_atividades
+                        'importancia' => random_int(0,1)
                     ]);
                     $cont++;
                 }
@@ -37,15 +37,15 @@ class AtividadeSeeder extends Seeder
         $grupos = \App\Models\Grupo::where("departamento", "1")->get();
         $num_grupos = $grupos->count();
 
-        $peso_atividades = 100 / ($num_grupos * 5 * 2);
         $cont = 1;
         foreach($grupos as $grupo){
             foreach($grupo->subgrupos as $subgrupo){
+                $total = random_int(1,4);
                 for($i = 0; $i < 2; $i++){
                     DB::table('atividades')->insert([
                         'subgrupo_id' => $subgrupo->id,
                         'nome' => 'Atividade ' . $cont,
-                        'peso' => $peso_atividades
+                        'importancia' => random_int(0,1)
                     ]);
                     $cont++;
                 }
@@ -55,15 +55,15 @@ class AtividadeSeeder extends Seeder
         $grupos = \App\Models\Grupo::where("departamento", "2")->get();
         $num_grupos = $grupos->count();
 
-        $peso_atividades = 100 / ($num_grupos * 5 * 2);
         $cont = 1;
         foreach($grupos as $grupo){
             foreach($grupo->subgrupos as $subgrupo){
+                $total = random_int(1,4);
                 for($i = 0; $i < 2; $i++){
                     DB::table('atividades')->insert([
                         'subgrupo_id' => $subgrupo->id,
                         'nome' => 'Atividade ' . $cont,
-                        'peso' => $peso_atividades
+                        'importancia' => random_int(0,1)
                     ]);
                     $cont++;
                 }
@@ -73,15 +73,15 @@ class AtividadeSeeder extends Seeder
         $grupos = \App\Models\Grupo::where("departamento", "3")->get();
         $num_grupos = $grupos->count();
 
-        $peso_atividades = 100 / ($num_grupos * 5 * 2);
         $cont = 1;
         foreach($grupos as $grupo){
             foreach($grupo->subgrupos as $subgrupo){
+                $total = random_int(1,4);
                 for($i = 0; $i < 2; $i++){
                     DB::table('atividades')->insert([
                         'subgrupo_id' => $subgrupo->id,
                         'nome' => 'Atividade ' . $cont,
-                        'peso' => $peso_atividades
+                        'importancia' => random_int(0,1)
                     ]);
                     $cont++;
                 }

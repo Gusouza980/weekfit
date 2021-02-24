@@ -17,23 +17,44 @@ Route::get("/", function(){
     return view("index");
 });
 
-Route::get('/painel/login', [\App\Http\Controllers\PainelController::class, 'login'])->name("painel.login");
-Route::post('/painel/logar', [\App\Http\Controllers\PainelController::class, 'logar'])->name("painel.logar");
+Route::get('/dashboard/login', [\App\Http\Controllers\PainelController::class, 'login'])->name("painel.login");
+Route::post('/dashboard/logar', [\App\Http\Controllers\PainelController::class, 'logar'])->name("painel.logar");
 
 Route::middleware(['painel'])->group(function () {
-    Route::get('/painel', [\App\Http\Controllers\PainelController::class, 'index'])->name("painel.index");
-    Route::get('/painel/sair', [\App\Http\Controllers\PainelController::class, 'sair'])->name("painel.sair");
+    Route::get('/dashboard', [\App\Http\Controllers\PainelController::class, 'index'])->name("painel.index");
+    Route::get('/dashboard/sair', [\App\Http\Controllers\PainelController::class, 'sair'])->name("painel.sair");
+
+    // ROTAS PARA O DONO DE ACADEMIA
+    Route::get('/dashboard/administracao/lancamento', [\App\Http\Controllers\AcademiaController::class, 'lancamento'])->name("painel.administracao.lancamento");
+    Route::post('/dashboard/administracao/atividade/status/trocar/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_status'])->name("painel.administracao.atividade.status");
+
 
     // ROTAS REFERENTES A ACADEMIA
-    Route::get('/painel/academias/cadastro', [\App\Http\Controllers\AcademiaController::class, 'cadastro'])->name("painel.academia.cadastro");
-    Route::post('/painel/academias/cadastrar', [\App\Http\Controllers\AcademiaController::class, 'cadastrar'])->name("painel.academia.cadastrar");
-    Route::get('/painel/academias', [\App\Http\Controllers\AcademiaController::class, 'index'])->name("painel.academias");
-    Route::get('/painel/academia/edicao/{academia}', [\App\Http\Controllers\AcademiaController::class, 'edicao'])->name("painel.academia.edicao");
-    Route::post('/painel/academia/salvar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'salvar'])->name("painel.academia.salvar");
-    Route::get('/painel/academia/detalhes/{academia}', [\App\Http\Controllers\AcademiaController::class, 'visualizar'])->name("painel.academia.visualizar");
-    Route::post('/painel/academia/usuario/salvar/', [\App\Http\Controllers\AcademiaController::class, 'usuario_salvar'])->name("painel.academia.usuario.salvar");
-    Route::post('/painel/academia/usuario/editar/{usuario}', [\App\Http\Controllers\AcademiaController::class, 'usuario_editar'])->name("painel.academia.usuario.editar");
-    Route::get('/painel/academia/atividade/ativo/troca/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_ativo'])->name("painel.academia.atividade.ativo");
+    Route::get('/dashboard/academias/cadastro', [\App\Http\Controllers\AcademiaController::class, 'cadastro'])->name("painel.academia.cadastro");
+    Route::post('/dashboard/academias/cadastrar', [\App\Http\Controllers\AcademiaController::class, 'cadastrar'])->name("painel.academia.cadastrar");
+    Route::get('/dashboard/academias', [\App\Http\Controllers\AcademiaController::class, 'index'])->name("painel.academias");
+    Route::get('/dashboard/academia/edicao/{academia}', [\App\Http\Controllers\AcademiaController::class, 'edicao'])->name("painel.academia.edicao");
+    Route::post('/dashboard/academia/salvar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'salvar'])->name("painel.academia.salvar");
+    Route::get('/dashboard/academia/detalhes/{academia}', [\App\Http\Controllers\AcademiaController::class, 'visualizar'])->name("painel.academia.visualizar");
+    Route::post('/dashboard/academia/usuario/salvar/', [\App\Http\Controllers\AcademiaController::class, 'usuario_salvar'])->name("painel.academia.usuario.salvar");
+    Route::post('/dashboard/academia/usuario/editar/{usuario}', [\App\Http\Controllers\AcademiaController::class, 'usuario_editar'])->name("painel.academia.usuario.editar");
+    Route::get('/dashboard/academia/atividade/ativo/troca/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_ativo'])->name("painel.academia.atividade.ativo");
 
-    Route::get('/painel/dados', [\App\Http\Controllers\PainelController::class, 'dados'])->name("painel.dados");
+    //ROTAS REFERENTES AOS GRUPOS
+    Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");
+    Route::post('/dashboard/configuracoes/grupo/salvar/{grupo}', [\App\Http\Controllers\GruposController::class, 'salvar'])->name("painel.configuracoes.grupo.salvar");
+
+    //ROTAS REFERENTES AOS SUBGRUPOS
+    Route::post('/dashboard/configuracoes/subgrupo/salvar/{subgrupo}', [\App\Http\Controllers\SubgruposController::class, 'salvar'])->name("painel.configuracoes.subgrupo.salvar");
+    Route::get('/dashboard/configuracoes/subgrupo/deletar/{subgrupo}', [\App\Http\Controllers\SubgruposController::class, 'deletar'])->name("painel.configuracoes.subgrupo.deletar");
+    Route::post('/dashboard/configuracoes/subgrupo/adicionar', [\App\Http\Controllers\SubgruposController::class, 'adicionar'])->name("painel.configuracoes.subgrupo.adicionar");
+
+    //ROTAS REFERENTES AS ATIVIDADES
+    Route::get('/dashboard/configuracoes/grupo/{grupo}/atividades', [\App\Http\Controllers\AtividadesController::class, 'index'])->name("painel.configuracoes.grupo.atividades");
+    Route::post('/dashboard/configuracoes/atividade/salvar/{atividade}', [\App\Http\Controllers\AtividadesController::class, 'salvar'])->name("painel.configuracoes.atividade.salvar");
+    Route::get('/dashboard/configuracoes/atividade/deletar/{atividade}', [\App\Http\Controllers\AtividadesController::class, 'deletar'])->name("painel.configuracoes.atividade.deletar");
+    Route::post('/dashboard/configuracoes/atividade/adicionar', [\App\Http\Controllers\AtividadesController::class, 'adicionar'])->name("painel.configuracoes.atividade.adicionar");
+
+    // ROTAS REFERENTES AS DASHBOARDS
+    Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
 });

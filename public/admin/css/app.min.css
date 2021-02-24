@@ -3,6 +3,10 @@
     --azul: rgba(0, 46, 130, 1.0);
 }
 
+.menu-icon{
+    font-size: 1.2em !important;
+}
+
 #page-topbar {
     position: fixed;
     top: 0;

@@ -17,7 +17,13 @@ class CreateAtividadesTable extends Migration
             $table->id();
             $table->unsignedBigInteger("subgrupo_id");
             $table->string("nome");
-            $table->double("peso");
+            $table->string("link")->nullable();
+            $table->string("texto_link")->nullable();
+            /*
+                0 => Básico
+                1 => Importante
+            */
+            $table->smallInteger("importancia");
             $table->timestamps();
             $table->foreign('subgrupo_id')->references('id')->on('subgrupos')->onDelete('cascade');
         });

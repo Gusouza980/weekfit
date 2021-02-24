@@ -17,7 +17,7 @@ class CreateAtividadeAcademiasTable extends Migration
             $table->id();
             $table->unsignedBigInteger("academia_id");
             $table->unsignedBigInteger("atividade_id");
-            $table->double("completo")->default(0);
+            $table->unsignedBigInteger("subgrupo_id");
             $table->string("observacao")->nullable();
             /*
                 0 => Em Aberto
@@ -29,6 +29,7 @@ class CreateAtividadeAcademiasTable extends Migration
             $table->timestamps();
             $table->foreign('academia_id')->references('id')->on('academias')->onDelete('cascade');
             $table->foreign('atividade_id')->references('id')->on('atividades')->onDelete('cascade');
+            $table->foreign('subgrupo_id')->references('id')->on('subgrupos')->onDelete('cascade');
         });
     }
 

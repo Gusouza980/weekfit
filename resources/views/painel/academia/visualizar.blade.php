@@ -254,8 +254,11 @@
                                                                                                             name="" id=""
                                                                                                             value="{{ $atividade_academia->id }}"
                                                                                                             @if ($atividade_academia->ativo) checked @endif> {!!
-                                                                                                        $atividade_academia->atividade->nome
+                                                                                                        $atividade_academia->atividade->nome 
                                                                                                         !!}
+                                                                                                        @if($atividade_academia->atividade->link)
+                                                                                                            {!! " <a href='" . $atividade_academia->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                        @endif
                                                                                                     </label>
                                                                                                 </div>
                                                                                             </div>
@@ -511,7 +514,7 @@
                 });
                 var id = $(this).val();
                 $.ajax({
-                    url: '/painel/academia/atividade/ativo/troca/' + id,
+                    url: '/dashboard/academia/atividade/ativo/troca/' + id,
                     type: 'GET',
                     dataType: 'JSON',
                     success: function(data) {

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Atividade extends Model
 {
     use HasFactory;
+
+    public function subgrupo(){
+        return $this->belongsTo(Subgrupo::class);
+    }
 }

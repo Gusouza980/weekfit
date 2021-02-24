@@ -66,6 +66,7 @@ class AcademiaController extends Controller
             $atividade_academia = new AtividadeAcademia;
             $atividade_academia->academia_id = $academia->id;
             $atividade_academia->atividade_id = $atividade->id;
+            $atividade_academia->subgrupo_id = $atividade->subgrupo_id;
             $atividade_academia->save();
         }
 
@@ -183,5 +184,16 @@ class AcademiaController extends Controller
             return response()->json("ativado", 200);
         }
         
+    }
+
+    public function atividade_status(Request $request, AtividadeAcademia $atividade){
+        $atividade->status = $request->status;
+        $atividade->save();
+        return response()->json("sucesso");
+    }
+
+    public function lancamento(){
+        $academia = Academia::find(session()->get("usuario")["academia_id"]);
+        return view("painel.academia.lancamento", ['academia' => $academia]);
     }
 }

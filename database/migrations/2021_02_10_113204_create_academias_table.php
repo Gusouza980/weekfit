@@ -33,7 +33,8 @@ class CreateAcademiasTable extends Migration
             $table->string("cep", 20)->nullable();
             $table->string("logo", 255)->nullable();
             $table->string("url", 255)->nullable();
-
+            $table->date("inicio_contrato")->nullable();
+            $table->date("fim_contrato")->nullable();
             $table->timestamps();
         });
     }

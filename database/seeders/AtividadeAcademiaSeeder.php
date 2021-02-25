@@ -22,7 +22,8 @@ class AtividadeAcademiaSeeder extends Seeder
             DB::table('atividade_academias')->insert([
                 'academia_id' => 1,
                 'atividade_id' => $atividade->id,
-                'subgrupo_id' => $atividade->subgrupo_id
+                'subgrupo_id' => $atividade->subgrupo_id,
+                'status' => random_int(0,2)
             ]);
         }
     }

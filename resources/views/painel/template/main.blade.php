@@ -47,7 +47,7 @@
 
                             <a href="{{route('painel.index')}}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{asset('admin/images/logo-g.png')}}" alt="" style="max-width: 100%;" width="100">
+                                    <img src="{{asset('admin/images/logo-g.png')}}" alt="" style="max-width: 25px;">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="100">
@@ -253,7 +253,7 @@
                                 <form id="form-select-academia" action="{{route('painel.academia.selecionar')}}" method="post">
                                     @csrf
                                     <select name="academia" id="select-academia" class="form-select">
-                                        <option value="0">Selecionar Academia</option>
+                                        <option value="0">Administrativo</option>
                                         @foreach(\App\Models\Academia::all() as $academia)
                                             <option value="{{$academia->id}}" @if(session()->get("academia") && session()->get("academia") == $academia->id) selected @endif>{{$academia->nome}}</option>
                                         @endforeach
@@ -367,11 +367,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
+                                <script>document.write(new Date().getFullYear())</script> © GEFIT | Fitness Intelligence.
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by Themesbrand
+                                    Design & Develop by 7 Seven Trends
                                 </div>
                             </div>
                         </div>

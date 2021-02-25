@@ -60,12 +60,17 @@
                         </button>
 
                         <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
+                        {{-- <form class="app-search d-none d-lg-block">
                             <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <select class="form-control">
+                                    <option>Nenhuma Academia Selecionada</option>
+                                    @foreach(\App\Models\Academia::all() as $academia)
+                                        <option value="{{$academia->id}}">{{$academia->nome}}</option>
+                                    @endforeach
+                                </select>
                                 <span class="bx bx-search-alt"></span>
                             </div>
-                        </form>
+                        </form> --}}
 
                         <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
                             <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
@@ -243,43 +248,60 @@
 
                     <!--- Sidemenu -->
                     <div id="sidebar-menu">
+                        @if(session()->get("usuario")["admin"])
+                            <div class="px-3">
+                                <form id="form-select-academia" action="{{route('painel.academia.selecionar')}}" method="post">
+                                    @csrf
+                                    <select name="academia" id="select-academia" class="form-select">
+                                        <option value="0">Selecionar Academia</option>
+                                        @foreach(\App\Models\Academia::all() as $academia)
+                                            <option value="{{$academia->id}}" @if(session()->get("academia") && session()->get("academia") == $academia->id) selected @endif>{{$academia->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                                
+                            </div>
+                        @endif
                         <!-- Left Menu Start -->
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title" key="t-menu">Menu</li>
+                        <ul class="metismenu list-unstyled mt-3" id="side-menu">
+                            @if(session()->get("usuario")["admin"] == 0 || session()->get("academia"))
+                                <li class="menu-title" key="t-menu">Menu</li>
 
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-home-circle"></i>
-                                    <span key="t-dashboards">Dashboards</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
-                                </ul>
-                            </li>
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="bx bx-home-circle"></i>
+                                        <span key="t-dashboards">Dashboards</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
+                                    </ul>
+                                </li>
 
-                            
+                                
 
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-check-square"></i>
-                                    <span key="t-dashboards">Lançamento</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{route('painel.administracao.lancamento')}}" key="t-default">Checklist</a></li>
-                                </ul>
-                            </li>
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="bx bx-check-square"></i>
+                                        <span key="t-dashboards">Lançamento</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.administracao.lancamento')}}" key="t-default">Checklist</a></li>
+                                    </ul>
+                                </li>
 
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-home-circle"></i>
-                                    <span key="t-dashboards">Calendario</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="index.html" key="t-default">Gefit Academia</a></li>
-                                </ul>
-                            </li>
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="bx bx-home-circle"></i>
+                                        <span key="t-dashboards">Calendario</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="index.html" key="t-default">Gefit Academia</a></li>
+                                    </ul>
+                                </li>
 
-                            @if(session()->get("usuario") && session()->get("usuario")["admin"])
+                            @endif
+
+                            @if(session()->get("usuario") && session()->get("usuario")["admin"] && !session()->get("academia"))
                                 <li class="menu-title" key="t-menu">Administrativo</li>
 
                                 <li>
@@ -366,7 +388,7 @@
             <div data-simplebar class="h-100">
                 <div class="rightbar-title d-flex align-items-center px-3 py-4">
             
-                    <h5 class="m-0 me-2">Settings</h5>
+                    <h5 class="m-0 me-2">Atualizações</h5>
 
                     <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
                         <i class="mdi mdi-close noti-icon"></i>
@@ -374,13 +396,25 @@
                 </div>
 
                 <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
+                <hr class="mt-0" />           
+                <div class="p-4 lista-atualizacoes">
+                    <h6 class="text-left mb-3 mt-4">25/02/2021 - V 1.1</h6>
+                    <ul class="">
+                        <li><i class="fas fa-sync-alt" style="color: #dab600;"></i> <span>Atualizando dashboard de checklist para conter informações por grupo.</span></li>
                     
-
-            
+                    </ul>
+                    
+                    
+                    <h6 class="text-left mb-3 mt-4">24/02/2021 - V 1.0</h6>
+                    <ul class="">
+                        <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição do sistema de lançamento de atividades.</span></li>
+                        <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição da dashboard de checklist.</span></li>
+                    </ul>
+                    
+                    <h6 class="text-left mb-3 mt-4">16/02/2021 - V 0.5</h6>
+                    <ul class="">
+                        <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição do sistema de acesso.</span></li>
+                    </ul>
                 </div>
 
             </div> <!-- end slimscroll-menu-->
@@ -405,7 +439,13 @@
         <!-- App js -->
         <script src="{{asset('admin/js/app.js')}}"></script>
         @yield("scripts")
-        
+        <script>
+            $(document).ready(function(){
+                $("#select-academia").change(function(){
+                    $("#form-select-academia").submit();
+                });
+            });
+        </script>
     </body>
 
 </html>

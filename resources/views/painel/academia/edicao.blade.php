@@ -10,10 +10,14 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Informações Básicas</h4>
 
-                <form action="{{route('painel.academia.salvar', ['academia' => $academia])}}" method="POST">
+                
+
+                <form action="{{route('painel.academia.salvar', ['academia' => $academia])}}" method="POST" enctype="multipart/form-data">
+                    
                     @csrf
+                    <h4 class="card-title mb-4">Informações Básicas</h4>
+
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome da Academia *</label>
                         <input type="text" class="form-control" name="nome" id="nome" value="{{$academia->nome}}" required>
@@ -139,13 +143,70 @@
 
                     <hr>
 
-                    <h4 class="card-title mb-4 mt-4">Redes Sociais e Website</h4>
-
+                    <h4 class="card-title mb-4 mt-4">Chaves</h4>
+                    
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="mb-3">
+                                <label for="login_sistema" class="form-label">Login do sistema</label>
+                                <input type="text" class="form-control" name="login_sistema" id="login_sistema" value="{{$academia->login_sistema}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="senha_sistema" class="form-label">Senha do sistema</label>
+                                <input type="text" class="form-control" name="senha_sistema" id="senha_sistema" value="{{$academia->senha_sistema}}">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="login_google" class="form-label">Email Google</label>
+                                <input type="text" class="form-control" name="login_google" id="login_google" value="{{$academia->login_google}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="senha_google" class="form-label">Senha do email</label>
+                                <input type="text" class="form-control" name="senha_google" id="senha_google" value="{{$academia->senha_google}}">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="login_painel" class="form-label">Login do Painel</label>
+                                <input type="text" class="form-control" name="login_painel" id="login_painel" value="{{$academia->login_painel}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="senha_painel" class="form-label">Senha do Painel</label>
+                                <input type="text" class="form-control" name="senha_painel" id="senha_painel" value="{{$academia->senha_painel}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h4 class="card-title mb-4 mt-4">Links e Credenciais</h4>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-12">
+                            <div class="mb-3">
                                 <label for="url" class="form-label">Url do Website</label>
                                 <input type="text" class="form-control" name="url" id="url" value="{{$academia->url}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12">
+                            <div class="mb-3">
+                                <label for="aplicativo" class="form-label">Url do Aplicativo</label>
+                                <input type="text" class="form-control" name="aplicativo" id="aplicativo" value="{{$academia->aplicativo}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control" name="whatsapp" id="whatsapp" value="{{$academia->whatsapp}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -154,10 +215,34 @@
                                 <input type="text" class="form-control" name="facebook" id="facebook" value="{{$academia->facebook}}">
                             </div>
                         </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_facebook" class="form-label">Login do facebook</label>
+                                <input type="text" class="form-control" name="login_facebook" id="login_facebook" value="{{$academia->login_facebook}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_facebook" class="form-label">Senha do facebook</label>
+                                <input type="text" class="form-control" name="senha_facebook" id="senha_facebook" value="{{$academia->senha_facebook}}">
+                            </div>
+                        </div>
                         <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="linkedin" class="form-label">Linkedin</label>
                                 <input type="text" class="form-control" name="linkedin" id="linkedin" value="{{$academia->linkedin}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_linkedin" class="form-label">Login do linkedin</label>
+                                <input type="text" class="form-control" name="login_linkedin" id="login_linkedin" value="{{$academia->login_linkedin}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_linkedin" class="form-label">Senha do linkedin</label>
+                                <input type="text" class="form-control" name="senha_linkedin" id="senha_linkedin" value="{{$academia->senha_linkedin}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -166,10 +251,52 @@
                                 <input type="text" class="form-control" name="instagram" id="instagram" value="{{$academia->instagram}}">
                             </div>
                         </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_instagram" class="form-label">Login do instagram</label>
+                                <input type="text" class="form-control" name="login_instagram" id="login_instagram" value="{{$academia->login_instagram}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_instagram" class="form-label">Senha do instagram</label>
+                                <input type="text" class="form-control" name="senha_instagram" id="senha_instagram" value="{{$academia->senha_instagram}}">
+                            </div>
+                        </div>
                         <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="pinterest" class="form-label">Pinterest</label>
                                 <input type="text" class="form-control" name="pinterest" id="pinterest" value="{{$academia->pinterest}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_pinterest" class="form-label">Login do pinterest</label>
+                                <input type="text" class="form-control" name="login_pinterest" id="login_pinterest" value="{{$academia->login_pinterest}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_pinterest" class="form-label">Senha do pinterest</label>
+                                <input type="text" class="form-control" name="senha_pinterest" id="senha_pinterest" value="{{$academia->senha_pinterest}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="twitter" class="form-label">Twitter</label>
+                                <input type="text" class="form-control" name="twitter" id="twitter" value="{{$academia->twitter}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_twitter" class="form-label">Login do twitter</label>
+                                <input type="text" class="form-control" name="login_twitter" id="login_twitter" value="{{$academia->login_twitter}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_twitter" class="form-label">Senha do twitter</label>
+                                <input type="text" class="form-control" name="senha_twitter" id="senha_twitter" value="{{$academia->senha_twitter}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -178,13 +305,84 @@
                                 <input type="text" class="form-control" name="youtube" id="youtube" value="{{$academia->youtube}}">
                             </div>
                         </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_youtube" class="form-label">Login do youtube</label>
+                                <input type="text" class="form-control" name="login_youtube" id="login_youtube" value="{{$academia->login_youtube}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_youtube" class="form-label">Senha do youtube</label>
+                                <input type="text" class="form-control" name="senha_youtube" id="senha_youtube" value="{{$academia->senha_youtube}}">
+                            </div>
+                        </div>
                         <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="google_negocio" class="form-label">Google Meu Negócio</label>
                                 <input type="text" class="form-control" name="google_negocio" id="google_negocio" value="{{$academia->google_negocio}}">
                             </div>
                         </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_google_negocio" class="form-label">Login do Google Meu Negócio</label>
+                                <input type="text" class="form-control" name="login_google_negocio" id="login_google_negocio" value="{{$academia->login_google_negocio}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_google_negocio" class="form-label">Senha do Google Meu Negócio</label>
+                                <input type="text" class="form-control" name="senha_google_negocio" id="senha_google_negocio" value="{{$academia->senha_google_negocio}}">
+                            </div>
+                        </div>
+                        
                     </div>
+                    <hr>
+
+                    <div class="row">
+                        <h4 class="card-title mb-4 mt-4">Informações de Contrato</h4>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="inicio_contrato" class="form-label">Início do Contrato</label>
+                                <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato" value="{{$academia->inicio_contrato}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="fim_contrato" class="form-label">Fim do Contrato</label>
+                                <input type="date" class="form-control" name="fim_contrato" id="fim_contrato" value="{{$academia->fim_contrato}}">
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="card-title mb-4 mt-4">Logo</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <img id="logo-preview" src="{{asset($academia->logo)}}" style="width: 100%; max-width:200px;" alt="">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-center">
+                                    <label class="btn btn-primary" for="logo-upload">Trocar</label>
+                                    <input name="logo" id="logo-upload" style="display: none;" type="file">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <small style="color: red;">* Importante: Caso a logo tenha elementos brancos, coloque um fundo de outra cor.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col-12 col-lg-6 text-left" style="color:red;">
                             * Campos obrigatórios
@@ -202,4 +400,18 @@
     <!-- end col -->
 </div>
 <!-- end row -->
+@endsection
+
+@section('scripts')
+    <script>
+        var inp = document.getElementById('logo-upload');
+        inp.addEventListener('change', function(e){
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('logo-preview').src = this.result;
+                };
+            reader.readAsDataURL(file);
+        },false);
+    </script>
 @endsection

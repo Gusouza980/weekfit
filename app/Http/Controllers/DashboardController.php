@@ -10,7 +10,16 @@ class DashboardController extends Controller
 {
     //
     public function checklist(){
-        $academia = Academia::find(session()->get("usuario")["academia_id"]);
+        if(session()->get("usuario")["admin"]){
+            if(session()->get("academia")){
+                $academia = Academia::find(session()->get("academia"));
+            }else{
+                toastr()->error("Selecione uma academia antes de utilizar essa página");
+                return redirect()->route("painel.index");
+            }
+        }else{
+            $academia = Academia::find(session()->get("usuario")["academia_id"]);
+        }
         $departamentos = [];
         $departamentos["total_atividades"] = 0;
         $departamentos["total_atividades_completas"] = 0;

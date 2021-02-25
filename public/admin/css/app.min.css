@@ -317,10 +317,10 @@ body[data-layout=horizontal] .footer {
     position: fixed;
     -webkit-transition: all .2s ease-out;
     transition: all .2s ease-out;
-    width: 280px;
+    width: 40%;
     z-index: 9999;
     float: right!important;
-    right: -290px;
+    right: -40%;
     top: 0;
     bottom: 0
 }
@@ -5029,5 +5029,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
     border-radius: 30px;
 }
 
+.lista-atualizacoes > ul{
+    list-style: none;
+}
 
 /*# sourceMappingURL=app.min.css.map */

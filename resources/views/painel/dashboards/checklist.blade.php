@@ -26,30 +26,36 @@
                     <div class="col-lg-8 align-self-center">
                         <div class="text-lg-center mt-4 mt-lg-0">
                             <div class="row">
-                                <div class="col">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Início do Contrato</p>
-                                        <h5 class="mb-0">{{date('d/m/Y', strtotime($academia->inicio_contrato))}}</h5>
+                                @if($academia->inicio_contrato && $academia->fim_contrato && $academia->inicio_contrato < $academia->fim_contrato)
+                                    <div class="col-12 col-lg-4">
+                                        <div>
+                                            <p class="text-muted text-truncate mb-2">Início do Contrato</p>
+                                            <h5 class="mb-0">{{date('d/m/Y', strtotime($academia->inicio_contrato))}}</h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Fim do Contrato</p>
-                                        <h5 class="mb-0">{{date('d/m/Y', strtotime($academia->fim_contrato))}}</h5>
+                                    <div class="col-12 col-lg-4">
+                                        <div>
+                                            <p class="text-muted text-truncate mb-2">Fim do Contrato</p>
+                                            <h5 class="mb-0">{{date('d/m/Y', strtotime($academia->fim_contrato))}}</h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Dias Restantes</p>
-                                        @php
-                                            $inicio = new DateTime($academia->inicio_contrato);
-                                            $fim = new DateTime($academia->fim_contrato);
-                                            $dias = date_diff($inicio, $fim);
-                                        @endphp
-                                        <h5 class="mb-0">{{$dias->format("%a")}}</h5>
-                                        
+                                    <div class="col-12 col-lg-4">
+                                        <div>
+                                            <p class="text-muted text-truncate mb-2">Dias Restantes</p>
+                                            @php
+                                                $inicio = new DateTime($academia->inicio_contrato);
+                                                $fim = new DateTime($academia->fim_contrato);
+                                                $dias = date_diff($inicio, $fim);
+                                            @endphp
+                                            <h5 class="mb-0">{{$dias->format("%a")}}</h5>
+                                            
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-12 text-center">
+                                        Sem contrato ativo
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -59,48 +65,47 @@
         </div>
     </div>
 </div>
-<div class="row d-flex flex-row">
-    <div class="col-xl-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h4 class="card-title">Progresso Geral</h4>
-                <div id="gauge-chart" class="e-charts"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-8">
+<div class="row">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Progresso por Departamento</h4>
-                <div class="row mt-4">
-                    <div class="col-12 col-lg-6">
-                        <div class="text-center" dir="ltr">
-                            <h5 class="font-size-14 mb-3">Administrativo</h5>
-                            <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[0]["total_atividades"] != 0) value="{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 1)}}" @else value="0" @endif>
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-5 text-center">
+                            <h5 class="font-size-14 mb-n3">Progresso Geral</h5>
+                            <div id="gauge-chart" class="e-charts"></div>
+                        </div>
+                        <div class="col-12 col-lg-7 text-center">
+                            <div class="row mt-4">
+                                <div class="col-12 col-lg-6">
+                                    <div class="text-center" dir="ltr">
+                                        <h5 class="font-size-14 mb-3">Administrativo</h5>
+                                        <input class="knob" data-width="150" data-fgcolor="#8E44AD" @if($departamentos[0]["total_atividades"] != 0) value="{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 1)}}" @else value="0" @endif>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="text-center" dir="ltr">
+                                        <h5 class="font-size-14 mb-3">Técnico</h5>
+                                        <input class="knob" data-width="150" data-fgcolor="#6C281A" @if($departamentos[1]["total_atividades"] != 0) value="{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 1)}}" @else value="0" @endif>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="text-center" dir="ltr">
+                                        <h5 class="font-size-14 mb-3">Comercial</h5>
+                                        <input class="knob" data-width="150" data-fgcolor="#D35400" @if($departamentos[2]["total_atividades"] != 0) value="{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 1)}}" @else value="0" @endif>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="text-center" dir="ltr">
+                                        <h5 class="font-size-14 mb-3">Marketing</h5>
+                                        <input class="knob" data-width="150" data-fgcolor="#2E4053" @if($departamentos[3]["total_atividades"] != 0) value="{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 1)}}" @else value="0" @endif>
+                                    </div>
+                                </div>
+            
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="text-center" dir="ltr">
-                            <h5 class="font-size-14 mb-3">Técnico</h5>
-                            <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[1]["total_atividades"] != 0) value="{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 1)}}" @else value="0" @endif>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="text-center" dir="ltr">
-                            <h5 class="font-size-14 mb-3">Comercial</h5>
-                            <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[2]["total_atividades"] != 0) value="{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 1)}}" @else value="0" @endif>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="text-center" dir="ltr">
-                            <h5 class="font-size-14 mb-3">Marketing</h5>
-                            <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[3]["total_atividades"] != 0) value="{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 1)}}" @else value="0" @endif>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -115,7 +120,7 @@
                     <h5>{{config("globals.departamentos")[$i]}}</h5>
                     <div class="row mt-4">
                         @foreach(\App\Models\Grupo::where("departamento", $i)->get() as $grupo)
-                            <div class="col-xl-3 col-sm-4 col-6">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="text-center" dir="ltr">
                                     <h5 class="font-size-14 mb-3">{{$grupo->nome}}</h5>
                                     <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[$i][$grupo->nome]["total_atividades"] != 0) value="{{number_format(($departamentos[$i][$grupo->nome]["total_atividades_completas"] * 100) / $departamentos[$i][$grupo->nome]["total_atividades"], 1)}}" @else value="0" @endif>

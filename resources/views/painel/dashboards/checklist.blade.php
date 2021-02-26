@@ -80,25 +80,25 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="text-center" dir="ltr">
                                         <h5 class="font-size-14 mb-3">Administrativo</h5>
-                                        <input class="knob" data-width="150" data-fgcolor="#8E44AD" @if($departamentos[0]["total_atividades"] != 0) value="{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 1)}}" @else value="0" @endif>
+                                        <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento(0)}}" @if($departamentos[0]["total_atividades"] != 0) value="{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 1)}}" @else value="0" @endif>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="text-center" dir="ltr">
                                         <h5 class="font-size-14 mb-3">Técnico</h5>
-                                        <input class="knob" data-width="150" data-fgcolor="#6C281A" @if($departamentos[1]["total_atividades"] != 0) value="{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 1)}}" @else value="0" @endif>
+                                        <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento(1)}}" @if($departamentos[1]["total_atividades"] != 0) value="{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 1)}}" @else value="0" @endif>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="text-center" dir="ltr">
                                         <h5 class="font-size-14 mb-3">Comercial</h5>
-                                        <input class="knob" data-width="150" data-fgcolor="#D35400" @if($departamentos[2]["total_atividades"] != 0) value="{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 1)}}" @else value="0" @endif>
+                                        <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento(2)}}" @if($departamentos[2]["total_atividades"] != 0) value="{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 1)}}" @else value="0" @endif>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="text-center" dir="ltr">
                                         <h5 class="font-size-14 mb-3">Marketing</h5>
-                                        <input class="knob" data-width="150" data-fgcolor="#2E4053" @if($departamentos[3]["total_atividades"] != 0) value="{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 1)}}" @else value="0" @endif>
+                                        <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento(3)}}" @if($departamentos[3]["total_atividades"] != 0) value="{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 1)}}" @else value="0" @endif>
                                     </div>
                                 </div>
             
@@ -123,7 +123,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="text-center" dir="ltr">
                                     <h5 class="font-size-14 mb-3">{{$grupo->nome}}</h5>
-                                    <input class="knob" data-width="150" data-fgcolor="#556ee6" @if($departamentos[$i][$grupo->nome]["total_atividades"] != 0) value="{{number_format(($departamentos[$i][$grupo->nome]["total_atividades_completas"] * 100) / $departamentos[$i][$grupo->nome]["total_atividades"], 1)}}" @else value="0" @endif>
+                                    <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento($i)}}" @if($departamentos[$i][$grupo->nome]["total_atividades"] != 0) value="{{number_format(($departamentos[$i][$grupo->nome]["total_atividades_completas"] * 100) / $departamentos[$i][$grupo->nome]["total_atividades"], 1)}}" @else value="0" @endif>
                                 </div>
                             </div>
                         @endforeach

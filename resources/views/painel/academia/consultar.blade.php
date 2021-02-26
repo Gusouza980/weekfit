@@ -24,11 +24,11 @@
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Usuários</th>
+                            <th>Geral</th>
                             <th>Administrativo</th>
                             <th>Técnico</th>
                             <th>Comercial</th>
                             <th>Marketing</th>
-                            <th>Geral</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -65,11 +65,11 @@
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>
                                 <td>{{$academia->usuarios()->count()}}</td>
-                                <td>{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 2)}}%</td>
-                                <td>{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 2)}}%</td>
-                                <td>{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 2)}}%</td>
-                                <td>{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 2)}}%</td>
-                                <td>{{number_format(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"], 2)}}%</td>
+                                <td style="color: {{\Functions::corProgresso(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"])}}">{{number_format(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"], 2)}}%</td>
+                                <td style="color: {{\Functions::corProgresso(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"])}}">{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 2)}}%</td>
+                                <td style="color: {{\Functions::corProgresso(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"])}}">{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 2)}}%</td>
+                                <td style="color: {{\Functions::corProgresso(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"])}}">{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 2)}}%</td>
+                                <td style="color: {{\Functions::corProgresso(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"])}}">{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 2)}}%</td>
                                 <td><a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a></td>
                             </tr>
                         @endforeach

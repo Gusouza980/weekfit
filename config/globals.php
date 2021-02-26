@@ -11,7 +11,7 @@ return [
     'importancia' => [
         0 => "black",
         1 => "#dab600"
-    ]
+    ],
 ];
 
 ?>

@@ -1,3 +1,9 @@
+@php
+    
+$usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
+
+@endphp
+
 <!doctype html>
 <html lang="pt-br">
     
@@ -11,7 +17,7 @@
         <meta name="_token" content="{{ csrf_token() }}">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}">
 
         <!-- Bootstrap Css -->
         <link href="{{asset('admin/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -72,7 +78,7 @@
                             </div>
                         </form> --}}
 
-                        <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
+                        {{-- <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
                             <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                                 <span key="t-megamenu">Mega Menu</span>
                                 <i class="mdi mdi-chevron-down"></i> 
@@ -83,7 +89,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="d-flex">
@@ -215,7 +221,7 @@
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="{{asset('admin/images/users/avatar-1.jpg')}}"
+                                <img class="rounded-circle header-profile-user" @if($usuario->academia) src="{{asset($usuario->academia->logo)}}" @else src="{{asset('admin/images/logos/gefit.png')}}" @endif
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{session()->get("usuario")["nome"]}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -289,7 +295,7 @@
                                     </ul>
                                 </li>
 
-                                <li>
+                                {{-- <li>
                                     <a href="javascript: void(0);" class="waves-effect">
                                         <i class="bx bx-home-circle"></i>
                                         <span key="t-dashboards">Calendario</span>
@@ -297,7 +303,7 @@
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="index.html" key="t-default">Gefit Academia</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
 
                             @endif
 

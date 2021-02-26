@@ -10,6 +10,6 @@ class Usuario extends Model
     use HasFactory;
 
     public function academia(){
-        return $this->hasOne(Academia::class);
+        return $this->hasOne(Academia::class, "id", "academia_id");
     }
 }

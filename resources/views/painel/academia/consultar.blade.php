@@ -24,6 +24,11 @@
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Usuários</th>
+                            <th>Administrativo</th>
+                            <th>Técnico</th>
+                            <th>Comercial</th>
+                            <th>Marketing</th>
+                            <th>Geral</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,12 +36,40 @@
 
                     <tbody>
                         @foreach($academias as $academia)
+                            @php
+                                $departamentos = [];
+                                $departamentos["total_atividades"] = 0;
+                                $departamentos["total_atividades_completas"] = 0;
+                                for($i = 0; $i < 4; $i++){
+                                    $departamentos[$i]["total_atividades"] = 0;
+                                    $departamentos[$i]["total_atividades_completas"] = 0;
+                                    $grupos = \App\Models\Grupo::where("departamento", $i)->get();
+                                    foreach($grupos as $grupo){
+                                        $subgrupos = $grupo->subgrupos;
+                                        foreach($subgrupos as $subgrupo){
+                                            foreach($academia->atividades->where("ativo", 1)->where("subgrupo_id", $subgrupo->id) as $atividade){
+                                                $departamentos[$i]["total_atividades"] += 1;
+                                                if($atividade->status == 2){
+                                                    $departamentos[$i]["total_atividades_completas"] += 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    $departamentos["total_atividades"] += $departamentos[$i]["total_atividades"];
+                                    $departamentos["total_atividades_completas"] += $departamentos[$i]["total_atividades_completas"];
+                                }
+                            @endphp
                             <tr>
                                 <td><a href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a></td>
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>
                                 <td>{{$academia->usuarios()->count()}}</td>
+                                <td>{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 2)}}%</td>
+                                <td>{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 2)}}%</td>
+                                <td>{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 2)}}%</td>
+                                <td>{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 2)}}%</td>
+                                <td>{{number_format(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"], 2)}}%</td>
                                 <td><a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a></td>
                             </tr>
                         @endforeach

@@ -96,7 +96,7 @@
                                                 </div> -->
                                                 
                                                 <div class="mt-3 d-grid">
-                                                    <button class="btn waves-effect waves-light" style="background-color: #FEFEFE; color:black;" type="submit">Entrar</button>
+                                                    <button class="btn waves-effect waves-light" style="background-color: rgba(179,244,0,1); color:white;" type="submit">Entrar</button>
                                                 </div>
                     
                                                 

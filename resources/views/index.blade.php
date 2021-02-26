@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&amp;display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('site/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/owl.theme.default.min.css')}}">
@@ -20,7 +20,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index-2.html">Author<span>.</span></a>
+            <a class="navbar-brand" href="index-2.html"><img src="{{asset('site/images/logo-gefit-branco.png')}}" style="max-width: 200px;" alt=""></a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
                 data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -38,19 +38,18 @@
             </div>
         </div>
     </nav>
-    <section class="hero-wrap js-fullheight">
+    <section class="hero-wrap js-fullheight" style="background-color: rgba(0, 46, 130, 1.0);">
         <div class="overlay"></div>
         <div class="container-fluid px-0">
-            <div class="row d-md-flex no-gutters slider-text align-items-center js-fullheight justify-content-end">
-                <img class="one-third js-fullheight align-self-end order-md-last img-fluid"
-                    src="{{asset('site/images/undraw_book_lover_mkck.svg')}}" alt="">
+            <div class="row d-md-flex no-gutters slider-text align-items-center js-fullheight justify-content-end" style="background: url('site/images/fundo-header-grande.png'); background-size: cover; background-position: right;">
+                
                 <div class="one-forth d-flex align-items-center ftco-animate js-fullheight">
-                    <div class="text mt-5">
+                    <div class="text mt-5 text-white">
                         <span class="subheading">Best Seller Book Of The Week</span>
-                        <h1>Clue Of The Wooden Cottage</h1>
+                        <h1 class="text-white">Clue Of The Wooden Cottage</h1>
                         <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
                             It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-4">Buy Now For $22.78</a></p>
+                        <p><a href="#" class="btn btn-primary py-3 px-4">Vamos conversar <i class="fa fa-whatsapp fa-lg" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
             </div>
@@ -179,7 +178,7 @@
                     </nav>
                 </div>
                 <div class="col-md-9">
-                    <div id="page-1" class="page bg-light one">
+                    <div id="page-1" class="page bg-azul one">
                         <h2 class="heading">Title Page</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -188,7 +187,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-2" class="page bg-light two">
+                    <div id="page-2" class="page bg-azul two">
                         <h2 class="heading">Copyright</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -197,7 +196,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-3" class="page bg-light three">
+                    <div id="page-3" class="page bg-azul three">
                         <h2 class="heading">Table of Contents</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -206,7 +205,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-4" class="page bg-light four">
+                    <div id="page-4" class="page bg-azul four">
                         <h2 class="heading">Dedication</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -215,7 +214,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-5" class="page bg-light five">
+                    <div id="page-5" class="page bg-azul five">
                         <h2 class="heading">Foreword</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -224,7 +223,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-6" class="page bg-light six">
+                    <div id="page-6" class="page bg-azul six">
                         <h2 class="heading">Prologue</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -233,7 +232,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-7" class="page bg-light seven">
+                    <div id="page-7" class="page bg-azul seven">
                         <h2 class="heading">Epilogue</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -242,7 +241,7 @@
                             a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged
                             her into their agency, where they abused her for their.</p>
                     </div>
-                    <div id="page-8" class="page bg-light eight">
+                    <div id="page-8" class="page bg-azul eight">
                         <h2 class="heading">Epigraph</h2>
                         <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
                             would have been rewritten a thousand times and everything that was left from its origin
@@ -265,7 +264,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 text-center d-flex ftco-animate">
-                    <div class="services-1 bg-light">
+                    <div class="services-1 bg-azul">
                         <span class="icon">
                             <i class="flaticon-user-experience"></i>
                         </span>
@@ -277,7 +276,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center d-flex ftco-animate">
-                    <div class="services-1 bg-light">
+                    <div class="services-1 bg-azul">
                         <span class="icon">
                             <i class="flaticon-network"></i>
                         </span>

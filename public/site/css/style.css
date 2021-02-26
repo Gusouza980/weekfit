@@ -10330,12 +10330,12 @@ h5,
 }
 
 .bg-azul{
-    background: var(--azul);
+    background: var(--azul) !important;
     color: white !important;
 }
 
 .bg-azul > h2{
-    color: white !important;
+    color: var(--verde) !important;
 }
 
 .btn {
@@ -10360,12 +10360,12 @@ h5,
 .btn.btn-primary {
     background: var(--verde);
     border: 1px solid var(--verde) !important;
-    color: #fff !important;
+    color: var(--azul) !important;
 }
 .btn.btn-primary:hover {
     border: 1px solid var(--verde) !important;
     background: var(--verde) !important;
-    color: #000 !important;
+    color: var(--azul) !important;
 }
 .btn.btn-primary.btn-outline-primary {
     border: 2px solid var(--verde) !important;
@@ -10375,7 +10375,7 @@ h5,
 .btn.btn-primary.btn-outline-primary:hover {
     border: 2px solid transparent !important;
     background: var(--verde) !important;
-    color: #fff !important;
+    color: var(--azul) !important;
 }
 .btn.btn-secondary {
     background: #a0f669 !important;
@@ -10682,13 +10682,14 @@ h5,
 .services-1 .icon i {
     font-size: 60px;
     line-height: 1;
-    color: var(--azul);
+    color: var(--verde);
 }
 .services-1 .desc h3 {
     line-height: 1.3;
     font-size: 20px;
     font-weight: 700;
     position: relative;
+    color:white;
 }
 .services-1 .desc h3:after {
     position: absolute;
@@ -10716,12 +10717,68 @@ h5,
 }
 .project {
     width: 100%;
-    height: 330px;
+    height: 220px;
     margin-bottom: 0;
     position: relative;
     z-index: 0;
     margin-bottom: 30px;
 }
+
+.project.project1{
+    background: url("../images/arquiteturas/1.jpg");
+    background-size: cover;
+    transition: 0.6s;
+}
+
+.project.project1:hover{
+    background: url("../images/arquiteturas/1A.jpg");
+    background-size: cover;
+}
+
+.project.project2{
+    background: url("../images/arquiteturas/2.jpeg");
+    background-size: cover;
+    transition: 0.6s;
+}
+
+.project.project2:hover{
+    background: url("../images/arquiteturas/2A.jpeg");
+    background-size: cover;
+}
+
+.project.project3{
+    background: url("../images/arquiteturas/3.jpeg");
+    background-size: cover;
+    transition: 0.6s;
+}
+
+.project.project3:hover{
+    background: url("../images/arquiteturas/3A.jpeg");
+    background-size: cover;
+}
+
+.project.project4{
+    background: url("../images/arquiteturas/4.png");
+    background-size: cover;
+    transition: 0.6s;
+}
+
+.project.project4:hover{
+    background: url("../images/arquiteturas/4A.png");
+    background-size: cover;
+}
+
+.project.project5{
+    background: url("../images/arquiteturas/5.jpeg");
+    background-size: cover;
+    transition: 0.6s;
+}
+
+.project.project5:hover{
+    background: url("../images/arquiteturas/5A.jpeg");
+    background-size: cover;
+}
+
 .project .overlay {
     position: absolute;
     top: 0;
@@ -10866,7 +10923,7 @@ textarea.form-control {
 }
 .ftco-footer {
     font-size: 16px;
-    background: #000;
+    background: var(--azul);
     padding: 7em 0;
     z-index: 0;
 }
@@ -10888,7 +10945,7 @@ textarea.form-control {
     color: rgba(255, 255, 255, 0.6);
 }
 .ftco-footer .ftco-footer-widget ul li a span {
-    color: rgba(255, 255, 255, 0.6);
+    color: white;
 }
 .ftco-footer .ftco-footer-widget .btn-primary {
     background: #fff !important;
@@ -11018,9 +11075,10 @@ textarea.form-control {
     font-weight: 700;
     font-size: 34px;
     display: block;
-    color: #263b5e;
+    color: var(--verde);
 }
 .ftco-counter .text span {
+    color: white !important;
     display: block;
     font-size: 16px;
 }

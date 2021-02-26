@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&amp;display=swap"
         rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('site/images/favicon.png')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('site/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/owl.carousel.min.css')}}">
@@ -20,7 +21,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index-2.html"><img src="{{asset('site/images/logo-gefit-branco.png')}}" style="max-width: 200px;" alt=""></a>
+            <a class="navbar-brand" href="index-2.html"><img class="logo" src="{{asset('site/images/logo-gefit-branco.png')}}" style="max-width: 200px;" alt=""></a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
                 data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -88,7 +89,7 @@
                     <div class="img-about img d-flex align-items-stretch">
                         <div class="overlay"></div>
                         <div class="img d-flex align-self-stretch align-items-center"
-                            style="background-image:url({{asset('site/images/bg_1.jpg')}});">
+                            style="background-image:url({{asset('site/images/bg_1.png')}});">
                         </div>
                     </div>
                 </div>
@@ -121,7 +122,7 @@
         <div class="container">
             <div class="row d-md-flex align-items-center align-items-stretch">
                 <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18 bg-light">
+                    <div class="block-18 bg-azul">
                         <div class="text">
                             <strong class="number" data-number="1100">0</strong>
                             <span>Copies Sold</span>
@@ -129,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18 bg-light">
+                    <div class="block-18 bg-azul">
                         <div class="text">
                             <strong class="number" data-number="1200">0</strong>
                             <span>Copies Released</span>
@@ -137,7 +138,7 @@
                     </div>
                 </div>
                 <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18 bg-light">
+                    <div class="block-18 bg-azul">
                         <div class="text">
                             <strong class="number" data-number="340">0</strong>
                             <span>Cup Of Coffee</span>
@@ -145,7 +146,7 @@
                     </div>
                 </div>
                 <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18 bg-light">
+                    <div class="block-18 bg-azul">
                         <div class="text">
                             <strong class="number" data-number="12000">0</strong>
                             <span>Happy Readers</span>
@@ -288,7 +289,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center d-flex ftco-animate">
-                    <div class="services-1 bg-light">
+                    <div class="services-1 bg-azul">
                         <span class="icon">
                             <i class="flaticon-innovation"></i>
                         </span>
@@ -303,7 +304,7 @@
         </div>
     </section>
     <section class="ftco-section testimony-section ftco-no-pb" id="testimonial-section">
-        <div class="img img-bg border" style="background-image: url({{asset('site/images/bg_4.jpg')}});"></div>
+        <div class="img img-bg border" style="background-image: url({{asset('site/images/bg_4.png')}}); background-position: center;"></div>
         <div class="overlay"></div>
         <div class="container">
             <div class="row justify-content-center mb-5">
@@ -414,80 +415,40 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site/images/book-1.jpg')}});">
-                        <div class="overlay"></div>
+                <div class="col-md-4">
+                    <div class="project project1 img ftco-animate d-flex justify-content-center align-items-end">
                         <div class="text p-4">
                             <h3><a href="#">You Are Your Ony Limit</a></h3>
                             <span>Romance</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site/images/book-2.jpg')}});">
-                        <div class="overlay"></div>
+                <div class="col-md-4">
+                    <div class="project project2 img ftco-animate d-flex justify-content-center align-items-end">
                         <div class="text p-4">
                             <h3><a href="#">You Are Your Ony Limit</a></h3>
                             <span>Romance</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site/images/book-3.jpg')}});">
-                        <div class="overlay"></div>
+                <div class="col-md-4">
+                    <div class="project project3 img ftco-animate d-flex justify-content-center align-items-end">
                         <div class="text p-4">
                             <h3><a href="#">You Are Your Ony Limit</a></h3>
                             <span>Romance</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site/images/book-4.jpg')}});">
-                        <div class="overlay"></div>
+                <div class="col-md-4">
+                    <div class="project project4 img ftco-animate d-flex justify-content-center align-items-end">
                         <div class="text p-4">
                             <h3><a href="#">You Are Your Ony Limit</a></h3>
                             <span>Romance</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site/images/book-5.jpg')}});">
-                        <div class="overlay"></div>
-                        <div class="text p-4">
-                            <h3><a href="#">You Are Your Ony Limit</a></h3>
-                            <span>Romance</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site//book-7.jpg')}});">
-                        <div class="overlay"></div>
-                        <div class="text p-4">
-                            <h3><a href="#">You Are Your Ony Limit</a></h3>
-                            <span>Romance</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site//book-6.jpg')}});">
-                        <div class="overlay"></div>
-                        <div class="text p-4">
-                            <h3><a href="#">You Are Your Ony Limit</a></h3>
-                            <span>Romance</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-end"
-                        style="background-image: url({{asset('site//book-8.jpg')}});">
-                        <div class="overlay"></div>
+                <div class="col-md-4">
+                    <div class="project project5 img ftco-animate d-flex justify-content-center align-items-end">
                         <div class="text p-4">
                             <h3><a href="#">You Are Your Ony Limit</a></h3>
                             <span>Romance</span>
@@ -497,7 +458,7 @@
             </div>
         </div>
     </section>
-    <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="author-section">
+    <section class="ftco-about img ftco-section ftco-no-pt" id="author-section">
         <div class="container">
             <div class="row d-flex no-gutters">
                 <div class="col-md-6 col-lg-6 d-flex">
@@ -547,7 +508,7 @@
             </div>
         </div>
     </section>
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+    {{-- <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section text-center ftco-animate">
@@ -632,7 +593,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <footer class="ftco-footer ftco-section">
         <div class="container">
             <div class="row mb-5">
@@ -691,13 +652,11 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>
-                        Copyright &copy;<script data-cfasync="false"
-                            src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                        Copyright &copy;                        
                         <script>
                             document.write(new Date().getFullYear());
-
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+                        </script> 
+                         GEFIT | Fitness Intelligence | Desenvolvido por 7 Seven Trends
                     </p>
                 </div>
             </div>
@@ -707,7 +666,7 @@
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+                stroke="#002e82" />
         </svg></div>
     <script src="{{asset('site/js/jquery.min.js')}}"></script>
     <script src="{{asset('site/js/jquery-migrate-3.0.1.min.js')}}"></script>
@@ -727,14 +686,17 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+        
+        var initialImg = "site/images/logo-gefit-branco.png";
+        var scrollImg = "site/images/logo-gefit-azul.png";
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
+        $(window).scroll(function() {
+            var value = $(this).scrollTop();
+            if (value > 300)
+                $(".logo").attr("src", scrollImg);
+            else
+                $(".logo").attr("src", initialImg);
+        });
 
     </script>
 </body>

@@ -56,7 +56,7 @@ class CreateAcademiasTable extends Migration
             $table->string("senha_google", 255)->nullable();
             $table->string("login_painel", 255)->nullable();
             $table->string("senha_painel", 255)->nullable();
-            
+            $table->smallInteger("nível")->default(0);
             $table->date("inicio_contrato")->nullable();
             $table->date("fim_contrato")->nullable();
             $table->timestamps();

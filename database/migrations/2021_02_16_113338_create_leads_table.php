@@ -16,7 +16,9 @@ class CreateLeadsTable extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("academia_id");
+            $table->string("formulario", 50)->nullable();
             $table->string("email", 150)->nullable();
+            $table->string("nome", 100)->nullable();
             $table->string("celular", 60)->nullable();
             $table->string("celular_uf", 50)->nullable();
             $table->string("ip", 150)->nullable();

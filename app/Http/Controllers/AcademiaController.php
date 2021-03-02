@@ -292,6 +292,12 @@ class AcademiaController extends Controller
         return response()->json("sucesso");
     }
 
+    public function nivel_alterar(Request $request, Academia $academia){
+        $academia->nivel = $request->nivel;
+        $academia->save();
+        return response()->json("sucesso");
+    }
+
     public function lancamento(){
         if(session()->get("usuario")["admin"]){
             if(session()->get("academia")){

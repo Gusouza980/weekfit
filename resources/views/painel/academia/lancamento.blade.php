@@ -82,34 +82,36 @@
                                                                                     <h6 class="mt-4">
                                                                                         <b>{{ $subgrupo->nome }}</b></h6>
                                                                                     <div class="row my-3 div-subgrupos" subgrupo="{{$subgrupo->id}}">
-                                                                                        @foreach ($academia->atividades->where("status", "<", 2)->where("subgrupo_id", $subgrupo->id) as $atividade)
-                                                                                            <div class="col-12 mt-2 div-atividade" atividade="{{$atividade->id}}">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-3 d-flex align-items-center">
-                                                                                                        <select class="form-select form-select-sm select-atividade" atividade="{{$atividade->id}}" subgrupo="{{$subgrupo->id}}" tab="0">
-                                                                                                            <option value="0" @if($atividade->status == 0) selected="true" @endif>Aberto</option>
-                                                                                                            <option value="1" @if($atividade->status == 1) selected="true" @endif>Em Andamento</option>
-                                                                                                            <option value="2" @if($atividade->status == 2) selected="true" @endif>Concluído</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                    <div class="col-9 d-flex align-items-center">
-                                                                                                        <div class="d-flex flex-row">
-                                                                                                            <div>
-                                                                                                                <span style="color: {{config('globals.importancia')[$atividade->atividade->importancia]}}">{!! $atividade->atividade->nome !!}</span>
+                                                                                        @foreach ($academia->atividades->where("ativo", true)->where("status", "<", 2)->where("subgrupo_id", $subgrupo->id) as $atividade)
+                                                                                            @if($atividade->atividade->nivel <= $academia->nivel)
+                                                                                                <div class="col-12 mt-2 div-atividade" atividade="{{$atividade->id}}">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-3 d-flex align-items-center">
+                                                                                                            <select class="form-select form-select-sm select-atividade" atividade="{{$atividade->id}}" subgrupo="{{$subgrupo->id}}" tab="0">
+                                                                                                                <option value="0" @if($atividade->status == 0) selected="true" @endif>Aberto</option>
+                                                                                                                <option value="1" @if($atividade->status == 1) selected="true" @endif>Em Andamento</option>
+                                                                                                                <option value="2" @if($atividade->status == 2) selected="true" @endif>Concluído</option>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                        <div class="col-9 d-flex align-items-center">
+                                                                                                            <div class="d-flex flex-row">
+                                                                                                                <div>
+                                                                                                                    <span style="color: {{config('globals.importancia')[$atividade->atividade->importancia]}}">{!! $atividade->atividade->nome !!}</span>
+                                                                                                                </div>
+                                                                                                                <div class="px-2">
+                                                                                                                    <span class="input-atividade">
+                                                                                                                        @if($atividade->atividade->link)
+                                                                                                                            {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                            <div class="px-2">
-                                                                                                                <span class="input-atividade">
-                                                                                                                    @if($atividade->atividade->link)
-                                                                                                                        {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
-                                                                                                                    @endif
-                                                                                                                </span>
-                                                                                                            </div>
+                                                                                                            
                                                                                                         </div>
                                                                                                         
                                                                                                     </div>
-                                                                                                    
                                                                                                 </div>
-                                                                                            </div>
+                                                                                            @endif
                                                                                         @endforeach
                                                                                     </div>
                                                                                 @endforeach
@@ -175,34 +177,36 @@
                                                                                     <h6 class="mt-4">
                                                                                         <b>{{ $subgrupo->nome }}</b></h6>
                                                                                     <div class="row my-3 div-subgrupos-finalizados" subgrupo="{{$subgrupo->id}}">
-                                                                                        @foreach ($academia->atividades->where("status", "=", 2)->where("subgrupo_id", $subgrupo->id) as $atividade)
-                                                                                            <div class="col-12 mt-2 div-atividade-finalizada" atividade="{{$atividade->id}}">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-3 d-flex align-items-center">
-                                                                                                        <select class="form-select form-select-sm select-atividade" atividade="{{$atividade->id}}" subgrupo="{{$subgrupo->id}}" tab="1">
-                                                                                                            <option value="0" @if($atividade->status == 0) selected="true" @endif>Aberto</option>
-                                                                                                            <option value="1" @if($atividade->status == 1) selected="true" @endif>Em Andamento</option>
-                                                                                                            <option value="2" @if($atividade->status == 2) selected="true" @endif>Concluído</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                    <div class="col-9 d-flex align-items-center">
-                                                                                                        <div class="d-flex flex-row">
-                                                                                                            <div>
-                                                                                                                <span style="color: {{config('globals.importancia')[$atividade->atividade->importancia]}}">{!! $atividade->atividade->nome !!}</span>
+                                                                                        @foreach ($academia->atividades->where("ativo", true)->where("status", "=", 2)->where("subgrupo_id", $subgrupo->id) as $atividade)
+                                                                                            @if($atividade->atividade->nivel <= $academia->nivel)
+                                                                                                <div class="col-12 mt-2 div-atividade-finalizada" atividade="{{$atividade->id}}">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-3 d-flex align-items-center">
+                                                                                                            <select class="form-select form-select-sm select-atividade" atividade="{{$atividade->id}}" subgrupo="{{$subgrupo->id}}" tab="1">
+                                                                                                                <option value="0" @if($atividade->status == 0) selected="true" @endif>Aberto</option>
+                                                                                                                <option value="1" @if($atividade->status == 1) selected="true" @endif>Em Andamento</option>
+                                                                                                                <option value="2" @if($atividade->status == 2) selected="true" @endif>Concluído</option>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                        <div class="col-9 d-flex align-items-center">
+                                                                                                            <div class="d-flex flex-row">
+                                                                                                                <div>
+                                                                                                                    <span style="color: {{config('globals.importancia')[$atividade->atividade->importancia]}}">{!! $atividade->atividade->nome !!}</span>
+                                                                                                                </div>
+                                                                                                                <div class="px-2">
+                                                                                                                    <span class="input-atividade">
+                                                                                                                        @if($atividade->atividade->link)
+                                                                                                                            {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                            <div class="px-2">
-                                                                                                                <span class="input-atividade">
-                                                                                                                    @if($atividade->atividade->link)
-                                                                                                                        {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
-                                                                                                                    @endif
-                                                                                                                </span>
-                                                                                                            </div>
+                                                                                                            
                                                                                                         </div>
                                                                                                         
                                                                                                     </div>
-                                                                                                    
                                                                                                 </div>
-                                                                                            </div>
+                                                                                            @endif
                                                                                         @endforeach
                                                                                     </div>
                                                                                 @endforeach

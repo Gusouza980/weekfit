@@ -31,6 +31,7 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/academias/cadastro', [\App\Http\Controllers\AcademiaController::class, 'cadastro'])->name("painel.academia.cadastro");
         Route::post('/dashboard/academias/cadastrar', [\App\Http\Controllers\AcademiaController::class, 'cadastrar'])->name("painel.academia.cadastrar");
         Route::get('/dashboard/academias', [\App\Http\Controllers\AcademiaController::class, 'index'])->name("painel.academias");
+        Route::post('/dashboard/academia/nivel/alterar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'nivel_alterar'])->name("painel.academia.nivel.alterar");
         Route::get('/dashboard/academia/edicao/{academia}', [\App\Http\Controllers\AcademiaController::class, 'edicao'])->name("painel.academia.edicao");
         Route::post('/dashboard/academia/salvar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'salvar'])->name("painel.academia.salvar");
         Route::get('/dashboard/academia/detalhes/{academia}', [\App\Http\Controllers\AcademiaController::class, 'visualizar'])->name("painel.academia.visualizar");

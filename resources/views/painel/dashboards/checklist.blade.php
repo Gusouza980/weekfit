@@ -26,7 +26,12 @@
                     <div class="col-lg-8 align-self-center">
                         <div class="text-lg-center mt-4 mt-lg-0">
                             <div class="row">
-                                @if($academia->inicio_contrato && $academia->fim_contrato && $academia->inicio_contrato < $academia->fim_contrato)
+                                @php
+                                    $atual = new DateTime("now");
+                                    $fim = new DateTime($academia->fim_contrato);
+                                    $dias = date_diff($atual, $fim);
+                                @endphp
+                                @if($academia->inicio_contrato && $academia->fim_contrato && $atual->format('Y-m-d H:i:s') < $academia->fim_contrato)
                                     <div class="col-12 col-lg-4">
                                         <div>
                                             <p class="text-muted text-truncate mb-2">Início do Contrato</p>
@@ -42,11 +47,7 @@
                                     <div class="col-12 col-lg-4">
                                         <div>
                                             <p class="text-muted text-truncate mb-2">Dias Restantes</p>
-                                            @php
-                                                $inicio = new DateTime($academia->inicio_contrato);
-                                                $fim = new DateTime($academia->fim_contrato);
-                                                $dias = date_diff($inicio, $fim);
-                                            @endphp
+                                            
                                             <h5 class="mb-0">{{$dias->format("%a")}}</h5>
                                             
                                         </div>

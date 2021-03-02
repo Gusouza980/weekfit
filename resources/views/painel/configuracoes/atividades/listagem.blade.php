@@ -75,6 +75,7 @@
                                     <th>Nome</th>
                                     <th>Link</th>
                                     <th>Subgrupo</th>
+                                    <th>Nível</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -92,6 +93,7 @@
                                                 @endif
                                             </td>
                                             <td>{{$atividade->subgrupo->nome}}</td>
+                                            <td>{{$atividade->nivel}}</td>
                                             <td>
                                                 <a name="" id="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditaAtividade{{ $atividade->id }}" role="button">Editar</a>
                                                 <a name="" id="" class="btn btn-danger" href="{{route('painel.configuracoes.atividade.deletar', ['atividade' => $atividade])}}" role="button">Excluir</a>
@@ -164,6 +166,20 @@
                                         class="form-select">
                                         <option value="0" @if($atividade->importancia == 0) selected @endif>Básico</option>
                                         <option value="1" @if($atividade->importancia == 1) selected @endif>Importante</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="form-group col-12">
+                                    <label for="nivel"
+                                        class="form-label">Nível</label>
+                                    <select id="nivel" name="nivel"
+                                        class="form-select">
+                                        <option value="0" @if($atividade->nivel == 0) selected @endif>0</option>
+                                        <option value="1" @if($atividade->nivel == 1) selected @endif>1</option>
+                                        <option value="2" @if($atividade->nivel == 2) selected @endif>2</option>
+                                        <option value="3" @if($atividade->nivel == 3) selected @endif>3</option>
+                                        <option value="4" @if($atividade->nivel == 4) selected @endif>4</option>
                                     </select>
                                 </div>
                             </div>
@@ -291,6 +307,20 @@
                                 class="form-select">
                                 <option value="0">Básico</option>
                                 <option value="1">Importante</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="nivel"
+                                class="form-label">Nível</label>
+                            <select id="nivel" name="nivel"
+                                class="form-select">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                             </select>
                         </div>
                     </div>

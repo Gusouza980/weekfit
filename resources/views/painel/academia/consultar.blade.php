@@ -25,6 +25,7 @@
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Usuários</th>
+                            <th>Nível</th>
                             <th>Geral</th>
                             <th>Administrativo</th>
                             <th>Técnico</th>
@@ -67,6 +68,15 @@
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>
                                 <td>{{$academia->usuarios()->count()}}</td>
+                                <td>
+                                    <select class="form-control select_nivel" name="select_nivel{{$academia->id}}" academia="{{$academia->id}}">
+                                        <option value="0" @if($academia->nivel == 0) selected @endif>0</option>
+                                        <option value="1" @if($academia->nivel == 1) selected @endif>1</option>
+                                        <option value="2" @if($academia->nivel == 2) selected @endif>2</option>
+                                        <option value="3" @if($academia->nivel == 3) selected @endif>3</option>
+                                        <option value="4" @if($academia->nivel == 4) selected @endif>4</option>
+                                    </select>
+                                </td>
                                 <td style="color: {{\Functions::corProgresso(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"])}}">{{number_format(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"], 2)}}%</td>
                                 <td style="color: {{\Functions::corProgresso(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"])}}">{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 2)}}%</td>
                                 <td style="color: {{\Functions::corProgresso(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"])}}">{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 2)}}%</td>
@@ -224,6 +234,40 @@
                     "thousands": "."
                 } 
             } );
+
+
+            $(".select_nivel").change(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+
+                var academia = $(this).attr("academia");
+                var nivel = $(this).val();
+
+                $.ajax({
+                    url: '/dashboard/academia/nivel/alterar/' + academia,
+                    type: 'POST',
+                    data: {
+                        nivel: nivel
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data == "sucesso") {
+                            toastr.success('Nível alterado com sucesso', 'Sucesso', {
+                                timeOut: 1000
+                            })
+                        } else {
+                            toastr.success('Erro ao alterar o nível da academia', 'Erro', {
+                                timeOut: 3000
+                            })
+                        }
+                    },
+                });
+            });
+
+            
         } );    
     </script> 
 @endsection

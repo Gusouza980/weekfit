@@ -112,6 +112,18 @@
 
                     <hr>
 
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="mb-3">
+                                <label for="codigo" class="form-label">Código</label>
+                                <input type="text" class="form-control" name="codigo" id="codigo">
+                                <small>Usado como referência para o outro sistema</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
                     <h4 class="card-title mb-4 mt-4">Informações do Proprietário</h4>
 
                     <div class="row">

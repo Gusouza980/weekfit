@@ -65,6 +65,8 @@ class AcademiaController extends Controller
         $academia->cep = $request->cep;
         $academia->url = $request->url;
 
+        $academia->codigo = $request->codigo;
+
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;
 
@@ -161,6 +163,8 @@ class AcademiaController extends Controller
         $academia->estado = $request->estado;
         $academia->cep = $request->cep;
         $academia->url = $request->url;
+
+        $academia->codigo = $request->codigo;
 
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;

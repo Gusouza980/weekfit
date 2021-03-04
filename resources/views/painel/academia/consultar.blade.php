@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>ID</th>
+                            <th>Código</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
@@ -63,7 +63,7 @@
                             @endphp
                             <tr>
                                 <td><a href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a></td>
-                                <td>{{$academia->id}}</td>
+                                <td>{{$academia->codigo}}</td>
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>

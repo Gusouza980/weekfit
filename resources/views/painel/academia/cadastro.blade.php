@@ -9,6 +9,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <a name="" id="" class="btn btn-primary" href="{{route('painel.academias')}}" role="button">Voltar</a>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 text-left my-3" style="color:red;">
                         * Campos obrigatórios
@@ -133,10 +138,16 @@
                                 <input type="text" class="form-control" name="telefone_proprietario" id="telefone_proprietario">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-3 col-12">
                             <div class="mb-3">
                                 <label for="usuario_proprietario" class="form-label">Usuário *</label>
                                 <input type="text" class="form-control" name="usuario_proprietario" id="usuario_proprietario" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <div class="mb-3">
+                                <label for="senha_proprietario" class="form-label">Senha *</label>
+                                <input type="password" class="form-control" name="senha_proprietario" id="senha_proprietario" required>
                             </div>
                         </div>
                     </div>
@@ -172,18 +183,6 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-12">
-                            <div class="mb-3">
-                                <label for="login_painel" class="form-label">Login do Painel</label>
-                                <input type="text" class="form-control" name="login_painel" id="login_painel">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="mb-3">
-                                <label for="senha_painel" class="form-label">Senha do Painel</label>
-                                <input type="text" class="form-control" name="senha_painel" id="senha_painel">
-                            </div>
-                        </div>
                     </div>
 
                     <hr>
@@ -191,22 +190,28 @@
                     <h4 class="card-title mb-4 mt-4">Links e Credenciais</h4>
 
                     <div class="row">
-                        <div class="col-lg-5 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="url" class="form-label">Url do Website</label>
                                 <input type="text" class="form-control" name="url" id="url">
                             </div>
                         </div>
-                        <div class="col-lg-5 col-12">
-                            <div class="mb-3">
-                                <label for="aplicativo" class="form-label">Url do Aplicativo</label>
-                                <input type="text" class="form-control" name="aplicativo" id="aplicativo">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="whatsapp" class="form-label">Whatsapp</label>
                                 <input type="text" class="form-control" name="whatsapp" id="whatsapp">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="painel" class="form-label">Url do Painel</label>
+                                <input type="text" class="form-control" name="painel" id="painel">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="aplicativo" class="form-label">Url do Aplicativo</label>
+                                <input type="text" class="form-control" name="aplicativo" id="aplicativo">
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -333,6 +338,24 @@
                             <div class="mb-3">
                                 <label for="senha_google_negocio" class="form-label">Senha do Google Meu Negócio</label>
                                 <input type="text" class="form-control" name="senha_google_negocio" id="senha_google_negocio">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="tiktok" class="form-label">Tiktok</label>
+                                <input type="text" class="form-control" name="tiktok" id="tiktok">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_tiktok" class="form-label">Login do Tiktok</label>
+                                <input type="text" class="form-control" name="login_tiktok" id="login_tiktok">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_tiktok" class="form-label">Senha do Tiktok</label>
+                                <input type="text" class="form-control" name="senha_tiktok" id="senha_tiktok">
                             </div>
                         </div>
                         

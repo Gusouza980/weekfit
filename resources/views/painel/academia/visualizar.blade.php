@@ -94,11 +94,16 @@
                                                                         id="telefone" aria-describedby="helpId"
                                                                         placeholder="Insira o nome do usuário">
                                                                 </div>
-                                                                <div class="form-group col-12 col-lg-6">
+                                                                <div class="form-group col-12 col-lg-3">
                                                                     <label for="usuario">Usuario</label>
                                                                     <input type="text" class="form-control" name="usuario"
                                                                         id="usuario" aria-describedby="helpId"
                                                                         placeholder="Insira o nome do usuário">
+                                                                </div>
+                                                                <div class="form-group col-12 col-lg-3">
+                                                                    <label for="senha">Senha</label>
+                                                                    <input type="password" class="form-control" name="senha"
+                                                                        id="senha" required>
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-3">
@@ -136,9 +141,9 @@
                                             <div class="tab-pane fade show" id="v-pills-usuario-listagem" role="tabpanel"
                                                 aria-labelledby="v-pills-home-tab">
                                                 <div class="row">
-                                                    <div class="col-12">
+                                                    <div class="col-12" style="overflow-x: scroll;">
                                                         <table id="tabela_usuarios"
-                                                            class="table table-bordered dt-responsive  nowrap w-100">
+                                                            class="table table-bordered dt-responsive  nowrap w-100" >
                                                             <thead>
                                                                 <tr>
                                                                     <th>Nome</th>
@@ -320,11 +325,17 @@
                                         id="telefone" aria-describedby="helpId"
                                         value="{{$usuario->telefone}}">
                                 </div>
-                                <div class="form-group col-12 col-lg-6">
+                                <div class="form-group col-12 col-lg-3">
                                     <label for="usuario">Usuario</label>
                                     <input type="text" class="form-control" name="usuario"
                                         id="usuario" aria-describedby="helpId"
                                         value="{{$usuario->usuario}}">
+                                </div>
+                                <div class="form-group col-12 col-lg-3">
+                                    <label for="senha">Senha</label>
+                                    <input type="password" class="form-control" name="senha"
+                                        id="senha">
+                                        <small>Deixe em branco caso não queira alterar</small>
                                 </div>
                             </div>
                             <div class="row mt-3">

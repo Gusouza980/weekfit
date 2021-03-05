@@ -10,8 +10,13 @@ return [
     ],
     'importancia' => [
         0 => "black",
-        1 => "#dab600"
+        1 => "#C00000"
     ],
+    'acesso' => [
+        0 => "Administrativo",
+        1 => "Atendente",
+        2 => "Produção"
+    ]
 ];
 
 ?>

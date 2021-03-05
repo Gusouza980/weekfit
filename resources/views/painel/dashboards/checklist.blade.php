@@ -115,26 +115,32 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Progresso por Grupos</h4>
-                <hr>
-                @for($i = 0; $i < 4; $i++)
-                    <h5>{{config("globals.departamentos")[$i]}}</h5>
-                    <div class="row mt-4">
-                        @foreach(\App\Models\Grupo::where("departamento", $i)->get() as $grupo)
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <div class="text-center" dir="ltr">
-                                    <h5 class="font-size-14 mb-3">{{$grupo->nome}}</h5>
-                                    <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento($i)}}" @if($departamentos[$i][$grupo->nome]["total_atividades"] != 0) value="{{number_format(($departamentos[$i][$grupo->nome]["total_atividades_completas"] * 100) / $departamentos[$i][$grupo->nome]["total_atividades"], 1)}}" @else value="0" @endif>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endfor
-
             </div>
         </div>
     </div> <!-- end col -->
 </div> <!-- end row -->
 
+@for($i = 0; $i < 4; $i++)
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5>{{config("globals.departamentos")[$i]}}</h5>
+                <div class="row mt-4">
+                    @foreach(\App\Models\Grupo::where("departamento", $i)->get() as $grupo)
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="text-center" dir="ltr">
+                                <h5 class="font-size-14 mb-3">{{$grupo->nome}}</h5>
+                                <input class="knob" data-width="150" data-fgcolor="{{\Functions::corDepartamento($i)}}" @if($departamentos[$i][$grupo->nome]["total_atividades"] != 0) value="{{number_format(($departamentos[$i][$grupo->nome]["total_atividades_completas"] * 100) / $departamentos[$i][$grupo->nome]["total_atividades"], 1)}}" @else value="0" @endif>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+@endfor
 <!-- end row -->
 @endsection
 

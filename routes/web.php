@@ -37,6 +37,8 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academia/usuario/salvar/', [\App\Http\Controllers\AcademiaController::class, 'usuario_salvar'])->name("painel.academia.usuario.salvar");
         Route::post('/dashboard/academia/usuario/editar/{usuario}', [\App\Http\Controllers\AcademiaController::class, 'usuario_editar'])->name("painel.academia.usuario.editar");
         Route::get('/dashboard/academia/atividade/ativo/troca/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_ativo'])->name("painel.academia.atividade.ativo");
+        Route::get('/dashboard/academias/totais/atualizar', [\App\Http\Controllers\AcademiaController::class, 'atualizar_totais'])->name("painel.academia.totais.atualizar");
+
 
         //ROTAS REFERENTES AOS GRUPOS
         Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");
@@ -52,6 +54,12 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/configuracoes/atividade/salvar/{atividade}', [\App\Http\Controllers\AtividadesController::class, 'salvar'])->name("painel.configuracoes.atividade.salvar");
         Route::get('/dashboard/configuracoes/atividade/deletar/{atividade}', [\App\Http\Controllers\AtividadesController::class, 'deletar'])->name("painel.configuracoes.atividade.deletar");
         Route::post('/dashboard/configuracoes/atividade/adicionar', [\App\Http\Controllers\AtividadesController::class, 'adicionar'])->name("painel.configuracoes.atividade.adicionar");
+
+        Route::get('/dashboard/usuarios/cadastro', [\App\Http\Controllers\UsuarioController::class, 'cadastro'])->name("painel.usuario.cadastro");
+        Route::post('/dashboard/usuarios/cadastrar', [\App\Http\Controllers\UsuarioController::class, 'cadastrar'])->name("painel.usuario.cadastrar");
+        Route::get('/dashboard/usuarios', [\App\Http\Controllers\UsuarioController::class, 'consultar'])->name("painel.usuarios");
+        Route::get('/dashboard/usuarios/editar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'editar'])->name("painel.usuario.editar");
+        Route::post('/dashboard/usuarios/salvar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'salvar'])->name("painel.usuario.salvar");
 
     });
 

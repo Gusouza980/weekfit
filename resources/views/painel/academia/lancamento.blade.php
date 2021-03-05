@@ -42,12 +42,14 @@
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                             aria-orientation="vertical">
                                             @foreach (config('globals.departamentos') as $key => $departamento)
-                                                <a class="nav-link mb-2 @if ($key==0) active @endif"
-                                                    id="v-pills-atividades-departamento-{{ $key }}-tab"
-                                                    data-bs-toggle="pill"
-                                                    href="#v-pills-atividades-departamento-{{ $key }}" role="tab"
-                                                    aria-controls="v-pills-atividades-departamento-{{ $key }}"
-                                                    aria-selected="true">{{ $departamento }}</a>
+                                                @if($key != 100)
+                                                    <a class="nav-link mb-2 @if ($key==0) active @endif"
+                                                        id="v-pills-atividades-departamento-{{ $key }}-tab"
+                                                        data-bs-toggle="pill"
+                                                        href="#v-pills-atividades-departamento-{{ $key }}" role="tab"
+                                                        aria-controls="v-pills-atividades-departamento-{{ $key }}"
+                                                        aria-selected="true">{{ $departamento }}</a>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
@@ -100,7 +102,7 @@
                                                                                                             <div class="px-2">
                                                                                                                 <span class="input-atividade">
                                                                                                                     @if($atividade->atividade->link)
-                                                                                                                        {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                        {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
                                                                                                                     @endif
                                                                                                                 </span>
                                                                                                             </div>
@@ -193,7 +195,7 @@
                                                                                                             <div class="px-2">
                                                                                                                 <span class="input-atividade">
                                                                                                                     @if($atividade->atividade->link)
-                                                                                                                        {!! " <a class='ml-2' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                        {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
                                                                                                                     @endif
                                                                                                                 </span>
                                                                                                             </div>

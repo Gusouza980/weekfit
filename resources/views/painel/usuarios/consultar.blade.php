@@ -7,99 +7,48 @@
 @endsection
 
 @section('titulo')
-    Listagem de Grupos
+    Listagem de usuarios
 @endsection
 
 @section('conteudo')
-<div class="row">
+<div class="row mt-3">
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x: scroll;">
-
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Departamento</th>
                             <th>Nome</th>
-                            <th>Subgrupos</th>
-                            <th>Atividades</th>
+                            <th>Usuário</th>
+                            <th>Email</th>
+                            <th>Acesso</th>
                             <th></th>
                         </tr>
                     </thead>
 
 
                     <tbody>
-                        @foreach($grupos as $grupo)
-                            <tr>
-                                @php
-                                    $atividades = 0; 
-                                @endphp
-                                @foreach($grupo->subgrupos as $subgrupo)
-                                    @php
-                                        $atividades += $subgrupo->atividades()->count();
-                                    @endphp
-                                @endforeach
 
-                                <td><a href="{{route('painel.configuracoes.grupo.atividades', ['grupo' => $grupo])}}"><i class="fa fa-search" aria-hidden="true"></i></a></td>
-                                <td>{{config('globals.departamentos')[$grupo->departamento]}}</td>
-                                <td>{{$grupo->nome}}</td>
-                                <td>{{$grupo->subgrupos()->count()}}</td>
-                                <td>{{$atividades}}</td>
-                                <td><a name="" id="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditaGrupo{{ $grupo->id }}"role="button">Editar</a></td>
+                        @foreach($usuarios as $usuario)
+                            <tr>
+                                <td>{{$usuario->nome}}</td>
+                                <td>{{$usuario->usuario}}</td>
+                                <td>{{$usuario->email}}</td>
+                                <td>
+                                    {{config("globals.acesso")[$usuario->acesso]}}
+                                </td>
+                                <td>
+                                    <a href="{{route('painel.usuario.editar', ['usuario' => $usuario])}}" id="" class="btn btn-warning" role="button">Editar</a>
+                                    {{-- <a name="" id="" class="btn btn-danger" href="{{route('painel.configuracoes.atividade.deletar', ['atividade' => $atividade])}}" role="button">Excluir</a> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div> <!-- end col -->
 </div> <!-- end row -->
-
-@foreach ($grupos as $grupo)
-        <div class="modal fade" id="modalEditaGrupo{{$grupo->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEditaGrupo{{$grupo->id}}Label"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <form action="{{route('painel.configuracoes.grupo.salvar', ['grupo' => $grupo])}}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome"
-                                        id="nome" aria-describedby="helpId" 
-                                        value="{{$grupo->nome}}">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="form-group col-12">
-                                    <label for="departamento"
-                                        class="form-label">Departamento</label>
-                                    <select id="departamento" name="departamento"
-                                        class="form-select" @if($grupo->departamento == 100) readonly @endif>
-                                        <option value="0" @if($grupo->departamento == 0) selected @endif>Administrativo</option>
-                                        <option value="1" @if($grupo->departamento == 1) selected @endif>Técnico</option>
-                                        <option value="2" @if($grupo->departamento == 2) selected @endif>Comercial</option>
-                                        <option value="3" @if($grupo->departamento == 3) selected @endif>Marketing</option>
-                                        <option value="100" @if($grupo->departamento == 100) selected @endif>Proprietario</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-12 text-end">
-                                    <button type="submit"
-                                        class="btn btn-primary">Salvar</button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
 
 @endsection
 

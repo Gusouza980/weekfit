@@ -11,7 +11,11 @@
         <div class="card">
             <div class="card-body">
 
-                
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <a name="" id="" class="btn btn-primary" href="{{route('painel.academias')}}" role="button">Voltar</a>
+                    </div>
+                </div>
 
                 <form action="{{route('painel.academia.salvar', ['academia' => $academia])}}" method="POST" enctype="multipart/form-data">
                     
@@ -133,10 +137,17 @@
                                 <input type="text" class="form-control" name="telefone_proprietario" id="telefone_proprietario" value="{{$academia->proprietario[0]->telefone}}">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-3 col-12">
                             <div class="mb-3">
                                 <label for="usuario_proprietario" class="form-label">Usuário *</label>
                                 <input type="text" class="form-control" name="usuario_proprietario" id="usuario_proprietario" value="{{$academia->proprietario[0]->usuario}}" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <div class="mb-3">
+                                <label for="senha_proprietario" class="form-label">Senha *</label>
+                                <input type="password" class="form-control" name="senha_proprietario" id="senha_proprietario">
+                                <small>Preencha apenas caso deseje alterar</small>
                             </div>
                         </div>
                     </div>
@@ -171,19 +182,6 @@
                                 <input type="text" class="form-control" name="senha_google" id="senha_google" value="{{$academia->senha_google}}">
                             </div>
                         </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="mb-3">
-                                <label for="login_painel" class="form-label">Login do Painel</label>
-                                <input type="text" class="form-control" name="login_painel" id="login_painel" value="{{$academia->login_painel}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="mb-3">
-                                <label for="senha_painel" class="form-label">Senha do Painel</label>
-                                <input type="text" class="form-control" name="senha_painel" id="senha_painel" value="{{$academia->senha_painel}}">
-                            </div>
-                        </div>
                     </div>
 
                     <hr>
@@ -191,22 +189,28 @@
                     <h4 class="card-title mb-4 mt-4">Links e Credenciais</h4>
 
                     <div class="row">
-                        <div class="col-lg-5 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="url" class="form-label">Url do Website</label>
                                 <input type="text" class="form-control" name="url" id="url" value="{{$academia->url}}">
                             </div>
                         </div>
-                        <div class="col-lg-5 col-12">
-                            <div class="mb-3">
-                                <label for="aplicativo" class="form-label">Url do Aplicativo</label>
-                                <input type="text" class="form-control" name="aplicativo" id="aplicativo" value="{{$academia->aplicativo}}">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-12">
+                        <div class="col-lg-6 col-12">
                             <div class="mb-3">
                                 <label for="whatsapp" class="form-label">Whatsapp</label>
                                 <input type="text" class="form-control" name="whatsapp" id="whatsapp" value="{{$academia->whatsapp}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="painel" class="form-label">Url do Painel</label>
+                                <input type="text" class="form-control" name="painel" id="painel" value="{{$academia->painel}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="aplicativo" class="form-label">Url do Aplicativo</label>
+                                <input type="text" class="form-control" name="aplicativo" id="aplicativo" value="{{$academia->aplicativo}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -335,6 +339,24 @@
                                 <input type="text" class="form-control" name="senha_google_negocio" id="senha_google_negocio" value="{{$academia->senha_google_negocio}}">
                             </div>
                         </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="mb-3">
+                                <label for="tiktok" class="form-label">Tiktok</label>
+                                <input type="text" class="form-control" name="tiktok" id="tiktok" value="{{$academia->tiktok}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="login_tiktok" class="form-label">Login do Tiktok</label>
+                                <input type="text" class="form-control" name="login_tiktok" id="login_tiktok" value="{{$academia->login_tiktok}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="mb-3">
+                                <label for="senha_tiktok" class="form-label">Senha do Tiktok</label>
+                                <input type="text" class="form-control" name="senha_tiktok" id="senha_tiktok" value="{{$academia->senha_tiktok}}">
+                            </div>
+                        </div>
                         
                     </div>
                     <hr>
@@ -366,7 +388,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <img id="logo-preview" src="{{asset($academia->logo)}}" style="width: 100%; max-width:200px;" alt="">
+                                    @if($academia->logo)
+                                        <img id="logo-preview" src="{{asset($academia->logo)}}" style="width: 100%; max-width:200px;" alt="">
+                                    @else
+                                        <img id="logo-preview" src="{{asset('admin/images/logos/padrao.png')}}" style="width: 100%; max-width:200px;" alt="">
+                                    @endif
                                 </div>
                             </div>
                             <div class="row mt-3">

@@ -38,7 +38,7 @@
                 </ul>
 
                 <div class="tab-content p-3 text-muted">
-                    <div class="tab-pane active" id="subgrupos" role="tabpanel">
+                    <div class="tab-pane active" id="subgrupos" role="tabpanel" style="overflow-x: scroll;">
                         <a name="" id="" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovoSubgrupo" role="button">Novo Subgrupo</a>
 
                         <table id="datatable2" class="table table-bordered dt-responsive  nowrap w-100">
@@ -66,7 +66,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane" id="atividades" role="tabpanel">
+                    <div class="tab-pane" id="atividades" role="tabpanel" style="overflow-x: scroll;">
                         <a name="" id="" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovaAtividade" role="button">Nova atividade</a>
 
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">

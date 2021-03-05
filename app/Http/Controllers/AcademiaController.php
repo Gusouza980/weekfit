@@ -67,15 +67,13 @@ class AcademiaController extends Controller
 
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;
+        $academia->painel = $request->painel;
 
         $academia->login_sistema = $request->login_sistema;
         $academia->senha_sistema = $request->senha_sistema;
 
         $academia->login_google = $request->login_google;
         $academia->senha_google = $request->senha_google;
-
-        $academia->login_painel = $request->login_painel;
-        $academia->senha_painel = $request->senha_painel;
 
         $academia->facebook = $request->facebook;
         $academia->login_facebook = $request->login_facebook;
@@ -105,6 +103,10 @@ class AcademiaController extends Controller
         $academia->login_google_negocio = $request->login_google_negocio;
         $academia->senha_google_negocio = $request->senha_google_negocio;
 
+        $academia->tiktok = $request->tiktok;
+        $academia->login_tiktok = $request->login_tiktok;
+        $academia->senha_tiktok = $request->senha_tiktok;
+
         $academia->inicio_contrato = $request->inicio_contrato;
         $academia->fim_contrato = $request->fim_contrato;
 
@@ -132,7 +134,7 @@ class AcademiaController extends Controller
         $usuario->email = $request->email_proprietario;
         $usuario->telefone = $request->telefone_proprietario;
         $usuario->usuario = $request->usuario_proprietario;
-        $usuario->senha = Hash::make('12345');
+        $usuario->senha = Hash::make($request->senha);
         $usuario->academia_id = $academia->id;
         $usuario->departamento = 100;
         $usuario->lider = true;
@@ -164,16 +166,14 @@ class AcademiaController extends Controller
 
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;
+        $academia->painel = $request->painel;
 
         $academia->login_sistema = $request->login_sistema;
         $academia->senha_sistema = $request->senha_sistema;
 
         $academia->login_google = $request->login_google;
         $academia->senha_google = $request->senha_google;
-
-        $academia->login_painel = $request->login_painel;
-        $academia->senha_painel = $request->senha_painel;
-
+        
         $academia->facebook = $request->facebook;
         $academia->login_facebook = $request->login_facebook;
         $academia->senha_facebook = $request->senha_facebook;
@@ -202,6 +202,10 @@ class AcademiaController extends Controller
         $academia->login_google_negocio = $request->login_google_negocio;
         $academia->senha_google_negocio = $request->senha_google_negocio;
 
+        $academia->tiktok = $request->tiktok;
+        $academia->login_tiktok = $request->login_tiktok;
+        $academia->senha_tiktok = $request->senha_tiktok;
+
         $academia->inicio_contrato = $request->inicio_contrato;
         $academia->fim_contrato = $request->fim_contrato;
 
@@ -221,6 +225,9 @@ class AcademiaController extends Controller
         $usuario->email = $request->email_proprietario;
         $usuario->telefone = $request->telefone_proprietario;
         $usuario->usuario = $request->usuario_proprietario;
+        if($request->senha){
+            $usuario->senha = Hash::make($request->senha_proprietario);
+        }
         $usuario->save();
 
         toastr()->success("Dados salvos com sucesso!");
@@ -241,7 +248,7 @@ class AcademiaController extends Controller
         $usuario->email = $request->email;
         $usuario->telefone = $request->telefone;
         $usuario->usuario = $request->usuario;
-        $usuario->senha = Hash::make('12345');
+        $usuario->senha = Hash::make($request->senha);
         $usuario->academia_id = $request->academia_id;
         $usuario->departamento = $request->departamento;
         $usuario->lider = $request->lider;
@@ -265,6 +272,9 @@ class AcademiaController extends Controller
         $usuario->email = $request->email;
         $usuario->telefone = $request->telefone;
         $usuario->usuario = $request->usuario;
+        if($request->senha){
+            $usuario->senha = Hash::make($request->senha);
+        }
         $usuario->departamento = $request->departamento;
         $usuario->lider = $request->lider;
         $usuario->save();
@@ -290,6 +300,41 @@ class AcademiaController extends Controller
         $atividade->status = $request->status;
         $atividade->save();
         return response()->json("sucesso");
+    }
+
+    public function atualizar_totais(){
+        $academias = Academia::all();
+        foreach($academias as $academia){
+            $departamentos = [];
+            $departamentos["total_atividades"] = 0;
+            $departamentos["total_atividades_completas"] = 0;
+            for($i = 0; $i < 4; $i++){
+                $departamentos[$i]["total_atividades"] = 0;
+                $departamentos[$i]["total_atividades_completas"] = 0;
+                $grupos = \App\Models\Grupo::where("departamento", $i)->get();
+                foreach($grupos as $grupo){
+                    $subgrupos = $grupo->subgrupos;
+                    foreach($subgrupos as $subgrupo){
+                        foreach($academia->atividades->where("ativo", 1)->where("subgrupo_id", $subgrupo->id) as $atividade){
+                            $departamentos[$i]["total_atividades"] += 1;
+                            if($atividade->status == 2){
+                                $departamentos[$i]["total_atividades_completas"] += 1;
+                            }
+                        }
+                    }
+                }
+                $departamentos["total_atividades"] += $departamentos[$i]["total_atividades"];
+                $departamentos["total_atividades_completas"] += $departamentos[$i]["total_atividades_completas"];
+            }
+
+            $academia->total_geral = ($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"];
+            $academia->total_administrativo = ($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"];
+            $academia->total_tecnico = ($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"];
+            $academia->total_comercial = ($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"];
+            $academia->total_marketing = ($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"];
+            $academia->save();
+        }
+        return redirect()->back();
     }
 
     public function lancamento(){

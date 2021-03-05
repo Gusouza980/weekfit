@@ -24,7 +24,6 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Código</th>
                             <th>Nome</th>
                             <th>Email</th>
@@ -44,6 +43,7 @@
                     <tbody>
                         @foreach($academias as $academia)
                             <tr>
+                                <td>{{$academia->codigo}}</td>
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>

@@ -306,7 +306,6 @@ class AcademiaController extends Controller
         return response()->json("sucesso");
     }
 
-<<<<<<< HEAD
     public function atualizar_totais(){
         $academias = Academia::all();
         foreach($academias as $academia){
@@ -341,12 +340,11 @@ class AcademiaController extends Controller
         }
         return redirect()->back();
     }
-=======
+
     public function nivel_alterar(Request $request, Academia $academia){
         $academia->nivel = $request->nivel;
         $academia->save();
         return response()->json("sucesso");
->>>>>>> ad2637079f159982fdb6d819ec5a98880bf739d6
     }
 
     public function lancamento(){

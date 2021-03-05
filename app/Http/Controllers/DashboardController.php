@@ -35,13 +35,15 @@ class DashboardController extends Controller
                     $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades"] = 0;
                     $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades_completas"] = 0;
                     foreach($academia->atividades->where("ativo", 1)->where("subgrupo_id", $subgrupo->id) as $atividade){
-                        $departamentos[$i]["total_atividades"] += 1;
-                        $departamentos[$i][$grupo->nome]["total_atividades"] += 1;
-                        $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades"] += 1;
-                        if($atividade->status == 2){
-                            $departamentos[$i]["total_atividades_completas"] += 1;
-                            $departamentos[$i][$grupo->nome]["total_atividades_completas"] += 1;
-                            $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades_completas"] += 1;
+                        if($atividade->atividade->nivel <= $academia->nivel){
+                            $departamentos[$i]["total_atividades"] += 1;
+                            $departamentos[$i][$grupo->nome]["total_atividades"] += 1;
+                            $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades"] += 1;
+                            if($atividade->status == 2){
+                                $departamentos[$i]["total_atividades_completas"] += 1;
+                                $departamentos[$i][$grupo->nome]["total_atividades_completas"] += 1;
+                                $departamentos[$i][$grupo->nome][$subgrupo->nome]["total_atividades_completas"] += 1;
+                            }
                         }
                     }
                 }

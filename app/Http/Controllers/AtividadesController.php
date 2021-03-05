@@ -41,6 +41,7 @@ class AtividadesController extends Controller
         $atividade->texto_link = $request->texto_link;
         $atividade->subgrupo_id = $request->subgrupo_id;
         $atividade->importancia = $request->importancia;
+        $atividade->nivel = $request->nivel;
         $atividade->save();
         toastr()->success("Alterações salvas.");
         return redirect()->back();

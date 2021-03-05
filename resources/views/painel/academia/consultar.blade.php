@@ -10,13 +10,17 @@
     Listagem de Academias
 @endsection
 
+@section('botoes')
+<a name="" id="" class="btn btn-success" href="{{route('painel.academia.cadastro')}}" role="button">Nova academia</a>
+<a name="" id="" class="btn btn-primary" href="{{route('painel.academia.totais.atualizar')}}" role="button">Atualizar Dados</a>
+@endsection
+
 @section('conteudo')
-<div class="row">
+{{-- <div class="row">
     <div class="col-12 text-end">
-        <a name="" id="" class="btn btn-success mb-3" href="{{route('painel.academia.cadastro')}}" role="button">Nova academia</a>
-        <a name="" id="" class="btn btn-primary mb-3" href="{{route('painel.academia.totais.atualizar')}}" role="button">Atualizar Dados</a>
+        
     </div>
-</div>
+</div> --}}
 <div class="row">
     <div class="col-12">
         <div class="card">

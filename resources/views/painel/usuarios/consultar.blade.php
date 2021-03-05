@@ -10,6 +10,10 @@
     Listagem de usuarios
 @endsection
 
+@section('botoes')
+    <a name="" id="" class="btn btn-success" href="{{route('painel.usuario.cadastro')}}" role="button">Novo usuário</a>
+@endsection
+
 @section('conteudo')
 <div class="row mt-3">
     <div class="col-12">

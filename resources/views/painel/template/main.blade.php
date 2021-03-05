@@ -315,23 +315,11 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
 
                                 <li>
                                     <a href="javascript: void(0);" class="waves-effect">
-                                        <i class="fa fa-users menu-icon" aria-hidden="true"></i>
-                                        <span key="t-dashboards">Usuários</span>
-                                    </a>
-                                    <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="{{route('painel.usuario.cadastro')}}" key="t-default">Cadastro</a></li>
-                                        <li><a href="{{route('painel.usuarios')}}" key="t-default">Consultar</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="javascript: void(0);" class="waves-effect">
                                         <i class="fas fa-dumbbell menu-icon"></i>
                                         <span key="t-dashboards">Academias</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="{{route('painel.academia.cadastro')}}" key="t-default">Cadastro</a></li>
-                                        <li><a href="{{route('painel.academias')}}" key="t-default">Consultar</a></li>
+                                        <li><a href="{{route('painel.academias')}}" key="t-default">Cadastros</a></li>
                                     </ul>
                                 </li>
 
@@ -344,6 +332,16 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.configuracoes.grupos')}}" key="t-default">Gerenciamento</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fa fa-users menu-icon" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Usuários</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.usuarios')}}" key="t-default">Cadastros</a></li>
                                     </ul>
                                 </li>
                             @endif
@@ -371,7 +369,12 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">@yield("titulo")</h4>
+                                    <div class="col-6 text-start">
+                                        <h4 class="mb-sm-0 font-size-18">@yield("titulo")</h4>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        @yield("botoes")
+                                    </div>
                                 </div>
                             </div>
                         </div>

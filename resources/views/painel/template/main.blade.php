@@ -260,7 +260,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     @csrf
                                     <select name="academia" id="select-academia" class="form-select">
                                         <option value="0">Administrativo</option>
-                                        @foreach(\App\Models\Academia::all() as $academia)
+                                        @foreach(\App\Models\Academia::where("ativo", true)->get() as $academia)
                                             <option value="{{$academia->id}}" @if(session()->get("academia") && session()->get("academia") == $academia->id) selected @endif>{{$academia->nome}}</option>
                                         @endforeach
                                     </select>

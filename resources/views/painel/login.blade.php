@@ -23,6 +23,7 @@
         <link href="{{asset('admin/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{asset('admin/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+        @toastr_css
 
     </head>
 
@@ -160,7 +161,8 @@
         
         <!-- App js -->
         <script src="{{asset('admin/js/app.js')}}"></script>
-
+        @toastr_js
+        @toastr_render
     </body>
 
 <!-- Mirrored from themesbrand.com/skote/layouts/auth-login-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Feb 2021 12:51:15 GMT -->

@@ -26,6 +26,10 @@ class PainelController extends Controller
         $usuario = Usuario::where("usuario", $request->usuario)->first();
         
         if($usuario){
+            if($usuario->academia->ativo == false){
+                toastr()->error("Sua academia não está ativa no sistema. Por favor, entre em contato com os administradres!");
+                return redirect()->back();
+            }
             if(Hash::check($request->senha, $usuario->senha)){
                 session()->put(["usuario" => $usuario->toArray()]);
                 return redirect()->route("painel.index");

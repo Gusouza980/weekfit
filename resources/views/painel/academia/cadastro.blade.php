@@ -125,6 +125,15 @@
                                 <small>Usado como referência para o outro sistema</small>
                             </div>
                         </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="mb-3">
+                                <label for="ativo" class="form-label">Ativo</label>
+                                <select class="form-select" name="ativo">
+                                    <option value="0">Não</option>
+                                    <option value="1" selected>Sim</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <hr>

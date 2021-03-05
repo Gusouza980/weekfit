@@ -66,6 +66,7 @@ class AcademiaController extends Controller
         $academia->url = $request->url;
 
         $academia->codigo = $request->codigo;
+        $academia->ativo = $request->ativo;
 
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;
@@ -167,6 +168,7 @@ class AcademiaController extends Controller
         $academia->url = $request->url;
 
         $academia->codigo = $request->codigo;
+        $academia->ativo = $request->ativo;
 
         $academia->aplicativo = $request->aplicativo;
         $academia->whatsapp = $request->whatsapp;
@@ -307,7 +309,7 @@ class AcademiaController extends Controller
     }
 
     public function atualizar_totais(){
-        $academias = Academia::all();
+        $academias = Academia::where("ativo", true)->get();
         foreach($academias as $academia){
             $departamentos = [];
             $departamentos["total_atividades"] = 0;

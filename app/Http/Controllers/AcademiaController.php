@@ -137,7 +137,7 @@ class AcademiaController extends Controller
         $usuario->email = $request->email_proprietario;
         $usuario->telefone = $request->telefone_proprietario;
         $usuario->usuario = $request->usuario_proprietario;
-        $usuario->senha = Hash::make($request->senha);
+        $usuario->senha = Hash::make($request->senha_proprietario);
         $usuario->academia_id = $academia->id;
         $usuario->departamento = 100;
         $usuario->lider = true;
@@ -231,7 +231,7 @@ class AcademiaController extends Controller
         $usuario->email = $request->email_proprietario;
         $usuario->telefone = $request->telefone_proprietario;
         $usuario->usuario = $request->usuario_proprietario;
-        if($request->senha){
+        if($request->senha_proprietario){
             $usuario->senha = Hash::make($request->senha_proprietario);
         }
         $usuario->save();

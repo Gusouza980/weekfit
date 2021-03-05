@@ -79,9 +79,6 @@
                                                 </div>
                         
                                                 <div class="mb-3">
-                                                    <div class="float-end">
-                                                        <a href="auth-recoverpw-2.html" class="text-white"><span style="border-bottom: 2px solid rgba(179,244,0,1)">Esque</span>ci minha senha</a>
-                                                    </div>
                                                     <label class="form-label text-white">Senha</label>
                                                     <div class="input-group auth-pass-inputgroup">
                                                         <input type="password" class="form-control" name="senha" placeholder="Informa a senha" aria-label="Password" aria-describedby="password-addon">

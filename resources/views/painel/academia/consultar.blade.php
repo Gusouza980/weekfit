@@ -12,15 +12,15 @@
 
 @section('conteudo')
 <div class="row">
+    <div class="col-12 text-end">
+        <a name="" id="" class="btn btn-success mb-3" href="{{route('painel.academia.cadastro')}}" role="button">Nova academia</a>
+        <a name="" id="" class="btn btn-primary mb-3" href="{{route('painel.academia.totais.atualizar')}}" role="button">Atualizar Dados</a>
+    </div>
+</div>
+<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x: scroll;">
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <a name="" id="" class="btn btn-success mb-3" href="{{route('painel.academia.cadastro')}}" role="button">Nova academia</a>
-                        <a name="" id="" class="btn btn-primary mb-3" href="{{route('painel.academia.totais.atualizar')}}" role="button">Atualizar Dados</a>
-                    </div>
-                </div>
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>

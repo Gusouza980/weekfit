@@ -26,7 +26,7 @@ class PainelController extends Controller
         $usuario = Usuario::where("usuario", $request->usuario)->first();
         
         if($usuario){
-            if($usuario->academia->ativo == false){
+            if($usuario->academia && $usuario->academia->ativo == false){
                 toastr()->error("Sua academia não está ativa no sistema. Por favor, entre em contato com os administradres!");
                 return redirect()->back();
             }

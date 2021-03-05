@@ -221,7 +221,10 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" @if($usuario->academia) src="{{asset($usuario->academia->logo)}}" @else src="{{asset('admin/images/logos/gefit.png')}}" @endif
+                                <img class="rounded-circle header-profile-user" 
+                                    @if($usuario->academia && $usuario->academia->logo) src="{{asset($usuario->academia->logo)}}" 
+                                    @else src="{{asset('admin/images/logos/gefit.png')}}" 
+                                    @endif
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{session()->get("usuario")["nome"]}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

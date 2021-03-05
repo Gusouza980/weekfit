@@ -24,29 +24,18 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
-<<<<<<< HEAD
-=======
                             <th></th>
                             <th>Código</th>
->>>>>>> ad2637079f159982fdb6d819ec5a98880bf739d6
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Usuários</th>
-<<<<<<< HEAD
+                            <th>Nível</th>
                             <th>Ger</th>
                             <th>Adm</th>
                             <th>Tec</th>
                             <th>Com</th>
                             <th>Mkt</th>
-=======
-                            <th>Nível</th>
-                            <th>Geral</th>
-                            <th>Administrativo</th>
-                            <th>Técnico</th>
-                            <th>Comercial</th>
-                            <th>Marketing</th>
->>>>>>> ad2637079f159982fdb6d819ec5a98880bf739d6
                             <th></th>
                         </tr>
                     </thead>
@@ -55,26 +44,10 @@
                     <tbody>
                         @foreach($academias as $academia)
                             <tr>
-<<<<<<< HEAD
-=======
-                                <td><a href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a></td>
-                                <td>{{$academia->codigo}}</td>
->>>>>>> ad2637079f159982fdb6d819ec5a98880bf739d6
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>
                                 <td>{{$academia->usuarios()->count()}}</td>
-<<<<<<< HEAD
-                                <td>{{number_format($academia->total_geral, 2)}}%</td>
-                                <td>{{number_format($academia->total_administrativo, 2)}}%</td>
-                                <td>{{number_format($academia->total_tecnico, 2)}}%</td>
-                                <td>{{number_format($academia->total_comercial, 2)}}%</td>
-                                <td>{{number_format($academia->total_marketing, 2)}}%</td>
-                                <td>
-                                    <a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a>
-                                    <a class="mx-3" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                </td>
-=======
                                 <td>
                                     <select class="form-control select_nivel" name="select_nivel{{$academia->id}}" academia="{{$academia->id}}">
                                         <option value="0" @if($academia->nivel == 0) selected @endif>0</option>
@@ -84,13 +57,15 @@
                                         <option value="4" @if($academia->nivel == 4) selected @endif>4</option>
                                     </select>
                                 </td>
-                                <td style="color: {{\Functions::corProgresso(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"])}}">{{number_format(($departamentos["total_atividades_completas"] * 100) / $departamentos["total_atividades"], 2)}}%</td>
-                                <td style="color: {{\Functions::corProgresso(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"])}}">{{number_format(($departamentos[0]["total_atividades_completas"] * 100) / $departamentos[0]["total_atividades"], 2)}}%</td>
-                                <td style="color: {{\Functions::corProgresso(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"])}}">{{number_format(($departamentos[1]["total_atividades_completas"] * 100) / $departamentos[1]["total_atividades"], 2)}}%</td>
-                                <td style="color: {{\Functions::corProgresso(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"])}}">{{number_format(($departamentos[2]["total_atividades_completas"] * 100) / $departamentos[2]["total_atividades"], 2)}}%</td>
-                                <td style="color: {{\Functions::corProgresso(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"])}}">{{number_format(($departamentos[3]["total_atividades_completas"] * 100) / $departamentos[3]["total_atividades"], 2)}}%</td>
-                                <td><a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a></td>
->>>>>>> ad2637079f159982fdb6d819ec5a98880bf739d6
+                                <td>{{number_format($academia->total_geral, 2)}}%</td>
+                                <td>{{number_format($academia->total_administrativo, 2)}}%</td>
+                                <td>{{number_format($academia->total_tecnico, 2)}}%</td>
+                                <td>{{number_format($academia->total_comercial, 2)}}%</td>
+                                <td>{{number_format($academia->total_marketing, 2)}}%</td>
+                                <td>
+                                    <a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a>
+                                    <a class="mx-3" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

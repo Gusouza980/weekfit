@@ -344,6 +344,16 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                         <li><a href="{{route('painel.usuarios')}}" key="t-default">Cadastros</a></li>
                                     </ul>
                                 </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fa fa-users menu-icon" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Calendário</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('calendario.intervencoes')}}" key="t-default">Intervenções</a></li>
+                                    </ul>
+                                </li>
                             @endif
 
                             

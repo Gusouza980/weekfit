@@ -62,6 +62,14 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/usuarios/editar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'editar'])->name("painel.usuario.editar");
         Route::post('/dashboard/usuarios/salvar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'salvar'])->name("painel.usuario.salvar");
 
+        //ROTAS REFERENTES A CALENDÁRIOS 
+        Route::get('/dashboard/calendario/intervencoes', [\App\Http\Controllers\CalendarioController::class, 'intervencoes'])->name("calendario.intervencoes");
+        Route::get('/dashboard/calendario/intervencoes/todas', [\App\Http\Controllers\CalendarioController::class, 'todas_intervencoes'])->name("calendario.intervencoes.todas");
+        Route::post('/dashboard/calendario/intervencao/nova', [\App\Http\Controllers\CalendarioController::class, 'nova_intervencao'])->name("calendario.intervencao.nova");
+        Route::post('/dashboard/calendario/intervencao/atualizar/{identificador}', [\App\Http\Controllers\CalendarioController::class, 'atualizar_intervencao'])->name("calendario.intervencao.atualizar");
+        Route::get('/dashboard/calendario/intervencao/remover/{identificador}', [\App\Http\Controllers\CalendarioController::class, 'remover_intervencao'])->name("calendario.intervencao.remover");
+        Route::get('/teste', [\App\Http\Controllers\CalendarioController::class, 'teste']);
+
     });
 
     Route::middleware(['academia'])->group(function () {

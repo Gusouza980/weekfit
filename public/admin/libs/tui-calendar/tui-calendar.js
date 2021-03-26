@@ -4098,7 +4098,7 @@
 
         function d(e, t, n) {
             t = s.appendHTMLElement("div", t, o.classname("dayname-container")), this.options = l.extend({
-                daynames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+                daynames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
                 timezones: e.timezones
             }, e.week), this.theme = n, c.call(this, t), this.applyTheme()
         }
@@ -4364,7 +4364,7 @@
         function f(e, t, n, i) {
             n = r.appendHTMLElement("div", n, o.classname("daygrid-layout")), c.call(this, n), e = e || "daygrid", this.options = l.extend({
                 viewName: e,
-                daynames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+                daynames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
                 renderStartDate: "",
                 renderEndDate: "",
                 containerBottomGutter: 18,
@@ -8480,7 +8480,7 @@
                             column: 34
                         }
                     }
-                }) : a) + 'popup-section d-none">\n            <div class="' + u(typeof (a = null != (a = h(n, "CSS_PREFIX") || (null != t ? h(t, "CSS_PREFIX") : t)) ? a : s) === c ? a.call(r, {
+                }) : a) + 'popup-section">\n            <div class="' + u(typeof (a = null != (a = h(n, "CSS_PREFIX") || (null != t ? h(t, "CSS_PREFIX") : t)) ? a : s) === c ? a.call(r, {
                     name: "CSS_PREFIX",
                     hash: {},
                     data: o,
@@ -11855,7 +11855,7 @@
                 },
                 startDayOfWeek: 0,
                 renderMonth: "2018-01",
-                daynames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+                daynames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
                 narrowWeekend: !1,
                 visibleWeeksCount: null,
                 isAlways6Week: !0,
@@ -15236,31 +15236,31 @@
                     return e.dateDifference && t.push("[" + e.dateDifferenceSign + e.dateDifference + "]<br>"), t.push(i.format(e.hourmarker, "HH:mm")), t.join("")
                 },
                 "popupIsAllDay-tmpl": function () {
-                    return "All Day"
+                    return "All day"
                 },
                 "popupStateFree-tmpl": function () {
-                    return "Livre"
+                    return "Free"
                 },
                 "popupStateBusy-tmpl": function () {
-                    return "Ocupado"
+                    return "Busy"
                 },
                 "titlePlaceholder-tmpl": function () {
-                    return "Assunto"
+                    return "Subject"
                 },
                 "locationPlaceholder-tmpl": function () {
-                    return "Observação"
+                    return "Location"
                 },
                 "startDatePlaceholder-tmpl": function () {
-                    return "Data Inicial"
+                    return "Start date"
                 },
                 "endDatePlaceholder-tmpl": function () {
-                    return "Data Final"
+                    return "End date"
                 },
                 "popupSave-tmpl": function () {
-                    return "Salvar"
+                    return "Save"
                 },
                 "popupUpdate-tmpl": function () {
-                    return "Atualizar"
+                    return "Update"
                 },
                 "popupDetailDate-tmpl": function (e, t, n) {
                     var l = i.isSameDate(t, n),
@@ -15274,7 +15274,7 @@
                     return (e.attendees || []).join(", ")
                 },
                 "popupDetailState-tmpl": function (e) {
-                    return e.state || "Ocupado"
+                    return e.state || "Busy"
                 },
                 "popupDetailRepeat-tmpl": function (e) {
                     return e.recurrenceRule

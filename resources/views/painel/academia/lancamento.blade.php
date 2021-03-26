@@ -103,7 +103,7 @@
                                                                                                                 <div class="px-2">
                                                                                                                     <span class="input-atividade">
                                                                                                                         @if($atividade->atividade->link)
-                                                                                                                            {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                            {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade->atividade->texto_link . " </a>" !!}
                                                                                                                         @endif
                                                                                                                     </span>
                                                                                                                 </div>
@@ -198,7 +198,7 @@
                                                                                                                 <div class="px-2">
                                                                                                                     <span class="input-atividade">
                                                                                                                         @if($atividade->atividade->link)
-                                                                                                                            {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                                            {!! " <a class='ml-2' target='_blank' href='" . $atividade->atividade->link . "'> " . $atividade->atividade->texto_link . " </a>" !!}
                                                                                                                         @endif
                                                                                                                     </span>
                                                                                                                 </div>

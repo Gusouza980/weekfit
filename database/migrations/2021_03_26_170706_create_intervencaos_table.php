@@ -16,12 +16,15 @@ class CreateIntervencaosTable extends Migration
         Schema::create('intervencaos', function (Blueprint $table) {
             $table->id();
             $table->string("situacao", 2)->default(1);
+            $table->unsignedBigInteger("academia_id")->nullable();
+            $table->string("identificador");
             $table->string("assunto")->nullable();
             $table->string("observacao")->nullable();
             $table->string("usuario")->nullable();
             $table->dateTime("inicio")->nullable();
             $table->dateTime("fim")->nullable();
             $table->timestamps();
+            $table->foreign('academia_id')->references('id')->on('academias')->onDelete('cascade');
         });
     }
 

@@ -34,11 +34,7 @@
                 </div>
                 
                 <hr>
-                <div class="row mb-3">
-                    <div class="col-12 text-end">
-                        <a name="" id="novo-registro" class="btn btn-primary" role="button">Novo Registro</a>
-                    </div>
-                </div>
+
                 <div id="calendar"></div>
             </div>
         </div>
@@ -47,70 +43,35 @@
 
 <div class="modal fade" id="modalIntervencao" tabindex="-1" role="dialog" aria-labelledby="modalIntervencaoLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="{{route('calendario.intervencao.salvar')}}" method="post">
-                    @csrf
-                    <input type="hidden" name="identificador" value="">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="assunto">Assunto</label>
-                            <input type="text" class="form-control" name="assunto"
-                                id="assunto" aria-describedby="helpId" 
-                                value="">
-                        </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="card-title float-start" id="txt-assunto"></h4>
+                        
+                        
+                        <span class="float-end" id="txt-situacao"></span>
+                        <i class="mdi mdi-circle font-size-10 float-end" style="margin-top: 2px; margin-right: 5px;" id="color-situacao"></i>
                     </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="academia">Academia</label>
-                            <select class="form-select" name="academia">
-                                @foreach(\App\Models\Academia::all() as $academia)
-                                    <option value="{{$academia->id}}">{{$academia->nome}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="observacao">Observação</label>
-                            <input type="text" class="form-control" name="observacao"
-                                id="observacao" aria-describedby="helpId">
-                        </div>
-                    </div>
+                </div>
+                
+                <hr>
 
-                    <div class="row mt-3">
-                        <div class="form-group col-6">
-                            <label for="inicio">Inicio</label>
-                            <input class="form-control" name="inicio" id="datetimepicker" type="text" >
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="fim">Fim</label>
-                            <input class="form-control" name="fim" id="datetimepicker2" type="text" >
-                        </div>
+                <span id="txt-observacao"></span>
+                <div class="row">
+                    <div class="col-12 text-end text-muted" style="font-size: 10px;">
+                        <i class="dripicons-user"></i>
+                        <span id="txt-usuario"></span>
                     </div>
-                    
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="situacao">Situação</label>
-                            <select class="form-select" name="situacao">
-                                <option value="1">Atendida</option>
-                                <option value="2">Não Atendida</option>
-                            </select>
-                        </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 text-end" style="font-size: 12px;">
+                        Intervenção realizada em <span id="txt-inicio" style="font-weight: bold;"></span> até <span id="txt-fim" style="font-weight: bold;"></span>
                     </div>
-
-                    <div class="row mt-3">
-                        <div class="col-12 text-end">
-                            <button type="submit"
-                                class="btn btn-primary">Salvar</button>
-							@if(session()->get("usuario")["acesso"] == 0)
-                            	<a name="" id="remove_intervencao" class="btn btn-danger" href="" role="button">Remover</a>
-							@endif
-                        </div>
-                    </div>
-
-                </form>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -151,15 +112,18 @@
     });
 
     cal.on('clickSchedule', function(event) {
-        console.log(event.schedule.calendarId);
+        console.log(event.schedule);
         academia = event.schedule.location;
-        $("select[name='situacao'] option:selected").removeAttr('selected');
-        $("select[name='situacao'] option[value='"+event.schedule.calendarId+"']").attr("selected", "selected");
-        $("input[name='identificador']").val(event.schedule.id);
-        $("input[name='assunto']").val(event.schedule.title);
-        $("select[name='academia'] option:selected").removeAttr('selected');
-        $("select[name='academia'] option[value='"+academia+"'").attr('selected', "selected");
-        $("input[name='observacao']").val(event.schedule.body);
+        $("#txt-assunto").html(event.schedule.title);
+        $("#txt-observacao").html(event.schedule.body);
+        $("#txt-usuario").html(event.schedule.attendees[0]);
+        if(event.schedule.calendarId == 1){
+            $("#txt-situacao").html("Atendida");
+            $("#color-situacao").css("color", "rgb(179,244,0)");
+        }else{
+            $("#txt-situacao").html("Não Atendida");
+            $("#color-situacao").css("color", "red");
+        }
         
         var inicio = event.schedule.start;
         var dia = (inicio.getDate() < 10) ? "0" + (inicio.getDate()) : (inicio.getDate())
@@ -178,30 +142,17 @@
         minuto = (fim.getMinutes() < 10) ? "0" + (fim.getMinutes()) : (fim.getMinutes())
         segundo = (fim.getSeconds() < 10) ? "0" + (fim.getSeconds()) : (fim.getSeconds())
         fim = dia + "/" + mes + "/" + ano + " " + hora + ":" + minuto + ":" + segundo;
+
+        $("#txt-inicio").html(inicio);
+        $("#txt-fim").html(fim);
         
         $("input[name='inicio']").val(inicio);
         $("input[name='fim']").val(fim);
-
-        $("#remove_intervencao").removeClass("d-none");
-        $("#remove_intervencao").attr("href", "/dashboard/calendario/intervencao/remover/" + event.schedule.id);
 
         $("#modalIntervencao").modal("show");
         //cal.openCreationPopup(event.schedule);
     });
     
-    $("#novo-registro").click(function(){
-        $("select[name='situacao'] option:selected").removeAttr('selected');
-        $("input[name='identificador']").val("");
-        $("input[name='assunto']").val("");
-        $("select[name='academia'] option:selected").removeAttr('selected');
-        $("input[name='observacao']").val("");
-        $("input[name='inicio']").val("");
-        $("input[name='fim']").val("");
-        $("#remove_intervencao").addClass("d-none");
-        $("#remove_intervencao").attr("href", "");
-        $("#modalIntervencao").modal("show");
-    });
-
     var date = cal.getDate().toDate();
     $("#renderRange").html(date.getMonth() + "/" + date.getFullYear());
     

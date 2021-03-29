@@ -10,7 +10,7 @@ class UsuarioController extends Controller
 {
     //
     public function consultar(){
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::where("admin", true)->get();
         return view("painel.usuarios.consultar", ["usuarios" => $usuarios]);
     }
 

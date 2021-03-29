@@ -19,7 +19,7 @@ class UsuarioAdmin
         if(session()->get("usuario")["admin"]){
             return $next($request);
         }else{
-            toastr()->error("Você não pode acessar essa página");
+            toastr()->error("Você não pode acessar essa página 1");
             return redirect()->route("painel.index");
         }
     }

@@ -62,13 +62,20 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/usuarios/editar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'editar'])->name("painel.usuario.editar");
         Route::post('/dashboard/usuarios/salvar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'salvar'])->name("painel.usuario.salvar");
 
+        //ROTAS REFERENTES A CALENDÁRIOS 
+        Route::get('/dashboard/calendario/intervencoes/todas', [\App\Http\Controllers\CalendarioController::class, 'todas_intervencoes'])->name("calendario.intervencoes.todas");
+        Route::post('/dashboard/calendario/intervencao/salvar', [\App\Http\Controllers\CalendarioController::class, 'salvar_intervencao'])->name("calendario.intervencao.salvar");
+        Route::get('/dashboard/calendario/intervencao/remover/{intervencao}', [\App\Http\Controllers\CalendarioController::class, 'remover_intervencao'])->name("calendario.intervencao.remover");
+        Route::get('/teste', [\App\Http\Controllers\CalendarioController::class, 'teste']);
+
     });
+
+    Route::get('/dashboard/calendario/intervencoes', [\App\Http\Controllers\CalendarioController::class, 'intervencoes'])->name("calendario.intervencoes");
 
     Route::middleware(['academia'])->group(function () {
         // ROTAS PARA O DONO DE ACADEMIA
         Route::get('/dashboard/administracao/lancamento', [\App\Http\Controllers\AcademiaController::class, 'lancamento'])->name("painel.administracao.lancamento");
         Route::post('/dashboard/administracao/atividade/status/trocar/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_status'])->name("painel.administracao.atividade.status");
-
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
 

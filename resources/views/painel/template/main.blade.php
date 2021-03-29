@@ -298,15 +298,15 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </ul>
                                 </li>
 
-                                {{-- <li>
+                                <li>
                                     <a href="javascript: void(0);" class="waves-effect">
-                                        <i class="bx bx-home-circle"></i>
+                                        <i class="bx bx-calendar-event"></i>
                                         <span key="t-dashboards">Calendario</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="index.html" key="t-default">Gefit Academia</a></li>
+                                        <li><a href="{{route('calendario.intervencoes')}}" key="t-default">Intervenções</a></li>
                                     </ul>
-                                </li> --}}
+                                </li>
 
                             @endif
 
@@ -342,6 +342,16 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.usuarios')}}" key="t-default">Cadastros</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="bx bx-calendar-event" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Calendário</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('calendario.intervencoes')}}" key="t-default">Intervenções</a></li>
                                     </ul>
                                 </li>
                             @endif

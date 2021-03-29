@@ -78,6 +78,44 @@ body {
 [tabindex="-1"]:focus {
     outline: 0 !important;
 }
+
+.link77 img{
+	filter: contrast(0) brightness(1);
+	transition: all .5s ease-out;
+}
+
+.link77:hover>img,.link77:focus>img{
+	filter: contrast(1) brightness(1);
+	transform: scale(1.1);
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+	overflow-y: overlay;
+}
+
+body::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+body::-webkit-scrollbar-track:vertical:hover {
+	border-right: 4px solid trasnparent;
+	border-radius: 2px;
+}
+
+body::-webkit-scrollbar-thumb:vertical {
+	border-right: 2px solid black;
+	border-radius: 1px;
+}
+
+body::-webkit-scrollbar-thumb:vertical:hover {
+	border-right: 4px solid #b1f400;
+	border-radius: 2px;
+}
+
+
 hr {
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
@@ -437,8 +475,10 @@ mark,
     content: "\2014\00A0";
 }
 .img-fluid {
-    max-width: 100%;
-    height: auto;
+	max-width: 100%;
+	height: 40px;
+	width: auto;
+	object-fit: contain;
 }
 .img-thumbnail {
     padding: 0.25rem;
@@ -9895,7 +9935,7 @@ h5,
 }
 @media (max-width: 991.98px) {
     .ftco-navbar-light {
-        background: #000 !important;
+			background: #002e82 !important;
         position: relative;
         top: 0;
         padding-top: 0;
@@ -10633,7 +10673,8 @@ h5,
     color: #fff;
 }
 .testimony-wrap .user-img {
-    width: 80px;
+	width: 80px;
+	min-width: 80px;
     height: 80px;
     position: relative;
     -webkit-border-radius: 50%;
@@ -11076,6 +11117,10 @@ textarea.form-control {
     font-size: 34px;
     display: block;
     color: var(--verde);
+}
+.ftco-counter .text strong.number.mais:before{
+	content:'+';
+	display:inline-block;
 }
 .ftco-counter .text span {
     color: white !important;

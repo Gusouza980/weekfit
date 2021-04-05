@@ -16,6 +16,7 @@ class AtividadesController extends Controller
     }
 
     public function adicionar(Request $request){
+        // dd($request->all());
         $atividade = new Atividade;
         $atividade->nome = $request->nome;
         $atividade->link = $request->link;
@@ -28,6 +29,7 @@ class AtividadesController extends Controller
             $nova_atividade = new AtividadeAcademia;
             $nova_atividade->academia_id = $academia->id;
             $nova_atividade->atividade_id = $atividade->id;
+            $nova_atividade->subgrupo_id = $atividade->subgrupo_id;
             $nova_atividade->save();
         }
 

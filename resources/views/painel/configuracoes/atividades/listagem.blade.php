@@ -220,8 +220,8 @@
                                     class="form-label">Grupo</label>
                                 <select id="grupo_id" name="grupo_id"
                                     class="form-select">
-                                    @foreach(\App\Models\Grupo::all() as $grupo)
-                                        <option value="{{$grupo->id}}" @if($grupo->id == $subgrupo->grupo_id) selected @endif>{{$grupo->nome}} - {{config('globals.departamentos')[$grupo->departamento]}}</option>
+                                    @foreach(\App\Models\Grupo::all() as $obj)
+                                        <option value="{{$obj->id}}" @if($obj->id == $subgrupo->grupo_id) selected @endif>{{$obj->nome}} - {{config('globals.departamentos')[$obj->departamento]}}</option>
                                     @endforeach
                                 </select>
                             </div>

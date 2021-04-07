@@ -11,6 +11,7 @@ use App\Models\Academia;
 use App\Models\Usuario;
 use App\Models\Atividade;
 use App\Models\AtividadeAcademia;
+use App\Models\Lead;
 
 class AcademiaController extends Controller
 {
@@ -361,5 +362,10 @@ class AcademiaController extends Controller
             $academia = Academia::find(session()->get("usuario")["academia_id"]);
         }
         return view("painel.academia.lancamento", ['academia' => $academia]);
+    }
+
+    public function leads(){
+        $leads = Lead::where("academia_id", session()->get("academia"));
+        return view("painel.leads.consultar", ["leads" => $leads]);
     }
 }

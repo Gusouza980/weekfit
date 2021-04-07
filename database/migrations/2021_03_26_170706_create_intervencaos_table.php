@@ -19,7 +19,7 @@ class CreateIntervencaosTable extends Migration
             $table->unsignedBigInteger("academia_id")->nullable();
             $table->string("identificador");
             $table->string("assunto")->nullable();
-            $table->string("observacao")->nullable();
+            $table->text("observacao")->nullable();
             $table->string("usuario")->nullable();
             $table->dateTime("inicio")->nullable();
             $table->dateTime("fim")->nullable();

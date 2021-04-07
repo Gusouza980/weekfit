@@ -74,8 +74,7 @@
                     <div class="row mt-3">
                         <div class="form-group col-12">
                             <label for="observacao">Observação</label>
-                            <input type="text" class="form-control" name="observacao"
-                                id="observacao" aria-describedby="helpId">
+                            <textarea name="observacao" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
 
@@ -159,7 +158,7 @@
         $("input[name='assunto']").val(event.schedule.title);
         $("select[name='academia'] option:selected").removeAttr('selected');
         $("select[name='academia'] option[value='"+academia+"'").attr('selected', "selected");
-        $("input[name='observacao']").val(event.schedule.body);
+        $("textarea[name='observacao']").html(event.schedule.body);
         
         var inicio = event.schedule.start;
         var dia = (inicio.getDate() < 10) ? "0" + (inicio.getDate()) : (inicio.getDate())

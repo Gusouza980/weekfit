@@ -365,7 +365,12 @@ class AcademiaController extends Controller
     }
 
     public function leads(){
-        $leads = Lead::where("academia_id", session()->get("academia"))->get();
+        if(session()->get("usuario")["admin"]){
+            $leads = Lead::where("academia_id", session()->get("academia"))->get();
+        }else{
+            $leads = Lead::where("academia_id", session()->get("usuario")["academia_id"])->get();
+        }
+       
         return view("painel.leads.consultar", ["leads" => $leads]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -32,6 +33,7 @@ class PainelController extends Controller
             }
             if(Hash::check($request->senha, $usuario->senha)){
                 session()->put(["usuario" => $usuario->toArray()]);
+                Log::channel('acessos')->info('<b>LOGIN</b>: O usuario <b>' . $usuario->usuario . '</b> logou no sistema.');
                 return redirect()->route("painel.index");
             }else{
                 toastr()->error("Informações de usuário incorretas!");
@@ -48,6 +50,7 @@ class PainelController extends Controller
     }
 
     public function sair(){
+        Log::channel('acessos')->info('<b>SAIDA</b>: O usuario <b>' . session()->get("usuario")["usuario"] . '</b> saiu do sistema.');
         session()->forget("usuario");
         return redirect()->route("painel.login");
     }

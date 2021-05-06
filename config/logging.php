@@ -47,6 +47,18 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'cadastros' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/cadastros.log'),
+            'level' => env('LOG_LEVEL', 'info'),
+        ],
+
+        'acessos' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/acessos.log'),
+            'level' => env('LOG_LEVEL', 'info'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\Academia;
 use App\Models\Usuario;
 use App\Models\Atividade;
@@ -122,6 +122,8 @@ class AcademiaController extends Controller
 
         $academia->save();
 
+        Log::channel('cadastros')->info('<b>CADASTRANDO ACADEMIA #'.$academia->id.'</b>: O usuario <b>' . session()->get("usuario")["usuario"] . '</b> cadastrou a academia <b>' . $academia->nome . '</b>.');
+
         $atividades = Atividade::all();
 
         foreach($atividades as $atividade){
@@ -157,6 +159,8 @@ class AcademiaController extends Controller
             'email' => 'unique:academias,email,'.$academia->id,
         ]);
 
+        $old = $academia->getOriginal();
+
         $academia->nome = $request->nome;
         $academia->email = $request->email;
         $academia->telefone = $request->telefone;
@@ -167,6 +171,8 @@ class AcademiaController extends Controller
         $academia->estado = $request->estado;
         $academia->cep = $request->cep;
         $academia->url = $request->url;
+
+        $academia->observacoes = $request->observacoes;
 
         $academia->codigo = $request->codigo;
         $academia->ativo = $request->ativo;
@@ -225,6 +231,11 @@ class AcademiaController extends Controller
 
         $academia->save();
 
+        foreach($academia->getChanges() as $campo => $valor){
+            if(!in_array($campo, ["updated_at", "slug"])){
+                Log::channel('cadastros')->info('<b>EDITANDO ACADEMIA #' . $academia->id . '</b>: O usuario <b>' . session()->get("usuario")["usuario"] . '</b> alterou o valor do campo <b>' . $campo . '</b> de <b>' . $old[$campo] . '</b> para <b>' . $valor . '</b>');
+            }
+        }
 
         $usuario = $academia->proprietario[0];
 

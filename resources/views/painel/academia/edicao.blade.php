@@ -1,5 +1,10 @@
 @extends('painel.template.main')
 
+@section('styles')
+    <!-- Sweet Alert-->
+    <link href="{{asset('admin/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('titulo')
     Editando Academia: {{$academia->nome}}
 @endsection
@@ -17,7 +22,7 @@
                     </div>
                 </div>
 
-                <form action="{{route('painel.academia.salvar', ['academia' => $academia])}}" method="POST" enctype="multipart/form-data">
+                <form id="form-edicao" action="{{route('painel.academia.salvar', ['academia' => $academia])}}" method="POST" enctype="multipart/form-data">
                     
                     @csrf
                     <h4 class="card-title mb-4">Informações Básicas</h4>
@@ -173,6 +178,12 @@
                         </div>
                     </div>
 
+                    <hr>
+
+                    <h4 class="card-title mb-4 mt-4">Observações</h4>
+                        <div class="form-group">
+                            <textarea class="form-control" name="observacoes" id="" rows="3">{{$academia->observacoes}}</textarea>
+                        </div>
                     <hr>
 
                     <h4 class="card-title mb-4 mt-4">Chaves</h4>
@@ -429,16 +440,17 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-12 col-lg-6 text-left" style="color:red;">
-                            * Campos obrigatórios
-                        </div>
-                        <div class="col-12 col-lg-6" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary px-5">Salvar</button>
-                        </div>
-                    </div>
+                    <hr>             
                 </form>
+                <div class="row">
+                    <div class="col-12 col-lg-6 text-left" style="color:red;">
+                        * Campos obrigatórios
+                    </div>
+                    <div class="col-12 col-lg-6 text-end">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" id="sa-warning">Salvar</button>
+                    </div>
+                </div>
+                
             </div>
             <!-- end card body -->
         </div>
@@ -450,6 +462,10 @@
 @endsection
 
 @section('scripts')
+    <!-- Sweet Alerts js -->
+    <script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    {{--  <!-- Sweet alert init js-->
+    <script src="assets/js/pages/sweet-alerts.init.js"></script>  --}}
     <script>
         var inp = document.getElementById('logo-upload');
         inp.addEventListener('change', function(e){
@@ -460,5 +476,21 @@
                 };
             reader.readAsDataURL(file);
         },false);
+
+        $(document).ready(function(){
+            $("#sa-warning").click(function () {
+                Swal.fire({
+                    title: "Tem Certeza?",
+                    text: "Isso irá atualizar as informações da academia!",
+                    icon: "warning",
+                    showCancelButton: !0,
+                    confirmButtonColor: "#34c38f",
+                    cancelButtonColor: "#f46a6a",
+                    confirmButtonText: "Sim, atualizar!",
+                }).then(function (t) {
+                    $("#form-edicao").submit();
+                });
+            })
+        })
     </script>
 @endsection

@@ -440,6 +440,18 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                 <hr class="mt-0" />           
                 <div class="p-4 lista-atualizacoes">
 
+                    <h6 class="text-left mb-3 mt-4">25/04/2021 - V 1.4</h6>
+                    <ul class="">
+                        <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição da visualização de leads.</span></li>
+                    
+                    </ul>
+
+                    <h6 class="text-left mb-3 mt-4">12/04/2021 - V 1.3</h6>
+                    <ul class="">
+                        <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição do sistema de calendário de intervenções.</span></li>
+                    
+                    </ul>
+
                     <h6 class="text-left mb-3 mt-4">02/03/2021 - V 1.2</h6>
                     <ul class="">
                         <li><i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> <span>Adição do sistema de nível para a academia.</span></li>

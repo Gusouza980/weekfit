@@ -68,6 +68,7 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/calendario/intervencao/remover/{intervencao}', [\App\Http\Controllers\CalendarioController::class, 'remover_intervencao'])->name("calendario.intervencao.remover");
         Route::get('/teste', [\App\Http\Controllers\CalendarioController::class, 'teste']);
 
+        Route::get('/dashboard/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     });
 
     Route::get('/dashboard/calendario/intervencoes', [\App\Http\Controllers\CalendarioController::class, 'intervencoes'])->name("calendario.intervencoes");

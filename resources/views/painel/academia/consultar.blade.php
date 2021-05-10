@@ -68,7 +68,7 @@
                                 <td>{{number_format($academia->total_marketing, 2)}}%</td>
                                 <td>
                                     <a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a>
-                                    <a class="mx-3" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <a class="btn btn-primary mx-1" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}">Visualizar</a>
                                 </td>
                             </tr>
                         @endforeach

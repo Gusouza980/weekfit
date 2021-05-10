@@ -242,12 +242,6 @@
                                                                                         <b>{{ $subgrupo->nome }}</b></h6>
                                                                                     <div class="row my-3">
                                                                                         @foreach ($subgrupo->atividades as $atividade)
-                                                                                            @php
-                                                                                                $atividade_academia = $academia
-                                                                                                    ->atividades()
-                                                                                                    ->where('atividade_id', $atividade->id)
-                                                                                                    ->first();
-                                                                                            @endphp
                                                                                             <div class="col-12 mt-1">
                                                                                                 <div
                                                                                                     class="form-check form-check-inline">
@@ -257,12 +251,12 @@
                                                                                                             class="form-check-input check-atividade"
                                                                                                             type="checkbox"
                                                                                                             name="" id=""
-                                                                                                            value="{{ $atividade_academia->id }}"
-                                                                                                            @if ($atividade_academia->ativo) checked @endif> {!!
-                                                                                                        $atividade_academia->atividade->nome 
+                                                                                                            value="{{ $atividade->id }}"
+                                                                                                            @if ($atividade->ativo) checked @endif> {!!
+                                                                                                        $atividade->nome 
                                                                                                         !!}
-                                                                                                        @if($atividade_academia->atividade->link)
-                                                                                                            {!! " <a href='" . $atividade_academia->atividade->link . "'> " . $atividade_academia->atividade->texto_link . " </a>" !!}
+                                                                                                        @if($atividade->link)
+                                                                                                            {!! " <a href='" . $atividade->link . "'> " . $atividade->texto_link . " </a>" !!}
                                                                                                         @endif
                                                                                                     </label>
                                                                                                 </div>

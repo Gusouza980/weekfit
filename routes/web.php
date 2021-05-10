@@ -39,7 +39,10 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academia/usuario/editar/{usuario}', [\App\Http\Controllers\AcademiaController::class, 'usuario_editar'])->name("painel.academia.usuario.editar");
         Route::get('/dashboard/academia/atividade/ativo/troca/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_ativo'])->name("painel.academia.atividade.ativo");
         Route::get('/dashboard/academias/totais/atualizar', [\App\Http\Controllers\AcademiaController::class, 'atualizar_totais'])->name("painel.academia.totais.atualizar");
-
+        Route::post('/dashboard/academias/getree/rede/{academia}', [\App\Http\Controllers\AcademiaController::class, 'rede_getree'])->name("painel.academia.getree.rede");
+        Route::post('/dashboard/academias/getree/adicionar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'adicionar_getree'])->name("painel.academia.getree.adicionar");
+        Route::post('/dashboard/academias/getree/salvar/{getree}', [\App\Http\Controllers\AcademiaController::class, 'salvar_getree'])->name("painel.academia.getree.salvar");
+        Route::get('/dashboard/academias/getree/remover/{getree}', [\App\Http\Controllers\AcademiaController::class, 'remover_getree'])->name("painel.academia.getree.remover");
 
         //ROTAS REFERENTES AOS GRUPOS
         Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");

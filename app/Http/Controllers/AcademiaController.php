@@ -12,6 +12,7 @@ use App\Models\Usuario;
 use App\Models\Atividade;
 use App\Models\AtividadeAcademia;
 use App\Models\Lead;
+use App\Models\GetreeElemento;
 
 class AcademiaController extends Controller
 {
@@ -174,6 +175,16 @@ class AcademiaController extends Controller
 
         $academia->observacoes = $request->observacoes;
 
+        $academia->titulo_getree = $request->titulo_getree;
+        $academia->cor_titulo_getree = $request->cor_titulo_getree;
+        $academia->subtitulo_getree = $request->subtitulo_getree;
+        $academia->cor_subtitulo_getree = $request->cor_subtitulo_getree;
+        $academia->slug_getree = $request->slug_getree;
+        $academia->cor_fundo_cartao_getree = $request->cor_fundo_cartao_getree;
+        $academia->cor_fundo_cartao_hover_getree = $request->cor_fundo_cartao_hover_getree;
+        $academia->cor_letra_cartao_getree = $request->cor_letra_cartao_getree;
+        $academia->cor_letra_cartao_hover_getree = $request->cor_letra_cartao_hover_getree;
+
         $academia->codigo = $request->codigo;
         $academia->ativo = $request->ativo;
 
@@ -226,6 +237,13 @@ class AcademiaController extends Controller
             Storage::delete($academia->logo);
             $academia->logo = $request->file('logo')->store(
                 'admin/images/logos/'.Str::slug($academia->nome), 'local'
+            );
+        }
+
+        if($request->file("fundo_getree")){
+            Storage::delete($academia->fundo_getree);
+            $academia->fundo_getree = $request->file('fundo_getree')->store(
+                'admin/images/getree/'.Str::slug($academia->nome), 'local'
             );
         }
 
@@ -383,5 +401,128 @@ class AcademiaController extends Controller
         }
        
         return view("painel.leads.consultar", ["leads" => $leads]);
+    }
+
+    public function rede_getree(Request $request, Academia $academia){
+        switch ($request->name) {
+            case "facebook_getree":
+                if($academia->facebook_getree){
+                    $academia->facebook_getree = false;
+                    $msg = "O Facebook foi removido do Getree";
+                }else{
+                    $academia->facebook_getree = true;
+                    $msg = "O Facebook foi adicionado ao Getree";
+                }
+                
+                break;
+            case "linkedin_getree":
+                if($academia->linkedin_getree){
+                    $academia->linkedin_getree = false;
+                    $msg = "O Linkedin foi removido do Getree";
+                }else{
+                    $academia->linkedin_getree = true;
+                    $msg = "O Linkedin foi adicionado ao Getree";
+                }
+                break;
+            case "instagram_getree":
+                if($academia->instagram_getree){
+                    $academia->instagram_getree = false;
+                    $msg = "O Instagram foi removido do Getree";
+                }else{
+                    $academia->instagram_getree = true;
+                    $msg = "O Instagram foi adicionado ao Getree";
+                }
+                break;
+            case "pinterest_getree":
+                if($academia->pinterest_getree){
+                    $academia->pinterest_getree = false;
+                    $msg = "O Pinterest foi removido do Getree";
+                }else{
+                    $academia->pinterest_getree = true;
+                    $msg = "O Pinterest foi adicionado ao Getree";
+                }
+                break;
+            case "twitter_getree":
+                if($academia->twitter_getree){
+                    $academia->twitter_getree = false;
+                    $msg = "O Twitter foi removido do Getree";
+                }else{
+                    $academia->twitter_getree = true;
+                    $msg = "O Twitter foi adicionado ao Getree";
+                }
+                break;
+            case "youtube_getree":
+                if($academia->youtube_getree){
+                    $academia->youtube_getree = false;
+                    $msg = "O Youtube foi removido do Getree";
+                }else{
+                    $academia->youtube_getree = true;
+                    $msg = "O Youtube foi adicionado ao Getree";
+                }
+                break;
+            case "google_negocio_getree":
+                if($academia->google_negocio_getree){
+                    $academia->google_negocio_getree = false;
+                    $msg = "O Google Meu Negócio foi removido do Getree";
+                }else{
+                    $academia->google_negocio_getree = true;
+                    $msg = "O Google Meu Negócio foi adicionado ao Getree";
+                }
+                break;
+            case "tiktok_getree":
+                if($academia->tiktok_getree){
+                    $academia->tiktok_getree = false;
+                    $msg = "O Tiktok foi removido do Getree";
+                }else{
+                    $academia->tiktok_getree = true;
+                    $msg = "O Tiktok foi adicionado ao Getree";
+                }
+                break;
+        }
+
+        $academia->save();
+
+        // switch($request->name)
+        return response()->json($msg, 200);
+    }
+
+    public function adicionar_getree(Request $request, Academia $academia){
+        $getree = new GetreeElemento;
+        $getree->academia_id = $academia->id;
+        if($request->file("imagem")){
+            $getree->imagem = $request->file('imagem')->store(
+                'admin/images/getree/'.Str::slug($getree->imagem), 'local'
+            );
+        }
+
+        $getree->titulo = $request->titulo;
+        $getree->link = $request->link;
+        $getree->save();
+
+        toastr()->success("Elemento adicionado ao Getree da " . $academia->nome);
+        return redirect()->back()->with("getree", "getree");
+    }
+
+    public function salvar_getree(Request $request, GetreeElemento $getree){
+        if($request->file("imagem")){
+            Storage::delete($getree->imagem);
+            $getree->imagem = $request->file('imagem')->store(
+                'admin/images/getree/'.Str::slug($getree->imagem), 'local'
+            );
+        }
+
+        $getree->titulo = $request->titulo;
+        $getree->link = $request->link;
+        $getree->save();
+
+        toastr()->success("Elemento salvo com sucesso");
+        return redirect()->back()->with("getree", "getree");
+    }
+
+    public function remover_getree(GetreeElemento $getree){
+        Storage::delete($getree->imagem);
+        $getree->delete();
+        toastr()->success("Elemento removido com sucesso");
+        return redirect()->back()->with("getree", "getree");
     }
 }

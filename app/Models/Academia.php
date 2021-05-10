@@ -20,4 +20,8 @@ class Academia extends Model
     public function proprietario(){
         return $this->usuarios()->where("departamento", 100);
     }
+
+    public function getree(){
+        return $this->hasMany(GetreeElemento::class);
+    }
 }

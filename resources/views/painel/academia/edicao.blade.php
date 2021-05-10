@@ -268,7 +268,7 @@
                                 <div class="col-lg-2 col-12">
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="example-color-input" class="col-form-label">Cor do Título</label>
+                                            <label for="example-color-input" class="col-form-label">Cor do Subtítulo</label>
                                         </div>
                                     </div>
                                     <div class="row">

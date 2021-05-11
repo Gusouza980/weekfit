@@ -159,8 +159,8 @@
                 <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
                     <div class="block-18 bg-azul">
                         <div class="text">
-                            <strong class="number mais" data-number="21">0</strong>
-                            <span>Mil alunos com resultados</span>
+                            <strong class="number mais mil" data-number="21">0</strong>
+                            <span>Alunos com resultados</span>
                         </div>
                     </div>
                 </div>

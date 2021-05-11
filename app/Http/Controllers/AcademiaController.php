@@ -255,16 +255,17 @@ class AcademiaController extends Controller
             }
         }
 
-        $usuario = $academia->proprietario[0];
-
-        $usuario->nome = $request->nome_proprietario;
-        $usuario->email = $request->email_proprietario;
-        $usuario->telefone = $request->telefone_proprietario;
-        $usuario->usuario = $request->usuario_proprietario;
-        if($request->senha_proprietario){
-            $usuario->senha = Hash::make($request->senha_proprietario);
+        if(count($academia->proprietario) > 0){
+            $usuario = $academia->proprietario[0];
+            $usuario->nome = $request->nome_proprietario;
+            $usuario->email = $request->email_proprietario;
+            $usuario->telefone = $request->telefone_proprietario;
+            $usuario->usuario = $request->usuario_proprietario;
+            if($request->senha_proprietario){
+                $usuario->senha = Hash::make($request->senha_proprietario);
+            }
+            $usuario->save();
         }
-        $usuario->save();
 
         toastr()->success("Dados salvos com sucesso!");
         return redirect()->back();

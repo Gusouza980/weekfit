@@ -11122,6 +11122,10 @@ textarea.form-control {
 	content:'+';
 	display:inline-block;
 }
+.ftco-counter .text strong.number.mil:after{
+	content:'.000';
+	display:inline-block;
+}
 .ftco-counter .text span {
     color: white !important;
     display: block;

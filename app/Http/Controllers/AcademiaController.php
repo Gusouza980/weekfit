@@ -153,12 +153,14 @@ class AcademiaController extends Controller
     }
 
     public function salvar(Request $request, Academia $academia){
-
+        
+	if(count($academia->proprietario) > 0){
         $request->validate([
             'email_proprietario' => 'unique:usuarios,email,'.$academia->proprietario[0]->id,
             'usuario_proprietario' => 'unique:usuarios,usuario,'.$academia->proprietario[0]->id,
             'email' => 'unique:academias,email,'.$academia->id,
         ]);
+	}
 
         $old = $academia->getOriginal();
 

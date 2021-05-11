@@ -438,7 +438,7 @@
                                 </div>
                                 <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
-                                        <input class="form-check-input getree-check" type="checkbox" name="linkedin_getree" @if($academia->facebook_getree) checked @endif>
+                                        <input class="form-check-input getree-check" type="checkbox" name="linkedin_getree" @if($academia->linkedin_getree) checked @endif>
                                     </div>
                                 </div>
 

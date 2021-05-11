@@ -671,6 +671,10 @@
                                             <label for="link">Link</label>
                                             <input type="text" class="form-control" name="link" maxlength="250">
                                         </div>   
+                                        <div class="mt-3">
+                                            <label for="link">Posição</label>
+                                            <input type="number" class="form-control" name="posicao" min="0" max="100">
+                                        </div> 
                                         <div class="mt-3 text-end">
                                             <button class="btn btn-primary" type="submit">Adicionar</button>    
                                         </div>                                   
@@ -685,17 +689,19 @@
                                             <tr>
                                                 <th>Imagem</th>
                                                 <th>Título</th>
+                                                <th>Posição</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                     
                     
                                         <tbody>
-                                            @foreach($academia->getree as $elemento)
+                                            @foreach($academia->getree->sortBy("posicao") as $elemento)
                                                 <tr>
                                                     <td style="width: 10%; text-align: center;"><img src="{{asset($elemento->imagem)}}" alt="" width="40"></td>
                                                     <td><a href="{{$elemento->link}}">{{$elemento->titulo }}</a></td>
-                                                    <td>
+                                                    <td class="text-center">{{$elemento->posicao}}</td>
+                                                    <td width="200">
                                                         <a name="" id="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditaGetree{{ $elemento->id }}" role="button">Editar</a>
                                                         <a class="btn btn-danger mx-1" href="{{route('painel.academia.getree.remover', ['getree' => $elemento])}}">Excluir</a>
                                                     </td>
@@ -742,6 +748,10 @@
                             <label for="link">Link</label>
                             <input type="text" class="form-control" value="{{$elemento->link}}" name="link">
                         </div>   
+                        <div class="mt-3">
+                            <label for="link">Posição</label>
+                            <input type="number" class="form-control" value="{{$elemento->posicao}}" name="posicao" min="0" max="100">
+                        </div> 
                         <div class="mt-3 text-end">
                             <button class="btn btn-primary" type="submit">Salvar</button>    
                         </div>  

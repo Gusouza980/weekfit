@@ -500,6 +500,7 @@ class AcademiaController extends Controller
 
         $getree->titulo = $request->titulo;
         $getree->link = $request->link;
+        $getree->posicao = $request->posicao;
         $getree->save();
 
         toastr()->success("Elemento adicionado ao Getree da " . $academia->nome);
@@ -516,6 +517,7 @@ class AcademiaController extends Controller
 
         $getree->titulo = $request->titulo;
         $getree->link = $request->link;
+        $getree->posicao = $request->posicao;
         $getree->save();
 
         toastr()->success("Elemento salvo com sucesso");

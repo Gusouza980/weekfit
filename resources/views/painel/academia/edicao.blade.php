@@ -696,7 +696,7 @@
                     
                     
                                         <tbody>
-                                            @foreach($academia->getree->sortBy("posicao") as $elemento)
+                                            @foreach($academia->getree->sortByDesc("posicao") as $elemento)
                                                 <tr>
                                                     <td style="width: 10%; text-align: center;"><img src="{{asset($elemento->imagem)}}" alt="" width="40"></td>
                                                     <td><a href="{{$elemento->link}}">{{$elemento->titulo }}</a></td>

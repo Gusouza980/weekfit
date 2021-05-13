@@ -18,6 +18,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
+                            <th>Formulário</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Celular</th>
@@ -32,6 +33,7 @@
 
                         @foreach($leads as $lead)
                             <tr>
+                                <td>{{$lead->formulario}}</td>
                                 <td>{{$lead->nome}}</td>
                                 <td>{{$lead->email}}</td>
                                 <td>{{$lead->celular}}</td>

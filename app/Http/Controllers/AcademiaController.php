@@ -508,10 +508,11 @@ class AcademiaController extends Controller
     }
 
     public function salvar_getree(Request $request, GetreeElemento $getree){
-        if($request->file("imagem")){
+        $academia = Academia::find($getree->academia_id);
+	if($request->file("imagem")){
             Storage::delete($getree->imagem);
             $getree->imagem = $request->file('imagem')->store(
-                'admin/images/getree/'.Str::slug($getree->imagem), 'local'
+                'admin/images/getree/'.Str::slug($academia->nome), 'local'
             );
         }
 

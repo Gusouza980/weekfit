@@ -19,8 +19,13 @@ class AcademiaController extends Controller
     //
 
     public function index(){
-        $academias = Academia::all();
-        return view("painel.academia.consultar", ["academias" => $academias]);
+        $academias = Academia::where("ativo", true)->get();
+        return view("painel.academia.consultar", ["academias" => $academias, "filtro" => "ativas"]);
+    }
+
+    public function index_inativas(){
+        $academias = Academia::where("ativo", false)->get();
+        return view("painel.academia.consultar", ["academias" => $academias, "filtro" => "inativas"]);
     }
 
     public function visualizar(Academia $academia){
@@ -154,13 +159,13 @@ class AcademiaController extends Controller
 
     public function salvar(Request $request, Academia $academia){
         
-	if(count($academia->proprietario) > 0){
-        $request->validate([
-            'email_proprietario' => 'unique:usuarios,email,'.$academia->proprietario[0]->id,
-            'usuario_proprietario' => 'unique:usuarios,usuario,'.$academia->proprietario[0]->id,
-            'email' => 'unique:academias,email,'.$academia->id,
-        ]);
-	}
+        if(count($academia->proprietario) > 0){
+            $request->validate([
+                'email_proprietario' => 'unique:usuarios,email,'.$academia->proprietario[0]->id,
+                'usuario_proprietario' => 'unique:usuarios,usuario,'.$academia->proprietario[0]->id,
+                'email' => 'unique:academias,email,'.$academia->id,
+            ]);
+        }
 
         $old = $academia->getOriginal();
 

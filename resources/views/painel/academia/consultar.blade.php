@@ -7,7 +7,7 @@
 @endsection
 
 @section('titulo')
-    Listagem de Academias
+    Listagem de Academias @if($filtro == "ativas") Ativas @else Inativas @endif
 @endsection
 
 @section('botoes')
@@ -16,11 +16,15 @@
 @endsection
 
 @section('conteudo')
-{{-- <div class="row">
-    <div class="col-12 text-end">
-        
+<div class="row my-3">
+    <div class="col-12 text-start">
+        @if($filtro == "ativas")
+            <a name="" id="" class="btn btn-primary" href="{{route('painel.academias.inativas')}}" role="button">Inativas</a>
+        @else
+            <a name="" id="" class="btn btn-primary" href="{{route('painel.academias')}}" role="button">Ativas</a>
+        @endif
     </div>
-</div> --}}
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">

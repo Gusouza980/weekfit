@@ -124,42 +124,42 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                 <div class="px-lg-2">
                                     <div class="row g-0">
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/github.png')}}" alt="Github">
-                                                <span>GitHub</span>
+                                            <a class="dropdown-icon-item" href="https://www.instagram.com/gefit.br" target="_blank">
+                                                <img src="{{asset('admin/images/icone_instagram.png')}}" alt="Instagram">
+                                                <span>Instagram</span>
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/bitbucket.png')}}" alt="bitbucket">
-                                                <span>Bitbucket</span>
+                                            <a class="dropdown-icon-item" href="https://www.facebook.com/gefit.br" target="_blank">
+                                                <img src="{{asset('admin/images/icone_facebook.png')}}" alt="Facebook">
+                                                <span>Facebook</span>
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/dribbble.png')}}" alt="dribbble">
-                                                <span>Dribbble</span>
+                                            <a class="dropdown-icon-item" href="https://twitter.com/gefit_br" target="_blank">
+                                                <img src="{{asset('admin/images/icone_twitter.png')}}" alt="Twitter">
+                                                <span>Twitter</span>
                                             </a>
                                         </div>
                                     </div>
 
                                     <div class="row g-0">
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/dropbox.png')}}" alt="dropbox">
-                                                <span>Dropbox</span>
+                                            <a class="dropdown-icon-item" href="#" target="_blank">
+                                                <img src="{{asset('admin/images/icone_linkedin.png')}}" alt="Linkedin">
+                                                <span>Linkedin</span>
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/mail_chimp.png')}}" alt="mail_chimp">
-                                                <span>Mail Chimp</span>
+                                            <a class="dropdown-icon-item" href="#" target="_blank">
+                                                <img src="{{asset('admin/images/icone_tiktok.png')}}" alt="Tiktok">
+                                                <span>Tiktok</span>
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a class="dropdown-icon-item" href="#">
-                                                <img src="{{asset('admin/images/brands/slack.png')}}" alt="slack">
-                                                <span>Slack</span>
+                                            <a class="dropdown-icon-item" href="https://api.whatsapp.com/send?phone=5535997097707" target="_blank">
+                                                <img src="{{asset('admin/images/icone_whatsapp.png')}}" alt="Whatsapp">
+                                                <span>Whatsapp</span>
                                             </a>
                                         </div>
                                     </div>
@@ -177,44 +177,44 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                             <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-bell bx-tada"></i>
-                                <span class="badge bg-danger rounded-pill">3</span>
+                                <span class="badge bg-danger rounded-pill">1</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                                 aria-labelledby="page-header-notifications-dropdown">
                                 <div class="p-3">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-0" key="t-notifications"> Notifications </h6>
+                                            <h6 class="m-0" key="t-notifications"> Notificações </h6>
                                         </div>
-                                        <div class="col-auto">
+                                        {{-- <div class="col-auto">
                                             <a href="#!" class="small" key="t-view-all"> View All</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div data-simplebar style="max-height: 230px;">
-                                    <a href="#" class="text-reset notification-item">
+                                    <a href="https://www.sistemasca.com/blog/" class="text-reset notification-item">
                                         <div class="media">
                                             <div class="avatar-xs me-3">
                                                 <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                                    <i class="bx bx-cart"></i>
+                                                    <img src="{{asset('admin/images/logo_sca.png')}}" style="max-width: 100%;" alt="SCA">
                                                 </span>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="mt-0 mb-1" key="t-your-order">Your order is placed</h6>
+                                                <h6 class="mt-0 mb-1" key="t-your-order">Blog Sistema SCA</h6>
                                                 <div class="font-size-12 text-muted">
-                                                    <p class="mb-1" key="t-grammer">If several languages coalesce the grammar</p>
-                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">3 min ago</span></p>
+                                                    <p class="mb-1" key="t-grammer">Encontre artigos sobre administrativo, técnico, comercial e marketing.</p>
+                                                    {{-- <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span key="t-min-ago">3 min ago</span></p> --}}
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
 
                                 </div>
-                                <div class="p-2 border-top d-grid">
+                                {{-- <div class="p-2 border-top d-grid">
                                     <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
                                         <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">View More..</span> 
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -231,12 +231,11 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span key="t-my-wallet">My Wallet</span></a>
-                                <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a>
+                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Minha Conta</span></a>
+                                <a class="dropdown-item" href="#"><i class="bx bx-key font-size-16 align-middle me-1"></i> <span key="t-my-wallet">Senha</span></a>
+                                <a class="dropdown-item" href="#"><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Configurações</span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="{{route('painel.sair')}}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                                <a class="dropdown-item text-danger" href="{{route('painel.sair')}}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Sair</span></a>
                             </div>
                         </div>
 
@@ -270,6 +269,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                 </form>
                                 
                             </div>
+                            
                         @endif
                         <!-- Left Menu Start -->
                         <ul class="metismenu list-unstyled mt-3" id="side-menu">
@@ -331,6 +331,13 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </ul>
                                 </li>
 
+                                <li>
+                                    <a href="{{route('painel.logs')}}" class="waves-effect">
+                                        <i class="fas fa-info-circle menu-icon" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Logs</span>
+                                    </a>
+                                </li>
+
                                 <li class="menu-title" key="t-menu">Configurações</li>
 
                                 <li>
@@ -362,9 +369,9 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                         <li><a href="{{route('calendario.intervencoes')}}" key="t-default">Intervenções</a></li>
                                     </ul>
                                 </li>
-                            @endif
 
-                            
+                                
+                            @endif
                             
                         </ul>
                     </div>

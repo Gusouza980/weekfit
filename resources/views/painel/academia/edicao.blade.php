@@ -800,7 +800,9 @@
                     cancelButtonColor: "#f46a6a",
                     confirmButtonText: "Sim, atualizar!",
                 }).then(function (t) {
-                    $("#form-edicao").submit();
+                    if(t.isConfirmed){
+                        $("#form-edicao").submit();
+                    }
                 });
             })
 

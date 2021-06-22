@@ -54,9 +54,7 @@ class AcademiaController extends Controller
     public function cadastrar(Request $request){
 
         $request->validate([
-            'email_proprietario' => 'unique:usuarios,email',
             'usuario_proprietario' => 'unique:usuarios,usuario',
-            'email' => 'unique:academias,email',
         ]);
 
         $academia = new Academia;
@@ -161,9 +159,7 @@ class AcademiaController extends Controller
         
         if(count($academia->proprietario) > 0){
             $request->validate([
-                'email_proprietario' => 'unique:usuarios,email,'.$academia->proprietario[0]->id,
                 'usuario_proprietario' => 'unique:usuarios,usuario,'.$academia->proprietario[0]->id,
-                'email' => 'unique:academias,email,'.$academia->id,
             ]);
         }
 

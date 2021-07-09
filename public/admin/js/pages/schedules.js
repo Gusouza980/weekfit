@@ -1,13 +1,10 @@
-'use strict';
+"use strict";
 
 /*eslint-disable*/
 
 var ScheduleList = [];
 
-var SCHEDULE_CATEGORY = [
-    'milestone',
-    'task'
-];
+var SCHEDULE_CATEGORY = ["milestone", "task"];
 
 function ScheduleInfo() {
     this.id = null;
@@ -18,14 +15,14 @@ function ScheduleInfo() {
     this.isAllday = false;
     this.start = null;
     this.end = null;
-    this.category = '';
-    this.dueDateClass = '';
+    this.category = "";
+    this.dueDateClass = "";
     this.academia = null;
     this.color = null;
     this.bgColor = null;
     this.dragBgColor = null;
     this.borderColor = null;
-    this.customStyle = '';
+    this.customStyle = "";
 
     this.isFocused = false;
     this.isPending = false;
@@ -33,59 +30,60 @@ function ScheduleInfo() {
     this.isReadOnly = false;
     this.goingDuration = 0;
     this.comingDuration = 0;
-    this.recurrenceRule = '';
-    this.state = '';
+    this.recurrenceRule = "";
+    this.state = "";
 
     this.raw = {
-        memo: '',
+        memo: "",
         hasToOrCc: false,
         hasRecurrenceRule: false,
         location: null,
-        class: 'public', // or 'private'
+        class: "public", // or 'private'
         creator: {
-            name: '',
-            avatar: '',
-            company: '',
-            email: '',
-            phone: ''
-        }
+            name: "",
+            avatar: "",
+            company: "",
+            email: "",
+            phone: "",
+        },
     };
 }
 
 function generateTime(schedule, renderStart, renderEnd) {
-    var startDate = moment(renderStart.getTime())
+    var startDate = moment(renderStart.getTime());
     var endDate = moment(renderEnd.getTime());
-    var diffDate = endDate.diff(startDate, 'days');
+    var diffDate = endDate.diff(startDate, "days");
 
     schedule.isAllday = chance.bool({ likelihood: 30 });
     if (schedule.isAllday) {
-        schedule.category = 'allday';
+        schedule.category = "allday";
     } else if (chance.bool({ likelihood: 30 })) {
-        schedule.category = SCHEDULE_CATEGORY[chance.integer({ min: 0, max: 1 })];
+        schedule.category =
+            SCHEDULE_CATEGORY[chance.integer({ min: 0, max: 1 })];
         if (schedule.category === SCHEDULE_CATEGORY[1]) {
-            schedule.dueDateClass = 'morning';
+            schedule.dueDateClass = "morning";
         }
     } else {
-        schedule.category = 'time';
+        schedule.category = "time";
     }
 
-    startDate.add(chance.integer({ min: 0, max: diffDate }), 'days');
-    startDate.hours(chance.integer({ min: 0, max: 23 }))
+    startDate.add(chance.integer({ min: 0, max: diffDate }), "days");
+    startDate.hours(chance.integer({ min: 0, max: 23 }));
     startDate.minutes(chance.bool() ? 0 : 30);
     schedule.start = startDate.toDate();
 
     endDate = moment(startDate);
     if (schedule.isAllday) {
-        endDate.add(chance.integer({ min: 0, max: 3 }), 'days');
+        endDate.add(chance.integer({ min: 0, max: 3 }), "days");
     }
 
     schedule.end = endDate
-        .add(chance.integer({ min: 1, max: 4 }), 'hour')
+        .add(chance.integer({ min: 1, max: 4 }), "hour")
         .toDate();
 
     if (!schedule.isAllday && chance.bool({ likelihood: 20 })) {
         schedule.goingDuration = chance.integer({ min: 30, max: 120 });
-        schedule.comingDuration = chance.integer({ min: 30, max: 120 });;
+        schedule.comingDuration = chance.integer({ min: 30, max: 120 });
 
         if (chance.bool({ likelihood: 50 })) {
             schedule.end = schedule.start;
@@ -112,25 +110,29 @@ function generateRandomSchedule(calendar, renderStart, renderEnd) {
     schedule.calendarId = calendar.id;
 
     schedule.title = chance.sentence({ words: 3 });
-    schedule.body = chance.bool({ likelihood: 20 }) ? chance.sentence({ words: 10 }) : '';
+    schedule.body = chance.bool({ likelihood: 20 })
+        ? chance.sentence({ words: 10 })
+        : "";
     schedule.isReadOnly = chance.bool({ likelihood: 20 });
     generateTime(schedule, renderStart, renderEnd);
     schedule.academia = 1;
     schedule.isPrivate = chance.bool({ likelihood: 10 });
     schedule.location = chance.address();
     schedule.attendees = chance.bool({ likelihood: 70 }) ? generateNames() : [];
-    schedule.recurrenceRule = chance.bool({ likelihood: 20 }) ? 'repeated events' : '';
-    schedule.state = chance.bool({ likelihood: 20 }) ? 'Free' : 'Busy';
+    schedule.recurrenceRule = chance.bool({ likelihood: 20 })
+        ? "repeated events"
+        : "";
+    schedule.state = chance.bool({ likelihood: 20 }) ? "Free" : "Busy";
     schedule.color = calendar.color;
     schedule.bgColor = calendar.bgColor;
     schedule.dragBgColor = calendar.dragBgColor;
     schedule.borderColor = calendar.borderColor;
 
-    if (schedule.category === 'milestone') {
+    if (schedule.category === "milestone") {
         schedule.color = schedule.bgColor;
-        schedule.bgColor = 'transparent';
-        schedule.dragBgColor = 'transparent';
-        schedule.borderColor = 'transparent';
+        schedule.bgColor = "transparent";
+        schedule.dragBgColor = "transparent";
+        schedule.borderColor = "transparent";
     }
 
     schedule.raw.memo = chance.sentence();
@@ -182,15 +184,18 @@ function generateSchedule(viewName, renderStart, renderEnd) {
         schedule.bgColor = calendar.bgColor;
         schedule.dragBgColor = calendar.dragBgColor;
         schedule.borderColor = calendar.borderColor;
-        schedule.category = 'time'
-        schedule.start = moment(intervencao.inicio, "YYYY-MM-DD hh:mm:ss").toDate();
+        schedule.category = "time";
+        schedule.start = moment(
+            intervencao.inicio,
+            "YYYY-MM-DD hh:mm:ss"
+        ).toDate();
         schedule.end = moment(intervencao.fim, "YYYY-MM-DD hh:mm:ss").toDate();
 
-        if (schedule.category === 'milestone') {
+        if (schedule.category === "milestone") {
             schedule.color = schedule.bgColor;
-            schedule.bgColor = 'transparent';
-            schedule.dragBgColor = 'transparent';
-            schedule.borderColor = 'transparent';
+            schedule.bgColor = "transparent";
+            schedule.dragBgColor = "transparent";
+            schedule.borderColor = "transparent";
         }
 
         schedule.raw.memo = chance.sentence();

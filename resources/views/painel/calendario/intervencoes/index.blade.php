@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('admin/libs/tui-date-picker/tui-date-picker.min.css')}}">
 <link href="{{asset('admin/libs/tui-calendar/tui-calendar.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('admin/libs/datetimepicker/jquery.datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
-
+<link href="{{asset('admin/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('titulo')
@@ -62,14 +62,16 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="academia">Academia</label>
-                            <select class="form-select" name="academia">
-                                @foreach(\App\Models\Academia::all() as $academia)
-                                    <option value="{{$academia->id}}">{{$academia->nome}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+						<div class="col-12">
+							<label class="form-label">Academia</label>
+							<br>
+							<select class="select2 form-control select2-multiple"
+								multiple="multiple" name="academias[]" data-placeholder="Escolha" style="width: 100%;" required>
+								@foreach(\App\Models\Academia::all() as $academia)
+									<option value="{{$academia->id}}">{{$academia->nome}}</option>
+								@endforeach
+							</select>
+						</div>
                     </div>
                     <div class="row mt-3">
                         <div class="form-group col-12">
@@ -134,7 +136,8 @@
 <script src="{{asset('admin/libs/datetimepicker/jquery.datetimepicker.full.js')}}"></script>
 <script src="{{asset('admin/js/pages/calendars.js')}}"></script>
 <script src="{{asset('admin/js/pages/schedules.js')}}"></script>
-
+<script src="{{asset('admin/libs/select2/js/select2.min.js')}}"></script>
+{{--  <script src="{{asset('admin/js/pages/form-advanced.init.js')}}"></script>  --}}
 <script>
 
     var cal = new tui.Calendar('#calendar', {
@@ -150,14 +153,13 @@
     });
 
     cal.on('clickSchedule', function(event) {
-        console.log(event.schedule.calendarId);
         academia = event.schedule.location;
         $("select[name='situacao'] option:selected").removeAttr('selected');
         $("select[name='situacao'] option[value='"+event.schedule.calendarId+"']").attr("selected", "selected");
         $("input[name='identificador']").val(event.schedule.id);
         $("input[name='assunto']").val(event.schedule.title);
-        $("select[name='academia'] option:selected").removeAttr('selected');
-        $("select[name='academia'] option[value='"+academia+"'").attr('selected', "selected");
+        $("select[name='academias[]']").val(academia);
+		$("select[name='academias[]']").trigger('change');
         $("textarea[name='observacao']").html(event.schedule.body);
         
         var inicio = event.schedule.start;
@@ -192,7 +194,8 @@
         $("select[name='situacao'] option:selected").removeAttr('selected');
         $("input[name='identificador']").val("");
         $("input[name='assunto']").val("");
-        $("select[name='academia'] option:selected").removeAttr('selected');
+        $("select[name='academias[]']").val("");
+		$("select[name='academias[]']").trigger('change');
         $("input[name='observacao']").val("");
         $("input[name='inicio']").val("");
         $("input[name='fim']").val("");
@@ -414,6 +417,9 @@ function init() {
   });
   
   init();
-  
+
+  $(document).ready(function(){
+	$(".select2").select2()
+  });
 </script>
 @endsection

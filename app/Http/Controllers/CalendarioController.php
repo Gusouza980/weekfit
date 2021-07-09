@@ -40,26 +40,47 @@ class CalendarioController extends Controller
     public function salvar_intervencao(Request $request){
         if($request->identificador){
             $intervencao = Intervencao::find($request->identificador);
+            $intervencao->assunto = $request->assunto;
+            $intervencao->identificador = "0";
+            $intervencao->academia_id = $request->academia[0];
+            $intervencao->observacao = $request->observacao;
+            $data_inicio = explode(" ", $request->inicio)[0];
+            $hora_inicio = explode(" ", $request->inicio)[1];
+            $data_inicio = explode("/", $data_inicio);
+            $data_inicio = $data_inicio[2] . "/" . $data_inicio[1] . "/" . $data_inicio[0];
+            $data_fim = explode(" ", $request->fim)[0];
+            $hora_fim = explode(" ", $request->fim)[1];
+            $data_fim = explode("/", $data_fim);
+            $data_fim = $data_fim[2] . "/" . $data_fim[1] . "/" . $data_fim[0];
+            $intervencao->inicio = $data_inicio . " " . $hora_inicio;
+            $intervencao->fim = $data_fim . " " . $hora_fim;
+            $intervencao->situacao = $request->situacao;
+            $intervencao->usuario = session()->get("usuario")["nome"];
+            $intervencao->save();
         }else{
-            $intervencao = new Intervencao;
+            foreach($request->academias as $academia){
+                $intervencao = new Intervencao;
+                $intervencao->assunto = $request->assunto;
+                $intervencao->identificador = "0";
+                $intervencao->academia_id = $academia;
+                $intervencao->observacao = $request->observacao;
+                $data_inicio = explode(" ", $request->inicio)[0];
+                $hora_inicio = explode(" ", $request->inicio)[1];
+                $data_inicio = explode("/", $data_inicio);
+                $data_inicio = $data_inicio[2] . "/" . $data_inicio[1] . "/" . $data_inicio[0];
+                $data_fim = explode(" ", $request->fim)[0];
+                $hora_fim = explode(" ", $request->fim)[1];
+                $data_fim = explode("/", $data_fim);
+                $data_fim = $data_fim[2] . "/" . $data_fim[1] . "/" . $data_fim[0];
+                $intervencao->inicio = $data_inicio . " " . $hora_inicio;
+                $intervencao->fim = $data_fim . " " . $hora_fim;
+                $intervencao->situacao = $request->situacao;
+                $intervencao->usuario = session()->get("usuario")["nome"];
+                $intervencao->save();
+            }
+            
         }
-        $intervencao->assunto = $request->assunto;
-        $intervencao->identificador = "0";
-        $intervencao->academia_id = $request->academia;
-        $intervencao->observacao = $request->observacao;
-        $data_inicio = explode(" ", $request->inicio)[0];
-        $hora_inicio = explode(" ", $request->inicio)[1];
-        $data_inicio = explode("/", $data_inicio);
-        $data_inicio = $data_inicio[2] . "/" . $data_inicio[1] . "/" . $data_inicio[0];
-        $data_fim = explode(" ", $request->fim)[0];
-        $hora_fim = explode(" ", $request->fim)[1];
-        $data_fim = explode("/", $data_fim);
-        $data_fim = $data_fim[2] . "/" . $data_fim[1] . "/" . $data_fim[0];
-        $intervencao->inicio = $data_inicio . " " . $hora_inicio;
-        $intervencao->fim = $data_fim . " " . $hora_fim;
-        $intervencao->situacao = $request->situacao;
-        $intervencao->usuario = session()->get("usuario")["nome"];
-        $intervencao->save();
+        
         return redirect()->back();
     }
 

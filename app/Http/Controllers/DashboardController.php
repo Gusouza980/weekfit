@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Academia;
 use App\Models\Grupo;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -52,5 +53,42 @@ class DashboardController extends Controller
             $departamentos["total_atividades_completas"] += $departamentos[$i]["total_atividades_completas"];
         }
         return view("painel.dashboards.checklist", ["academia" => $academia, 'departamentos' => $departamentos]);
+    }
+
+    public function jornada(){
+        if(session()->get("usuario")["admin"]){
+            if(session()->get("academia")){
+                $academia = Academia::find(session()->get("academia"));
+            }else{
+                toastr()->error("Selecione uma academia antes de utilizar essa página");
+                return redirect()->route("painel.index");
+            }
+        }else{
+            $academia = Academia::find(session()->get("usuario")["academia_id"]);
+        }
+
+        $meses = [];
+        $meses["total_atividades"] = 0;
+        $meses["total_atividades_completas"] = 0;
+        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana")->get();
+        for($i = 0; $i < 7; $i++){
+            $meses[$i]["total_atividades"] = 0;
+            $meses[$i]["total_atividades_completas"] = 0;
+            for($j = 0; $j < 4; $j++){
+                $meses[$i][$j]["total_atividades"] = 0;
+                $meses[$i][$j]["total_atividades_completas"] = 0;
+                foreach($atividades->where("mes", $i + 1)->where("semana", $j + 1) as $atividade){
+                    $meses[$i]["total_atividades"] += 1;
+                    $meses[$i][$j]["total_atividades"] += 1;
+                    if($atividade->completo){
+                        $meses[$i]["total_atividades_completas"] += 1;
+                        $meses[$i][$j]["total_atividades_completas"] += 1;
+                    }
+                }
+            }
+            $meses["total_atividades"] += $meses[$i]["total_atividades"];
+            $meses["total_atividades_completas"] += $meses[$i]["total_atividades_completas"];
+        }
+        return view("painel.dashboards.jornada", ["academia" => $academia, 'meses' => $meses]);
     }
 }

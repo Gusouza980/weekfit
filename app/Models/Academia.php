@@ -17,6 +17,10 @@ class Academia extends Model
         return $this->hasMany(AtividadeAcademia::class, "academia_id", "id");
     }
 
+    public function jornadas(){
+        return $this->hasMany(JornadaCheck::class);
+    }
+
     public function proprietario(){
         return $this->usuarios()->where("departamento", 100);
     }

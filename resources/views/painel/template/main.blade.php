@@ -303,6 +303,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.administracao.lancamento')}}" key="t-default">Checklist</a></li>
+                                        <li><a href="{{route('painel.administracao.jornada')}}" key="t-default">Jornada</a></li>
                                     </ul>
                                 </li>
 
@@ -347,6 +348,16 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('painel.configuracoes.grupos')}}" key="t-default">Gerenciamento</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-level-up-alt"></i>
+                                        <span key="t-dashboards">Jornada</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.configuracoes.jornada.atividades')}}" key="t-default">Gerenciamento</a></li>
                                     </ul>
                                 </li>
 

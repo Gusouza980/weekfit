@@ -32,6 +32,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Código</th>
                             <th>Nome</th>
                             <th>Email</th>
@@ -43,7 +44,6 @@
                             <th>Tec</th>
                             <th>Com</th>
                             <th>Mkt</th>
-                            <th></th>
                         </tr>
                     </thead>
 
@@ -51,6 +51,22 @@
                     <tbody>
                         @foreach($academias as $academia)
                             <tr>
+                                <td class="text-center">
+                                    <div class="dropdown mt-4 mt-sm-0">
+                                        <a href="#" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-bars" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu" style="margin: 0px;">
+                                            <a name="" id="" class="dropdown-item" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button"><i class="bx bx-edit-alt px-2"></i>Editar</a>
+                                            <a class="dropdown-item" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}"><i class="fas fa-search px-2"></i>Visualizar</a>
+                                            @if(!$academia->jornada)
+                                                <a class="dropdown-item" href="{{route('painel.academia.jornada.ativar', ['academia' => $academia])}}"><i class="fas fa-level-up-alt px-2"></i>Ativar Jornada</a>
+                                            @else
+                                                <a class="dropdown-item" href="{{route('painel.academia.jornada.desativar', ['academia' => $academia])}}"><i class="fas fa-level-up-alt px-2"></i>Desativar Jornada</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
                                 <td>{{$academia->codigo}}</td>
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
@@ -70,10 +86,6 @@
                                 <td>{{number_format($academia->total_tecnico, 2)}}%</td>
                                 <td>{{number_format($academia->total_comercial, 2)}}%</td>
                                 <td>{{number_format($academia->total_marketing, 2)}}%</td>
-                                <td>
-                                    <a name="" id="" class="btn btn-warning" href="{{route('painel.academia.edicao', ['academia' => $academia])}}" role="button">Editar</a>
-                                    <a class="btn btn-primary mx-1" href="{{route('painel.academia.visualizar', ['academia' => $academia])}}">Visualizar</a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

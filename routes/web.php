@@ -32,6 +32,8 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academias/cadastrar', [\App\Http\Controllers\AcademiaController::class, 'cadastrar'])->name("painel.academia.cadastrar");
         Route::get('/dashboard/academias', [\App\Http\Controllers\AcademiaController::class, 'index'])->name("painel.academias");
         Route::get('/dashboard/academias/inativas', [\App\Http\Controllers\AcademiaController::class, 'index_inativas'])->name("painel.academias.inativas");
+        Route::get('/dashboard/academia/jornada/ativar/{academia}', [\App\Http\Controllers\JornadaController::class, 'ativar'])->name("painel.academia.jornada.ativar");
+        Route::get('/dashboard/academia/jornada/desativar/{academia}', [\App\Http\Controllers\JornadaController::class, 'desativar'])->name("painel.academia.jornada.desativar");
         Route::post('/dashboard/academia/nivel/alterar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'nivel_alterar'])->name("painel.academia.nivel.alterar");
         Route::get('/dashboard/academia/edicao/{academia}', [\App\Http\Controllers\AcademiaController::class, 'edicao'])->name("painel.academia.edicao");
         Route::post('/dashboard/academia/salvar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'salvar'])->name("painel.academia.salvar");
@@ -72,6 +74,15 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/calendario/intervencao/remover/{intervencao}', [\App\Http\Controllers\CalendarioController::class, 'remover_intervencao'])->name("calendario.intervencao.remover");
         Route::get('/teste', [\App\Http\Controllers\CalendarioController::class, 'teste']);
 
+        //ROTAS REFERENTES A JORNADA
+        Route::get('/dashboard/configuracoes/jornada/atividades', [\App\Http\Controllers\JornadaController::class, 'atividades'])->name("painel.configuracoes.jornada.atividades");
+        Route::post('/dashboard/configuracoes/jornada/atividade/adicionar', [\App\Http\Controllers\JornadaController::class, 'cadastrar'])->name("painel.configuracoes.jornada.atividade.cadastrar");
+        Route::post('/dashboard/configuracoes/jornada/atividade/salvar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'salvar'])->name("painel.configuracoes.jornada.atividade.salvar");
+        Route::post('/dashboard/configuracoes/jornada/atividade/deletar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'deletar'])->name("painel.configuracoes.jornada.atividade.deletar");
+        
+        
+        
+        
         Route::get('/dashboard/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name("painel.logs");
     });
 
@@ -81,8 +92,12 @@ Route::middleware(['painel'])->group(function () {
         // ROTAS PARA O DONO DE ACADEMIA
         Route::get('/dashboard/administracao/lancamento', [\App\Http\Controllers\AcademiaController::class, 'lancamento'])->name("painel.administracao.lancamento");
         Route::post('/dashboard/administracao/atividade/status/trocar/{atividade}', [\App\Http\Controllers\AcademiaController::class, 'atividade_status'])->name("painel.administracao.atividade.status");
+        
+        Route::get('/dashboard/administracao/jornada', [\App\Http\Controllers\JornadaController::class, 'lancamento'])->name("painel.administracao.jornada");
+        Route::get('/dashboard/administracao/jornada/status/trocar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'completar'])->name("painel.administracao.jornada.status");
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
+        Route::get('/dashboard/jornada', [\App\Http\Controllers\DashboardController::class, 'jornada'])->name("dashboard.jornada");
         Route::get('/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
     });
     

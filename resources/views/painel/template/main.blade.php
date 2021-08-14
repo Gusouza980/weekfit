@@ -283,6 +283,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
+                                        <li><a href="{{route('dashboard.jornada')}}" key="t-default">Jornada</a></li>
                                     </ul>
                                 </li>
 

@@ -118,6 +118,18 @@
                         </div>
                         <div class="row mt-3">
                             <div class="form-group col-12">
+                                <label for="texto_link">Texto do Link</label>
+                                <input class="form-control" name="texto_link" value="{{$atividade->texto_link}}" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-12">
+                                <label for="link">Link</label>
+                                <input class="form-control" name="link" value="{{$atividade->link}}" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-12">
                                 <label for="link">Mês</label>
                                 <select class="form-control" name="mes">
                                     @for($i = 1; $i <= 7; $i++)
@@ -180,6 +192,18 @@
                         <div class="form-group col-12">
                             <label for="nome">Descrição</label>
                             <textarea class="form-control" name="descricao"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="texto_link">Texto do Link</label>
+                            <input class="form-control" name="texto_link" maxlength="255"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="link">Link</label>
+                            <input class="form-control" name="link" maxlength="255"/>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -358,7 +382,8 @@
                     },
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
-                } 
+                }, 
+                order: [[ 1, "asc" ]]
             } );
         } );    
     </script> 

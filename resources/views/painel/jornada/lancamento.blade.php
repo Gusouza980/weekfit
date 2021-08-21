@@ -83,7 +83,14 @@
 
                                                     @foreach($atividades->where("mes", $i)->where("semana", $j) as $atividade)
                                                         <tr>
-                                                            <td>{{$atividade->descricao}}</td>
+                                                            <td>
+                                                                {{$atividade->descricao}} 
+                                                                <span class="input-atividade ml-3">
+                                                                    @if($atividade->link)
+                                                                        {!! " <a class='ml-2' target='_blank' href='" . $atividade->link . "'> " . $atividade->texto_link . " </a>" !!}
+                                                                    @endif
+                                                                </span>
+                                                            </td>
                                                             <td>
                                                                 <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                                                     <input class="form-check-input completar_atividade" type="checkbox" aid="{{$atividade->id}}" @if($atividade->completo) checked @endif>

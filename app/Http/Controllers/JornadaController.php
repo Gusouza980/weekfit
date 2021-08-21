@@ -29,7 +29,7 @@ class JornadaController extends Controller
             $academia = Academia::find(session()->get("usuario")["academia_id"]);
         }
 
-        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana")->get();
+        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana", "jornada_atividades.link as link", "jornada_atividades.texto_link as texto_link")->get();
         $cont = $atividades->where("mes", "=", 2)->count();
         // dd($cont);
         
@@ -73,6 +73,8 @@ class JornadaController extends Controller
     public function cadastrar(Request $request){
         $atividade = new JornadaAtividade;
         $atividade->descricao = $request->descricao;
+        $atividade->texto_link = $request->texto_link;
+        $atividade->link = $request->link;
         $atividade->mes = $request->mes;
         $atividade->semana = $request->semana;
         $atividade->save();
@@ -82,6 +84,8 @@ class JornadaController extends Controller
 
     public function salvar(Request $request, JornadaAtividade $atividade){
         $atividade->descricao = $request->descricao;
+        $atividade->texto_link = $request->texto_link;
+        $atividade->link = $request->link;
         $atividade->mes = $request->mes;
         $atividade->semana = $request->semana;
         $atividade->save();

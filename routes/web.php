@@ -78,7 +78,7 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/configuracoes/jornada/atividades', [\App\Http\Controllers\JornadaController::class, 'atividades'])->name("painel.configuracoes.jornada.atividades");
         Route::post('/dashboard/configuracoes/jornada/atividade/adicionar', [\App\Http\Controllers\JornadaController::class, 'cadastrar'])->name("painel.configuracoes.jornada.atividade.cadastrar");
         Route::post('/dashboard/configuracoes/jornada/atividade/salvar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'salvar'])->name("painel.configuracoes.jornada.atividade.salvar");
-        Route::post('/dashboard/configuracoes/jornada/atividade/deletar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'deletar'])->name("painel.configuracoes.jornada.atividade.deletar");
+        Route::get('/dashboard/configuracoes/jornada/atividade/deletar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'deletar'])->name("painel.configuracoes.jornada.atividade.deletar");
         
         
         

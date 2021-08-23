@@ -77,6 +77,7 @@ class JornadaController extends Controller
         $atividade->link = $request->link;
         $atividade->mes = $request->mes;
         $atividade->semana = $request->semana;
+        $atividade->importancia = 1;
         $atividade->save();
         toastr()->success("Atividade criada com sucesso!");
         return redirect()->back();

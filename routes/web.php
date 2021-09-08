@@ -34,6 +34,8 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/academias/inativas', [\App\Http\Controllers\AcademiaController::class, 'index_inativas'])->name("painel.academias.inativas");
         Route::get('/dashboard/academia/jornada/ativar/{academia}', [\App\Http\Controllers\JornadaController::class, 'ativar'])->name("painel.academia.jornada.ativar");
         Route::get('/dashboard/academia/jornada/desativar/{academia}', [\App\Http\Controllers\JornadaController::class, 'desativar'])->name("painel.academia.jornada.desativar");
+        Route::get('/dashboard/academia/jornada/promover/{academia}', [\App\Http\Controllers\JornadaController::class, 'promover'])->name("painel.academia.jornada.promover");
+        Route::get('/dashboard/academia/jornada/rebaixar/{academia}', [\App\Http\Controllers\JornadaController::class, 'rebaixar'])->name("painel.academia.jornada.rebaixar");
         Route::post('/dashboard/academia/nivel/alterar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'nivel_alterar'])->name("painel.academia.nivel.alterar");
         Route::get('/dashboard/academia/edicao/{academia}', [\App\Http\Controllers\AcademiaController::class, 'edicao'])->name("painel.academia.edicao");
         Route::post('/dashboard/academia/salvar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'salvar'])->name("painel.academia.salvar");

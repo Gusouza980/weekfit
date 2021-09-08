@@ -29,11 +29,9 @@ class JornadaController extends Controller
             $academia = Academia::find(session()->get("usuario")["academia_id"]);
         }
 
-        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana", "jornada_atividades.link as link", "jornada_atividades.texto_link as texto_link")->get();
-        $cont = $atividades->where("mes", "=", 2)->count();
-        // dd($cont);
+        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao", "jornada_atividades.departamento as departamento", "jornada_atividades.responsavel as responsavel", "jornada_atividades.mes as mes", "jornada_atividades.semana as semana", "jornada_atividades.link as link", "jornada_atividades.texto_link as texto_link")->get();
         
-        return view("painel.jornada.lancamento", ["atividades" => $atividades]);
+        return view("painel.jornada.lancamento", ["atividades" => $atividades, "academia" => $academia]);
     }
 
     public function ativar(Academia $academia){
@@ -57,6 +55,32 @@ class JornadaController extends Controller
         return redirect()->back();
     }
 
+    public function promover(Academia $academia){
+        if($academia->semana_jornada < 4){
+            $academia->semana_jornada++;
+        }else{
+            $academia->mes_jornada++;
+            $academia->semana_jornada = 1;
+        }
+
+        $academia->save();
+        toastr()->success("Jornada promovida !");
+        return redirect()->back();
+    }
+
+    public function rebaixar(Academia $academia){
+        if($academia->semana_jornada > 1){
+            $academia->semana_jornada--;
+        }else{
+            $academia->mes_jornada--;
+            $academia->semana_jornada = 4;
+        }
+
+        $academia->save();
+        toastr()->success("Jornada promovida !");
+        return redirect()->back();
+    }
+
     public function completar(JornadaCheck $atividade){
         if($atividade->completo){
             $atividade->completo = false;
@@ -77,6 +101,8 @@ class JornadaController extends Controller
         $atividade->link = $request->link;
         $atividade->mes = $request->mes;
         $atividade->semana = $request->semana;
+        $atividade->departamento = $request->departamento;
+        $atividade->responsavel = $request->responsavel;
         $atividade->importancia = 1;
         $atividade->save();
         toastr()->success("Atividade criada com sucesso!");
@@ -89,6 +115,8 @@ class JornadaController extends Controller
         $atividade->link = $request->link;
         $atividade->mes = $request->mes;
         $atividade->semana = $request->semana;
+        $atividade->departamento = $request->departamento;
+        $atividade->responsavel = $request->responsavel;
         $atividade->save();
         toastr()->success("Atividade salva com sucesso!");
         return redirect()->back();

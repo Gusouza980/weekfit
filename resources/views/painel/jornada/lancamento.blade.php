@@ -66,14 +66,16 @@
                         <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: scroll;">
                             
                             @for($j = 1; $j <= 4; $j++)
-                                @if($atividades->where("mes", $i)->where("semana", $j - 1)->where("completo", false)->count() == 0)
+                                @if(($academia->mes_jornada . $academia->semana_jornada) >= ($i . $j))
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <h5>Semana {{$j}}</h5>
                                             <table class="table table-bordered dt-responsive  nowrap w-100">
                                                 <thead>
                                                     <tr>
+                                                        <th>Dep.</th>
                                                         <th>Descrição</th>
+                                                        <th>Responsável</th>
                                                         <th width="130">Completar</th>
                                                     </tr>
                                                 </thead>
@@ -84,12 +86,18 @@
                                                     @foreach($atividades->where("mes", $i)->where("semana", $j) as $atividade)
                                                         <tr>
                                                             <td>
+                                                                {{config("globals.departamentos")[$atividade->departamento]}}
+                                                            </td>
+                                                            <td>
                                                                 {{$atividade->descricao}} 
                                                                 <span class="input-atividade ml-3">
                                                                     @if($atividade->link)
                                                                         {!! " <a class='ml-2' target='_blank' href='" . $atividade->link . "'> " . $atividade->texto_link . " </a>" !!}
                                                                     @endif
                                                                 </span>
+                                                            </td>
+                                                            <td>
+                                                                {{config("globals.responsaveis")[$atividade->responsavel]}}
                                                             </td>
                                                             <td>
                                                                 <div class="form-check form-switch form-switch-md mt-2" dir="ltr">

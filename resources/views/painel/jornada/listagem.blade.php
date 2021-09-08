@@ -75,6 +75,8 @@
                                     <tr>
                                         <th>Descrição</th>
                                         <th>Semana</th>
+                                        <th>Departamento</th>
+                                        <th>Responsável</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -86,6 +88,8 @@
                                         <tr>
                                             <td>{{$atividade->descricao}}</td>
                                             <td>{{$atividade->semana}}</td>
+                                            <td>{{config("globals.departamentos")[$atividade->departamento]}}</td>
+                                            <td>{{config("globals.responsaveis")[$atividade->responsavel]}}</td>
                                             <td>
                                                 <a name="" id="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditaAtividade{{$atividade->id}}" role="button">Editar</a>
                                                 <a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalExcluiAtividade{{$atividade->id}}" role="button">Excluir</a>
@@ -145,6 +149,26 @@
                                     @for($i = 1; $i <= 4; $i++)
                                         <option value="{{$i}}" @if($atividade->semana == $i) selected @endif>{{$i}}</option>
                                     @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-12">
+                                <label for="">Departamento</label>
+                                <select class="form-control" name="departamento">
+                                    @foreach(config("globals.departamentos") as $chave => $departamento)
+                                        <option value="{{$chave}}" @if($atividade->departamento == $chave) selected @endif>{{$departamento}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-12">
+                                <label for="">Responsável</label>
+                                <select class="form-control" name="responsavel">
+                                    @foreach(config("globals.responsaveis") as $chave => $responsavel)
+                                        <option value="{{$chave}}" @if($atividade->responsavel == $chave) selected @endif>{{$responsavel}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -228,6 +252,26 @@
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="">Departamento</label>
+                            <select class="form-control" name="departamento">
+                                @foreach(config("globals.departamentos") as $chave => $departamento)
+                                    <option value="{{$chave}}">{{$departamento}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="">Responsável</label>
+                            <select class="form-control" name="responsavel">
+                                @foreach(config("globals.responsaveis") as $chave => $responsavel)
+                                    <option value="{{$chave}}">{{$responsavel}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

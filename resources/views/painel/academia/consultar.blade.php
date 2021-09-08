@@ -37,7 +37,7 @@
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
-                            <th>Usuários</th>
+                            <th>Jornada</th>
                             <th>Nível</th>
                             <th>Ger</th>
                             <th>Adm</th>
@@ -62,8 +62,17 @@
                                             @if(!$academia->jornada)
                                                 <a class="dropdown-item" href="{{route('painel.academia.jornada.ativar', ['academia' => $academia])}}"><i class="fas fa-level-up-alt px-2"></i>Ativar Jornada</a>
                                             @else
-                                                <a class="dropdown-item" href="{{route('painel.academia.jornada.desativar', ['academia' => $academia])}}"><i class="fas fa-level-up-alt px-2"></i>Desativar Jornada</a>
+                                                <a class="dropdown-item" href="{{route('painel.academia.jornada.desativar', ['academia' => $academia])}}"><i class="fas fa-level-down-alt px-2"></i>Desativar Jornada</a>
+                                                
+                                                @if($academia->mes_jornada < 7 || $academia->semana_jornada < 4)
+                                                    <a class="dropdown-item" href="{{route('painel.academia.jornada.promover', ['academia' => $academia])}}"><i class="bx bx-up-arrow-alt px-2"></i>Promover Jornada @if($academia->semana_jornada < 4) {{$academia->mes_jornada . "/" . ($academia->semana_jornada + 1)}} @else {{($academia->mes_jornada + 1) . "/" . 1}} @endif</a>
+                                                @endif
+
+                                                @if($academia->mes_jornada > 1 || $academia->semana_jornada > 1)
+                                                    <a class="dropdown-item" href="{{route('painel.academia.jornada.rebaixar', ['academia' => $academia])}}"><i class="bx bx-down-arrow-alt px-2"></i>Rebaixar Jornada @if($academia->semana_jornada > 1) {{$academia->mes_jornada . "/" . ($academia->semana_jornada - 1)}} @else {{($academia->mes_jornada - 1) . "/" . 4}} @endif</a>
+                                                @endif
                                             @endif
+
                                         </div>
                                     </div>
                                 </td>
@@ -71,7 +80,13 @@
                                 <td>{{$academia->nome}}</td>
                                 <td>{{$academia->email}}</td>
                                 <td>{{$academia->telefone}}</td>
-                                <td>{{$academia->usuarios()->count()}}</td>
+                                <td>
+                                    @if(!$academia->jornada)
+                                        Desativada
+                                    @else
+                                        {{$academia->mes_jornada . "/" . $academia->semana_jornada}}
+                                    @endif
+                                </td>
                                 <td>
                                     <select class="form-control select_nivel" name="select_nivel{{$academia->id}}" academia="{{$academia->id}}">
                                         <option value="0" @if($academia->nivel == 0) selected @endif>0</option>

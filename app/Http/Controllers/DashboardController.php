@@ -70,7 +70,7 @@ class DashboardController extends Controller
         $meses = [];
         $meses["total_atividades"] = 0;
         $meses["total_atividades_completas"] = 0;
-        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana")->get();
+        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.descricao as descricao","jornada_atividades.mes as mes", "jornada_atividades.semana as semana")->where("jornada_checks.academia_id", $academia->id)->get();
         for($i = 0; $i < 7; $i++){
             $meses[$i]["total_atividades"] = 0;
             $meses[$i]["total_atividades_completas"] = 0;

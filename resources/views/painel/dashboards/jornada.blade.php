@@ -1,7 +1,7 @@
 @extends('painel.template.main')
 
 @section('titulo')
-    Dados
+    Dados da Jornada
 @endsection
 
 @section('conteudo')

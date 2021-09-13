@@ -250,7 +250,8 @@
                     },
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
-                } 
+                },
+                order: [[ 1, "asc" ]]
             } );
 
 

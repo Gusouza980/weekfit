@@ -70,14 +70,14 @@
                 <div class="tab-content p-3 text-muted">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: scroll;">
-                            <table id="datatable" class="datatable table table-bordered dt-responsive  nowrap w-100">
+                            <table id="datatable" class="datatable table table-bordered dt-responsive w-100">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Descrição</th>
                                         <th>Semana</th>
                                         <th>Departamento</th>
                                         <th>Responsável</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -86,14 +86,21 @@
 
                                     @foreach($atividades->where("mes", $i) as $atividade)
                                         <tr>
-                                            <td>{{$atividade->descricao}}</td>
+                                            <td>
+                                                <div class="dropdown mt-4 mt-sm-0">
+                                                    <a href="#" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu" style="margin: 0px;">
+                                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEditaAtividade{{$atividade->id}}" role="button"><i class="bx bx-edit-alt"></i> Editar</a>
+                                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalExcluiAtividade{{$atividade->id}}" role="button"><i class="bx bx-trash-alt"></i> Excluir</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><b>{{$atividade->titulo}}</b><br>{{$atividade->descricao}}</td>
                                             <td>{{$atividade->semana}}</td>
                                             <td>{{config("globals.departamentos")[$atividade->departamento]}}</td>
                                             <td>{{config("globals.responsaveis")[$atividade->responsavel]}}</td>
-                                            <td>
-                                                <a name="" id="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditaAtividade{{$atividade->id}}" role="button">Editar</a>
-                                                <a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalExcluiAtividade{{$atividade->id}}" role="button">Excluir</a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -109,31 +116,45 @@
 @foreach($atividades as $atividade)
     <div class="modal fade" id="modalEditaAtividade{{$atividade->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEditaatividade{{$atividade->id}}Label"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <form action="{{route('painel.configuracoes.jornada.atividade.salvar', ['atividade' => $atividade])}}" method="post">
                         @csrf
-                        <div class="row">
+                        <div class="row mt-3">
+                            <div class="form-group col-12">
+                                <label for="titulo">Título</label>
+                                <input class="form-control" name="titulo" maxlength="255" value="{{$atividade->titulo}}" required/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
                             <div class="form-group col-12">
                                 <label for="nome">Descrição</label>
-                                <textarea class="form-control" name="descricao">{!! $atividade->descricao !!}</textarea>
+                                <textarea class="form-control" name="descricao" required>{!! $atividade->descricao !!}</textarea>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="form-group col-12">
-                                <label for="texto_link">Texto do Link</label>
+                            <div class="form-group col-12 col-lg-6">
+                                <label for="texto_link">Texto do Link (Vídeo)</label>
                                 <input class="form-control" name="texto_link" value="{{$atividade->texto_link}}" maxlength="255"/>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-group col-12">
-                                <label for="link">Link</label>
+                            <div class="form-group col-12 col-lg-6">
+                                <label for="link">Link (Vídeo)</label>
                                 <input class="form-control" name="link" value="{{$atividade->link}}" maxlength="255"/>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-lg-6">
+                                <label for="texto_link">Texto do Link (Material)</label>
+                                <input class="form-control" name="texto_link_material" value="{{$atividade->texto_link_material}}" maxlength="255"/>
+                            </div>
+                            <div class="form-group col-12 col-lg-6">
+                                <label for="link">Link (Material)</label>
+                                <input class="form-control" name="link_material" value="{{$atividade->link_material}}" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-12 col-lg-3">
                                 <label for="link">Mês</label>
                                 <select class="form-control" name="mes">
                                     @for($i = 1; $i <= 7; $i++)
@@ -141,9 +162,7 @@
                                     @endfor
                                 </select>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-lg-3">
                                 <label for="">Semana</label>
                                 <select class="form-control" name="semana">
                                     @for($i = 1; $i <= 4; $i++)
@@ -151,9 +170,7 @@
                                     @endfor
                                 </select>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-lg-3">
                                 <label for="">Departamento</label>
                                 <select class="form-control" name="departamento">
                                     @foreach(config("globals.departamentos") as $chave => $departamento)
@@ -161,15 +178,23 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-lg-3">
                                 <label for="">Responsável</label>
                                 <select class="form-control" name="responsavel">
                                     @foreach(config("globals.responsaveis") as $chave => $responsavel)
                                         <option value="{{$chave}}" @if($atividade->responsavel == $chave) selected @endif>{{$responsavel}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="form-check form-checkbox-outline form-check-danger col-12">
+                                    <input class="form-check-input" name="importancia" type="checkbox" value="1" @if($atividade->importancia > 0) checked @endif>
+                                    <label class="form-check-label" for="customCheckcolor5">
+                                        Atividade Importante
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -207,31 +232,45 @@
 
 <div class="modal fade" id="modalNovaAtividade" tabindex="-1" role="dialog" aria-labelledby="modalNovaAtividadeLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <form action="{{route('painel.configuracoes.jornada.atividade.cadastrar')}}" method="post">
                     @csrf
-                    <div class="row">
+                    <div class="row mt-3">
+                        <div class="form-group col-12">
+                            <label for="titulo">Título</label>
+                            <input class="form-control" name="titulo" maxlength="255"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
                         <div class="form-group col-12">
                             <label for="nome">Descrição</label>
                             <textarea class="form-control" name="descricao"></textarea>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="texto_link">Texto do Link</label>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="texto_link">Texto do Link (Vídeo)</label>
                             <input class="form-control" name="texto_link" maxlength="255"/>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
-                            <label for="link">Link</label>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="link">Link (Vídeo)</label>
                             <input class="form-control" name="link" maxlength="255"/>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="texto_link">Texto do Link (Material)</label>
+                            <input class="form-control" name="texto_link_material" maxlength="255"/>
+                        </div>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="link">Link (Material)</label>
+                            <input class="form-control" name="link_material" maxlength="255"/>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-12 col-lg-3">
                             <label for="link">Mês</label>
                             <select class="form-control" name="mes">
                                 <option value="1">1</option>
@@ -243,9 +282,7 @@
                                 <option value="7">7</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 col-lg-3">
                             <label for="">Semana</label>
                             <select class="form-control" name="semana">
                                 <option value="1">1</option>
@@ -254,9 +291,7 @@
                                 <option value="4">4</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 col-lg-3">
                             <label for="">Departamento</label>
                             <select class="form-control" name="departamento">
                                 @foreach(config("globals.departamentos") as $chave => $departamento)
@@ -264,15 +299,23 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 col-lg-3">
                             <label for="">Responsável</label>
                             <select class="form-control" name="responsavel">
                                 @foreach(config("globals.responsaveis") as $chave => $responsavel)
                                     <option value="{{$chave}}">{{$responsavel}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-check form-checkbox-outline form-check-danger col-12">
+                                <input class="form-check-input" name="importancia" type="checkbox" value="1">
+                                <label class="form-check-label" for="customCheckcolor5">
+                                    Atividade Importante
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -427,7 +470,7 @@
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
                 }, 
-                order: [[ 1, "asc" ]]
+                order: [[ 2, "asc" ]]
             } );
         } );    
     </script> 

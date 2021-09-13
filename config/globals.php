@@ -17,6 +17,11 @@ return [
         1 => "Carol",
         2 => "Nelson"
     ],
+    'responsaveis_fotos' => [
+        0 => "admin/images/responsaveis/tiago.jpg",
+        1 => "admin/images/responsaveis/carol.jpg",
+        2 => "admin/images/responsaveis/nelson.jpg"
+    ],
     'acesso' => [
         0 => "Administrativo",
         1 => "Atendente",

@@ -29,7 +29,7 @@ class JornadaController extends Controller
             $academia = Academia::find(session()->get("usuario")["academia_id"]);
         }
 
-        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.importancia as importancia", "jornada_atividades.titulo as titulo" , "jornada_atividades.descricao as descricao", "jornada_atividades.departamento as departamento", "jornada_atividades.responsavel as responsavel", "jornada_atividades.mes as mes", "jornada_atividades.semana as semana", "jornada_atividades.link as link", "jornada_atividades.texto_link as texto_link", "jornada_atividades.link_material as link_material", "jornada_atividades.texto_link_material as texto_link_material")->get();
+        $atividades = DB::table("jornada_checks")->join("jornada_atividades", 'jornada_atividades.id', '=', 'jornada_checks.atividade_id')->select("jornada_checks.*", "jornada_atividades.importancia as importancia", "jornada_atividades.titulo as titulo" , "jornada_atividades.descricao as descricao", "jornada_atividades.departamento as departamento", "jornada_atividades.responsavel as responsavel", "jornada_atividades.mes as mes", "jornada_atividades.semana as semana", "jornada_atividades.link as link", "jornada_atividades.texto_link as texto_link", "jornada_atividades.link_material as link_material", "jornada_atividades.texto_link_material as texto_link_material")->where("jornada_checks.academia_id", $academia->id)->get();
         
         return view("painel.jornada.lancamento", ["atividades" => $atividades, "academia" => $academia]);
     }

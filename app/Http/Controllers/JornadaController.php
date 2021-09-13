@@ -50,7 +50,7 @@ class JornadaController extends Controller
     }
 
     public function desativar(Academia $academia){
-        $checks = JornadaCheck::where("academia_id", $academia)->get();
+        $checks = JornadaCheck::where("academia_id", $academia->id)->get();
         foreach($checks as $check){
             $check->delete();
         }

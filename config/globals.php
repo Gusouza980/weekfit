@@ -8,6 +8,12 @@ return [
         3 => "Marketing",
         100 => "Proprietário"
     ],
+    'departamentos_imagens' => [
+        0 => "admin/images/departamentos/icone_administrativo.png",
+        1 => "admin/images/departamentos/icone_tecnico.png",
+        2 => "admin/images/departamentos/icone_comercial.png",
+        3 => "admin/images/departamentos/icone_marketing.png"
+    ],
     'importancia' => [
         0 => "black",
         1 => "#C00000"

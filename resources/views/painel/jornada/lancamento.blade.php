@@ -50,7 +50,7 @@
                                                     <tbody class="table-striped">
                                                         @foreach($atividades->where("mes", $i)->where("semana", $j) as $atividade)
                                                             <tr>
-                                                                <td>{{config("globals.departamentos")[$atividade->departamento]}}</td>
+                                                                <td><img src="{{asset(config('globals.departamentos_imagens')[$atividade->departamento])}}" width="70" alt=""></td>
                                                                 <td>
                                                                     <h5 class="text-truncate font-size-14 text-dark">
                                                                         {{$atividade->titulo}}

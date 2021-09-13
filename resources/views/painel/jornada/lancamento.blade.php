@@ -29,7 +29,7 @@
                     </ul>
                     <div class="tab-content p-3 text-muted">
                         @for($i = 1; $i <= 7; $i++)
-                            <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: scroll;">
+                            <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: hidden;">
                                 
                                 @for($j = 1; $j <= 4; $j++)
                                     @if(($academia->mes_jornada . $academia->semana_jornada) >= ($i . $j))
@@ -40,7 +40,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" style="width: 6%;">Pilar</th>
-                                                            <th scope="col" style="width: 45%;">Atividade</th>
+                                                            <th scope="col" style="width: 39%;">Atividade</th>
                                                             <th class="text-center" scope="col" style="width: 20%;">Vídeo</th>
                                                             <th class="text-center" scope="col" style="width: 20%;">Material</th>
                                                             <th class="text-center" scope="col" style="width: 8%;">Time</th>
@@ -84,8 +84,8 @@
                                                                     </div>
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
-                                                                        <input class="form-check-input completar_atividade" style="left:0px;" type="checkbox" aid="{{$atividade->id}}" @if($atividade->completo) checked @endif>
+                                                                    <div class="form-check form-switch form-switch-md mt-2 mx-auto" style="padding-left: 0px; width: 40px;" dir="ltr">
+                                                                        <input class="form-check-input completar_atividade" style="left:0px; margin-left: 0px;" type="checkbox" aid="{{$atividade->id}}" @if($atividade->completo) checked @endif>
                                                                     </div>
                                                                 </td>
                                                             </tr>

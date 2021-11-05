@@ -495,7 +495,7 @@ class AcademiaController extends Controller
         $getree->academia_id = $academia->id;
         if($request->file("imagem")){
             $getree->imagem = $request->file('imagem')->store(
-                'admin/images/getree/'.Str::slug($getree->imagem), 'local'
+                'admin/images/getree/'.Str::slug($academia->nome), 'local'
             );
         }
 

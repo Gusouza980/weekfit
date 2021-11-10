@@ -53,10 +53,14 @@
 
 @section('scripts')
     <!-- Required datatable js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="{{asset('admin/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.10/sorting/datetime-moment.js"></script>
     <script>
         $(document).ready(function() {
+            $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm:ss' );    //Formatação com Hora
+            $.fn.dataTable.moment('DD/MM/YYYY');    //Formatação sem Hora
             $('#datatable').DataTable( {
                 language:{
                     "emptyTable": "Nenhum registro encontrado",
@@ -188,7 +192,8 @@
                     },
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
-                } 
+                },
+                order: [[6, "desc"]] 
             } );
         } );    
     </script> 

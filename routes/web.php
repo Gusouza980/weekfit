@@ -48,6 +48,7 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academias/getree/adicionar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'adicionar_getree'])->name("painel.academia.getree.adicionar");
         Route::post('/dashboard/academias/getree/salvar/{getree}', [\App\Http\Controllers\AcademiaController::class, 'salvar_getree'])->name("painel.academia.getree.salvar");
         Route::get('/dashboard/academias/getree/remover/{getree}', [\App\Http\Controllers\AcademiaController::class, 'remover_getree'])->name("painel.academia.getree.remover");
+        Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
 
         //ROTAS REFERENTES AOS GRUPOS
         Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");

@@ -532,4 +532,58 @@ class AcademiaController extends Controller
         toastr()->success("Elemento removido com sucesso");
         return redirect()->back()->with("getree", "getree");
     }
+
+    public function relatorio_getree(Academia $academia){
+        $dados = array();
+        $dados["elementos"] = array();
+        $dados["total_visitantes"] = 0;
+        $dados["total_acessos"] = 0;
+        $dados["total_clicks"] = 0;
+        $dados["acessos_com_click"] = 0;
+        $dados["clicks_elementos"] = 0;
+        $dados["clicks_redes"] = 0;
+
+
+        foreach($academia->getree as $elemento){
+            $dados["elementos"][$elemento->id]["total_clicks"] = 0;
+            $dados["elementos"][$elemento->id]["text"] = $elemento->titulo;
+        }
+
+        foreach(config("globals.redes") as $codigo => $texto){
+            $dados["redes"][$codigo]["total_clicks"] = 0;
+            $dados["redes"][$codigo]["text"] = $texto;
+        }
+
+        if($academia->acessos){
+            $visitantes = $academia->acessos->groupBy("visitante_id");
+            foreach($visitantes as $visitante => $acessos){
+                $dados["visitantes"][$visitante]["total_acessos"] = 0;
+                $dados["total_visitantes"] += 1;
+                foreach($acessos as $acesso){
+                    $dados["total_acessos"] += 1;
+                    $dados["visitantes"][$visitante]["acessos"][] = $acesso; 
+                    $dados["visitantes"][$visitante]["total_acessos"] += 1;
+                    if($acesso->clicks->count() > 0){
+                        $dados["acessos_com_click"] += 1;
+                        foreach($acesso->clicks as $click){
+                            if($click->elemento){
+                                $dados["elementos"][$click->element->id]["total_clicks"] += 1;
+                                $dados["clicks_elementos"] += 1;
+                            }else{
+                                $dados["redes"][$click->tipo_rede]["total_clicks"] += 1;
+                                $dados["clicks_redes"] += 1;
+                            }
+                            $dados["total_clicks"] += 1;
+                        }
+                    }
+                }
+            }
+        }
+        // dd($dados);
+
+        return view("painel.academia.relatorio", [
+            "dados" => $dados,
+            "academia" => $academia,
+        ]);
+    }
 }

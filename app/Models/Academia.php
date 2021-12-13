@@ -28,4 +28,13 @@ class Academia extends Model
     public function getree(){
         return $this->hasMany(GetreeElemento::class);
     }
+
+    public function acessos(){
+        return $this->hasMany(GetreeAcesso::class);
+    }
+
+    public function leads(){
+        return $this->hasMany(Lead::class);
+    }
+    
 }

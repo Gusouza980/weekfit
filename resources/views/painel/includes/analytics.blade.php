@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="media-body">
                                         <div>
-                                            {{$acessos[1]}} Recorrentes e {{$acessos[2]}} Novos
+                                            @if($acessos) {{$acessos[1]}} Recorrentes e {{$acessos[2]}} Novos @else - @endif
                                         </div>
                                     </div>
                                 </div>

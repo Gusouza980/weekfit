@@ -6,14 +6,55 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
-
+use Analytics;
+use Spatie\Analytics\Period;
 
 class PainelController extends Controller
 {
     //
 
     public function index(){
-        return view("painel.index");
+        // Usuários no site atualmente
+        
+        $analyticsData = Analytics::getAnalyticsService()->data_realtime->get('ga:' . env('ANALYTICS_VIEW_ID'), 'rt:activeVisitors')->totalsForAllResults['rt:activeVisitors'];
+        $analytics["numero_acessos_atuais"] = $analyticsData;
+
+        // ==============================================================================
+
+        // Número de acessos nos últimos 7 dias
+        
+        $analyticsData = $analyticsData = Analytics::performQuery(
+            Period::days(6),
+            'ga:sessions',
+            [
+                'metrics' => 'ga:users, ga:newUsers',
+                'dimensions' => 'ga:date'
+            ]
+        );
+
+        $analytics["numero_acessos"] = $analyticsData->rows;
+
+        // ===============================================================================
+
+        // Melhores origens de acessos ao site
+
+        $analyticsData = $analyticsData = Analytics::fetchTopReferrers(Period::days(6));
+        $analytics["top_referencias"] = $analyticsData;
+
+        // ================================================================================
+
+        // Tipos de usuários que acessaram
+
+        $analyticsData = $analyticsData = Analytics::fetchUserTypes(Period::days(6));
+        $analytics["tipos_usuarios"] = $analyticsData;
+        // =================================================================================
+
+        // Páginas mais visualizadas
+
+        $analyticsData = $analyticsData = Analytics::fetchMostVisitedPages(Period::days(6), 7);
+        $analytics["paginas_mais_visualizadas"] = $analyticsData;
+        // dd($analytics);
+        return view("painel.index", ["analytics" => $analytics]);
     }
 
     public function login(){

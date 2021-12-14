@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "lucascudo/laravel-pt-br-localization": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.7",
+        "spatie/laravel-analytics": "^3.11",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

@@ -41,6 +41,9 @@
                 <div class="media">
                     <div class="media-body">
                         <p class="text-muted fw-medium">Visitantes Recorrentes (Últimos 7 dias)</p>
+                        @php
+                            dd($analytics["tipos_usuarios"]);
+                        @endphp
                         <h4 class="mb-0">@if(count($analytics["tipos_usuarios"])) {{$analytics["tipos_usuarios"][1]["sessions"]}} @else - @endif</h4>
                     </div>
 

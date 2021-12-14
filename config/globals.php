@@ -45,6 +45,9 @@ return [
         8 => "Tiktok",
         9 => "Email"
     ],
+    "lead_status" => [
+        
+    ]
 ];
 
 ?>

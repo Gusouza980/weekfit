@@ -534,6 +534,10 @@ class AcademiaController extends Controller
     }
 
     public function relatorio_getree(Academia $academia){
+        if(!session()->get("usuario")["admin"] && session()->get("usuario")["academia_id"] != $academia->id){
+            toastr()->error("Você não tem permissão para acessar essa página");
+            return redirect()->back();
+        }
         $dados = array();
         $dados["elementos"] = array();
         $dados["total_visitantes"] = 0;

@@ -284,6 +284,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
                                         <li><a href="{{route('dashboard.jornada')}}" key="t-default">Jornada</a></li>
+                                        <li><a href="{{route('painel.academiaa.getree.relatorio', ['academia' => session()->get("academia")])}}" key="t-default">Getree</a></li>
                                     </ul>
                                 </li>
 

@@ -25,6 +25,7 @@
                             <th>Cidade</th>
                             <th>Estado</th>
                             <th>Data</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -33,13 +34,20 @@
 
                         @foreach($leads as $lead)
                             <tr>
-                                <td>{{$lead->formulario}}</td>
-                                <td>{{$lead->nome}}</td>
-                                <td>{{$lead->email}}</td>
-                                <td>{{$lead->celular}}</td>
-                                <td>{{$lead->ip_uf}}</td>
-                                <td>{{$lead->ip_cidade}}</td>
-                                <td>{{date("d/m/Y H:i:s", strtotime($lead->created_at))}}</td>
+                                <td style="vertical-align: middle;">{{$lead->formulario}}</td>
+                                <td style="vertical-align: middle;">{{$lead->nome}}</td>
+                                <td style="vertical-align: middle;">{{$lead->email}}</td>
+                                <td style="vertical-align: middle;">{{$lead->celular}}</td>
+                                <td style="vertical-align: middle;">{{$lead->ip_uf}}</td>
+                                <td style="vertical-align: middle;">{{$lead->ip_cidade}}</td>
+                                <td style="vertical-align: middle;">{{date("d/m/Y H:i:s", strtotime($lead->created_at))}}</td>
+                                <td style="vertical-align: middle;">
+                                    <select class="form-control" name="status" lid="{{$lead->id}}" id="">
+                                        @foreach(config("globals.lead_status") as $key => $status)
+                                            <option value="{{$key}}" @if($lead->status == $key) selected @endif>{{$status}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -195,6 +203,33 @@
                 },
                 order: [[6, "desc"]] 
             } );
+            $("select[name='status']").change(function(){
+                var status = $(this).val();
+                var lead = $(this).attr("lid");
+                var _token = $('meta[name="_token"]').attr('content');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': _token
+                    }
+                });
+                var id = $(this).val();
+                $.ajax({
+                    url: "{!! route('dashboard.lead.status.alterar') !!}",
+                    type: 'POST',
+                    data: {
+                        status: status,
+                        lead: lead
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        if (data == 200) {
+                            toastr.success('Status alterado com sucesso', 'Sucesso', {
+                                timeOut: 1000
+                            })
+                        }
+                    },
+                });
+            })
         } );    
     </script> 
 @endsection

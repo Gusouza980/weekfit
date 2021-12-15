@@ -15,7 +15,7 @@ class AlterTableLeads extends Migration
     {
         //
         Schema::table('leads', function (Blueprint $table) {
-            $table->tinyInteger("status")->nullable();
+            $table->tinyInteger("status")->default(0);
         });
     }
 

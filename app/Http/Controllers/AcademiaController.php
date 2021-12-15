@@ -268,6 +268,19 @@ class AcademiaController extends Controller
                 $usuario->senha = Hash::make($request->senha_proprietario);
             }
             $usuario->save();
+        }else{
+            $usuario = new Usuario;
+            $usuario->academia_id = $academia->id;
+            $usuario->nome = $request->nome_proprietario;
+            $usuario->email = $request->email_proprietario;
+            $usuario->telefone = $request->telefone_proprietario;
+            $usuario->usuario = $request->usuario_proprietario;
+            $usuario->departamento = 100;
+            $usuario->acesso = 0;
+            if($request->senha_proprietario){
+                $usuario->senha = Hash::make($request->senha_proprietario);
+            }
+            $usuario->save();
         }
 
         toastr()->success("Dados salvos com sucesso!");
@@ -405,6 +418,13 @@ class AcademiaController extends Controller
         }
        
         return view("painel.leads.consultar", ["leads" => $leads]);
+    }
+
+    public function lead_status_alterar(Request $request){
+        $lead = Lead::find($request->lead);
+        $lead->status = $request->status;
+        $lead->save();
+        return response()->json(200);
     }
 
     public function rede_getree(Request $request, Academia $academia){

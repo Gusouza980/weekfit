@@ -48,7 +48,6 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academias/getree/adicionar/{academia}', [\App\Http\Controllers\AcademiaController::class, 'adicionar_getree'])->name("painel.academia.getree.adicionar");
         Route::post('/dashboard/academias/getree/salvar/{getree}', [\App\Http\Controllers\AcademiaController::class, 'salvar_getree'])->name("painel.academia.getree.salvar");
         Route::get('/dashboard/academias/getree/remover/{getree}', [\App\Http\Controllers\AcademiaController::class, 'remover_getree'])->name("painel.academia.getree.remover");
-        Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
 
         //ROTAS REFERENTES AOS GRUPOS
         Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");
@@ -98,10 +97,15 @@ Route::middleware(['painel'])->group(function () {
         
         Route::get('/dashboard/administracao/jornada', [\App\Http\Controllers\JornadaController::class, 'lancamento'])->name("painel.administracao.jornada");
         Route::get('/dashboard/administracao/jornada/status/trocar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'completar'])->name("painel.administracao.jornada.status");
+        
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
         Route::get('/dashboard/jornada', [\App\Http\Controllers\DashboardController::class, 'jornada'])->name("dashboard.jornada");
         Route::get('/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
+        Route::post('/dashboard/lead/status/alterar', [\App\Http\Controllers\AcademiaController::class, 'lead_status_alterar'])->name("dashboard.lead.status.alterar");
+    
+        Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
+        
     });
     
 });

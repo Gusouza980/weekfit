@@ -20,7 +20,7 @@
 <div class="row mt-3">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body"  style="overflow-x: scroll;">
 
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">

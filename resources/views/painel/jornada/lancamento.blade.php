@@ -29,7 +29,7 @@
                     </ul>
                     <div class="tab-content p-3 text-muted">
                         @for($i = 1; $i <= 7; $i++)
-                            <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: hidden;">
+                            <div class="tab-pane @if($i == 1) active @endif" id="mes{{$i}}" role="tabpanel" style="overflow-x: scroll;">
                                 
                                 @for($j = 1; $j <= 4; $j++)
                                     @if(($academia->mes_jornada . $academia->semana_jornada) >= ($i . $j))

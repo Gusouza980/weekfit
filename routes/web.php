@@ -71,12 +71,12 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/usuarios/salvar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'salvar'])->name("painel.usuario.salvar");
 
         // ROTAS DE VIDEOS
-        Route::get('/dashboard/videos/cadastro', [\App\Http\Controllers\VideosCOntroller::class, 'cadastro'])->name("painel.video.cadastro");
-        Route::post('/dashboard/videos/cadastrar', [\App\Http\Controllers\VideosCOntroller::class, 'cadastrar'])->name("painel.video.cadastrar");
-        Route::get('/dashboard/videos', [\App\Http\Controllers\VideosCOntroller::class, 'consultar'])->name("painel.videos");
-        Route::get('/dashboard/videos/editar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'editar'])->name("painel.video.editar");
-        Route::post('/dashboard/videos/salvar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'salvar'])->name("painel.video.salvar");
-        Route::get('/dashboard/videos/deletar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'deletar'])->name("painel.video.deletar");
+        Route::get('/dashboard/videos/cadastro', [\App\Http\Controllers\VideosController::class, 'cadastro'])->name("painel.video.cadastro");
+        Route::post('/dashboard/videos/cadastrar', [\App\Http\Controllers\VideosController::class, 'cadastrar'])->name("painel.video.cadastrar");
+        Route::get('/dashboard/videos', [\App\Http\Controllers\VideosController::class, 'consultar'])->name("painel.videos");
+        Route::get('/dashboard/videos/editar/{video}', [\App\Http\Controllers\VideosController::class, 'editar'])->name("painel.video.editar");
+        Route::post('/dashboard/videos/salvar/{video}', [\App\Http\Controllers\VideosController::class, 'salvar'])->name("painel.video.salvar");
+        Route::get('/dashboard/videos/deletar/{video}', [\App\Http\Controllers\VideosController::class, 'deletar'])->name("painel.video.deletar");
         
 
         //ROTAS REFERENTES A CALENDÁRIOS 

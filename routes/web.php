@@ -119,7 +119,7 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/lead/status/alterar', [\App\Http\Controllers\AcademiaController::class, 'lead_status_alterar'])->name("dashboard.lead.status.alterar");
 
         // ROTAS DE VIDEOS
-        Route::get('/dashboard/videos/{slug}', [\App\Http\Controllers\VideosCOntroller::class, 'exibir'])->name("painel.videos.exibir");
+        Route::get('/dashboard/videos/{slug}', [\App\Http\Controllers\VideosController::class, 'exibir'])->name("painel.videos.exibir");
 
         Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
         

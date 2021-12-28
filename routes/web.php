@@ -70,6 +70,15 @@ Route::middleware(['painel'])->group(function () {
         Route::get('/dashboard/usuarios/editar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'editar'])->name("painel.usuario.editar");
         Route::post('/dashboard/usuarios/salvar/{usuario}', [\App\Http\Controllers\UsuarioController::class, 'salvar'])->name("painel.usuario.salvar");
 
+        // ROTAS DE VIDEOS
+        Route::get('/dashboard/videos/cadastro', [\App\Http\Controllers\VideosCOntroller::class, 'cadastro'])->name("painel.video.cadastro");
+        Route::post('/dashboard/videos/cadastrar', [\App\Http\Controllers\VideosCOntroller::class, 'cadastrar'])->name("painel.video.cadastrar");
+        Route::get('/dashboard/videos', [\App\Http\Controllers\VideosCOntroller::class, 'consultar'])->name("painel.videos");
+        Route::get('/dashboard/videos/editar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'editar'])->name("painel.video.editar");
+        Route::post('/dashboard/videos/salvar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'salvar'])->name("painel.video.salvar");
+        Route::get('/dashboard/videos/deletar/{video}', [\App\Http\Controllers\VideosCOntroller::class, 'deletar'])->name("painel.video.deletar");
+        
+
         //ROTAS REFERENTES A CALENDÁRIOS 
         Route::get('/dashboard/calendario/intervencoes/todas', [\App\Http\Controllers\CalendarioController::class, 'todas_intervencoes'])->name("calendario.intervencoes.todas");
         Route::post('/dashboard/calendario/intervencao/salvar', [\App\Http\Controllers\CalendarioController::class, 'salvar_intervencao'])->name("calendario.intervencao.salvar");
@@ -82,8 +91,13 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/configuracoes/jornada/atividade/salvar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'salvar'])->name("painel.configuracoes.jornada.atividade.salvar");
         Route::get('/dashboard/configuracoes/jornada/atividade/deletar/{atividade}', [\App\Http\Controllers\JornadaController::class, 'deletar'])->name("painel.configuracoes.jornada.atividade.deletar");
         
-        
-        
+        // ROTAS REFERENTES A PROSPECÇÕES
+        Route::get('/dashboard/prospeccoes', [\App\Http\Controllers\ProspeccoesController::class, 'consultar'])->name("painel.prospeccoes");
+        Route::get('/dashboard/prospeccoes/cadastro', [\App\Http\Controllers\ProspeccoesController::class, 'cadastro'])->name("painel.prospeccao.cadastro");
+        Route::post('/dashboard/prospeccoes/cadastrar', [\App\Http\Controllers\ProspeccoesController::class, 'cadastrar'])->name("painel.prospeccao.cadastrar");
+        Route::get('/dashboard/prospeccoes/editar/{prospeccao}', [\App\Http\Controllers\ProspeccoesController::class, 'editar'])->name("painel.prospeccao.editar");
+        Route::post('/dashboard/prospeccoes/salvar/{prospeccao}', [\App\Http\Controllers\ProspeccoesController::class, 'salvar'])->name("painel.prospeccao.salvar");
+        Route::post('/dashboard/prospeccoes/{prospeccao}/nota/adicionar/', [\App\Http\Controllers\ProspeccoesController::class, 'adicionar_nota'])->name("painel.prospeccao.nota.adicionar");
         
         Route::get('/dashboard/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name("painel.logs");
     });
@@ -101,9 +115,12 @@ Route::middleware(['painel'])->group(function () {
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
         Route::get('/dashboard/jornada', [\App\Http\Controllers\DashboardController::class, 'jornada'])->name("dashboard.jornada");
-        Route::get('/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
+        Route::match(['get','post'], '/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
         Route::post('/dashboard/lead/status/alterar', [\App\Http\Controllers\AcademiaController::class, 'lead_status_alterar'])->name("dashboard.lead.status.alterar");
-    
+
+        // ROTAS DE VIDEOS
+        Route::get('/dashboard/videos/{slug}', [\App\Http\Controllers\VideosCOntroller::class, 'exibir'])->name("painel.videos.exibir");
+
         Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
         
     });

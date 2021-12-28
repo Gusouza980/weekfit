@@ -7,7 +7,11 @@
 @endsection
 
 @section('titulo')
-    Leads: {{date("d/m/Y", strtotime($inicio))}} - {{date("d/m/Y", strtotime($fim))}}
+    Listagem de videos
+@endsection
+
+@section('botoes')
+    <a name="" id="" class="btn btn-success" href="{{route('painel.video.cadastro')}}" role="button">Novo video</a>
 @endsection
 
 @section('conteudo')
@@ -18,35 +22,30 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
-                            <th>Formulário</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Celular</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>Data</th>
-                            <th>Status</th>
+                            <th>Título</th>
+                            <th>Subtitulo</th>
+                            <th>Categoria</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
 
 
                     <tbody>
 
-                        @foreach($leads as $lead)
+                        @foreach($videos as $video)
                             <tr>
-                                <td style="vertical-align: middle;">{{$lead->formulario}}</td>
-                                <td style="vertical-align: middle;">{{$lead->nome}}</td>
-                                <td style="vertical-align: middle;">{{$lead->email}}</td>
-                                <td style="vertical-align: middle;">{{$lead->celular}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_uf}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_cidade}}</td>
-                                <td style="vertical-align: middle;">{{date("d/m/Y H:i:s", strtotime($lead->created_at))}}</td>
-                                <td style="vertical-align: middle;">
-                                    <select class="form-control" name="status" lid="{{$lead->id}}" id="">
-                                        @foreach(config("globals.lead_status") as $key => $status)
-                                            <option value="{{$key}}" @if($lead->status == $key) selected @endif>{{$status}}</option>
-                                        @endforeach
-                                    </select>
+                                <td style="vertical-align: middle;">{{$video->titulo}}</td>
+                                <td  style="vertical-align: middle;">{{$video->subtitulo}}</td>
+                                <td  style="vertical-align: middle;">
+                                    {{config("videos.categorias")[$video->categoria]}}
+                                </td>
+                                <td  style="vertical-align: middle; text-align:center;">
+                                    <i class="far fa-eye popup cpointer" link="{{\App\Classes\Util::convertYoutube($video->link)}}"></i>
+                                </td>
+                                <td  style="vertical-align: middle; text-align:center;">
+                                    <a href="{{route('painel.video.editar', ['video' => $video])}}" id="" class="btn btn-warning" role="button">Editar</a>
+                                    <a name="" id="" class="btn btn-danger" href="{{route('painel.video.deletar', ['video' => $video])}}" role="button">Excluir</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -57,18 +56,27 @@
     </div> <!-- end col -->
 </div> <!-- end row -->
 
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center" id="modalVideoConteudo">
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('scripts')
     <!-- Required datatable js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="{{asset('admin/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.10/sorting/datetime-moment.js"></script>
     <script>
         $(document).ready(function() {
-            $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm:ss' );    //Formatação com Hora
-            $.fn.dataTable.moment('DD/MM/YYYY');    //Formatação sem Hora
             $('#datatable').DataTable( {
                 language:{
                     "emptyTable": "Nenhum registro encontrado",
@@ -200,36 +208,14 @@
                     },
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
-                },
-                order: [[6, "desc"]] 
+                } 
             } );
-            $("select[name='status']").change(function(){
-                var status = $(this).val();
-                var lead = $(this).attr("lid");
-                var _token = $('meta[name="_token"]').attr('content');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': _token
-                    }
-                });
-                var id = $(this).val();
-                $.ajax({
-                    url: "{!! route('dashboard.lead.status.alterar') !!}",
-                    type: 'POST',
-                    data: {
-                        status: status,
-                        lead: lead
-                    },
-                    dataType: 'JSON',
-                    success: function(data) {
-                        if (data == 200) {
-                            toastr.success('Status alterado com sucesso', 'Sucesso', {
-                                timeOut: 1000
-                            })
-                        }
-                    },
-                });
-            })
+
+            $(".popup").click(function(){
+                var link = $(this).attr("link");
+                $("#modalVideoConteudo").html(link);
+                $("#modalVideo").modal("show");
+            });
         } );    
     </script> 
 @endsection

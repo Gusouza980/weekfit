@@ -5034,4 +5034,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
     list-style: none;
 }
 
+.cpointer{
+    cursor: pointer;
+}
+
 /*# sourceMappingURL=app.min.css.map */

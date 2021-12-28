@@ -410,14 +410,20 @@ class AcademiaController extends Controller
         return view("painel.academia.lancamento", ['academia' => $academia]);
     }
 
-    public function leads(){
+    public function leads(Request $request){
+        if($request->isMethod("GET")){
+            $anomes = date('Y-m');
+            $mesano = date('m-Y');
+            $inicio = $anomes . "-1 00:00:00";
+            $fim = date('Y-m-t', strtotime($anomes)) . " 23:59:59";
+        }
         if(session()->get("usuario")["admin"]){
-            $leads = Lead::where("academia_id", session()->get("academia"))->get();
+            $leads = Lead::where([["academia_id", session()->get("academia")], ["created_at", ">=", $inicio], ["created_at", "<=", $fim]])->get();
         }else{
-            $leads = Lead::where("academia_id", session()->get("usuario")["academia_id"])->get();
+            $leads = Lead::where([["academia_id", session()->get("usuario")["academia_id"]], ["created_at", ">=", $inicio], ["created_at", "<=", $fim]])->get();
         }
        
-        return view("painel.leads.consultar", ["leads" => $leads]);
+        return view("painel.leads.consultar", ["leads" => $leads, "inicio" => $inicio, "fim" => $fim]);
     }
 
     public function lead_status_alterar(Request $request){

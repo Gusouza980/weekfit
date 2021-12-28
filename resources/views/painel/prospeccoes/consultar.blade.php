@@ -7,7 +7,11 @@
 @endsection
 
 @section('titulo')
-    Leads: {{date("d/m/Y", strtotime($inicio))}} - {{date("d/m/Y", strtotime($fim))}}
+    Prospecções
+@endsection
+
+@section('botoes')
+    <a name="" id="" class="btn btn-success" href="{{route('painel.prospeccao.cadastro')}}" role="button">Nova Prospecção</a>
 @endsection
 
 @section('conteudo')
@@ -15,16 +19,15 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x: scroll;">
-                <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                <table id="datatable" class="table table-bordered dt-responsive wrap w-100">
                     <thead>
                         <tr>
-                            <th>Formulário</th>
-                            <th>Nome</th>
+                            <th></th>
+                            <th>Nome Fantasia</th>
+                            <th>Gestor</th>
                             <th>Email</th>
-                            <th>Celular</th>
-                            <th>Cidade</th>
                             <th>Estado</th>
-                            <th>Data</th>
+                            <th>Cidade</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -32,22 +35,24 @@
 
                     <tbody>
 
-                        @foreach($leads as $lead)
+                        @foreach($prospeccoes as $prospeccao)
                             <tr>
-                                <td style="vertical-align: middle;">{{$lead->formulario}}</td>
-                                <td style="vertical-align: middle;">{{$lead->nome}}</td>
-                                <td style="vertical-align: middle;">{{$lead->email}}</td>
-                                <td style="vertical-align: middle;">{{$lead->celular}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_uf}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_cidade}}</td>
-                                <td style="vertical-align: middle;">{{date("d/m/Y H:i:s", strtotime($lead->created_at))}}</td>
-                                <td style="vertical-align: middle;">
-                                    <select class="form-control" name="status" lid="{{$lead->id}}" id="">
-                                        @foreach(config("globals.lead_status") as $key => $status)
-                                            <option value="{{$key}}" @if($lead->status == $key) selected @endif>{{$status}}</option>
-                                        @endforeach
-                                    </select>
+                                <td class="text-center">
+                                    <div class="dropdown mt-4 mt-sm-0">
+                                        <a href="#" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-bars" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu" style="margin: 0px;">
+                                            <a name="" id="" class="dropdown-item" href="{{route('painel.prospeccao.editar', ['prospeccao' => $prospeccao])}}" role="button"><i class="bx bx-edit-alt px-2"></i>Editar</a>
+                                        </div>
+                                    </div>
                                 </td>
+                                <td style="vertical-align: middle;">{{$prospeccao->nome}}</td>
+                                <td style="vertical-align: middle;">{{$prospeccao->gestor}}</td>
+                                <td style="vertical-align: middle;">{{$prospeccao->email}}</td>
+                                <td style="vertical-align: middle;">{{$prospeccao->estado}}</td>
+                                <td style="vertical-align: middle;">{{$prospeccao->cidade}}</td>
+                                <td style="vertical-align: middle;">{{$prospeccao->status}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -201,35 +206,7 @@
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
                 },
-                order: [[6, "desc"]] 
             } );
-            $("select[name='status']").change(function(){
-                var status = $(this).val();
-                var lead = $(this).attr("lid");
-                var _token = $('meta[name="_token"]').attr('content');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': _token
-                    }
-                });
-                var id = $(this).val();
-                $.ajax({
-                    url: "{!! route('dashboard.lead.status.alterar') !!}",
-                    type: 'POST',
-                    data: {
-                        status: status,
-                        lead: lead
-                    },
-                    dataType: 'JSON',
-                    success: function(data) {
-                        if (data == 200) {
-                            toastr.success('Status alterado com sucesso', 'Sucesso', {
-                                timeOut: 1000
-                            })
-                        }
-                    },
-                });
-            })
         } );    
     </script> 
 @endsection

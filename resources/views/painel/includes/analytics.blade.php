@@ -55,9 +55,9 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 col-xl-4">
+    <div class="col-12 col-xl-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow-x: scroll;">
                 <h4 class="card-title mb-5">Acessos (Últimos 7 dias)</h4>
                 <ul class="verti-timeline list-unstyled">
                     @if($analytics["numero_acessos"])
@@ -83,9 +83,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-xl-3">
+    <div class="col-12 col-xl-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow-x: scroll;">
                 <h4 class="card-title mb-5">Principais Referências (Últimos 7 dias)</h4>
                 <ul class="verti-timeline list-unstyled">
                     @foreach($analytics["top_referencias"] as $referencia)
@@ -109,9 +109,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-xl-5">
+    <div class="col-12 col-xl-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow-x: scroll;">
                 <h4 class="card-title mb-5">Páginas mais visitadas (Últimos 7 dias)</h4>
                 <ul class="verti-timeline list-unstyled">
                     @foreach($analytics["paginas_mais_visualizadas"] as $pagina)

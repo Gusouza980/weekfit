@@ -323,6 +323,18 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </ul>
                                 </li>
 
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Vídeos</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        @foreach(config("videos.categorias") as $key => $categoria)
+                                            <li><a href="{{route('painel.videos.exibir', ['slug' => config("videos.slug")[$key]])}}" key="t-default">{{config("videos.categorias")[$key]}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+
                             @endif
 
                             @if(session()->get("usuario") && session()->get("usuario")["admin"] && !session()->get("academia"))
@@ -384,6 +396,26 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
                                         <li><a href="{{route('calendario.intervencoes')}}" key="t-default">Intervenções</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Vídeos</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.videos')}}" key="t-default">Listagem</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-handshake" aria-hidden="true"></i>
+                                        <span key="t-dashboards">Comercial</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.prospeccoes')}}" key="t-default">Prospecções</a></li>
                                     </ul>
                                 </li>
 
@@ -527,8 +559,8 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
         {{-- <script src="{{asset('admin/js/pages/dashboard.init.js')}}"></script> --}}
 
         <!-- App js -->
-        <script src="{{asset('admin/js/app.js')}}"></script>
         @yield("scripts")
+        <script src="{{asset('admin/js/app.js')}}"></script>
         <script>
             $(document).ready(function(){
                 $("#select-academia").change(function(){

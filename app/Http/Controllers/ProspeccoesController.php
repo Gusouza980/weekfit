@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Prospeccao;
 use App\Models\ProspeccaoNota;
+use Illuminate\Support\Facades\DB;
 
 class ProspeccoesController extends Controller
 {
@@ -57,5 +58,37 @@ class ProspeccoesController extends Controller
         toastr()->success("Nota adicionada com sucesso!");
         session()->flash("nota_adicionada", true);
         return redirect()->back();
+    }
+
+    public function dashboard(){
+        return view("painel.prospeccoes.dashboard");
+    }
+
+    public function quantidade_prospeccoes_status(){
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as value'), "status as name")->orderBy("status", "ASC")->groupBy('status')->get();
+        foreach($quantidade_prospeccoes as $prospeccao){
+            $prospeccao->name = config("prospeccoes.status")[$prospeccao->name];
+        }
+        return response()->json($quantidade_prospeccoes);
+    }
+
+    public function quantidade_prospeccoes_diarias(){
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%d/%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        return response()->json($quantidade_prospeccoes);
+    }
+
+    public function quantidade_prospeccoes_mensais(){
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%m/%y') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        return response()->json($quantidade_prospeccoes);
+    }
+
+    public function quantidade_prospeccoes_interacoes_diarias(){
+        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%d/%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        return response()->json($quantidade_prospeccoes);
+    }
+
+    public function quantidade_prospeccoes_interacoes_mensais(){
+        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%m/%y') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        return response()->json($quantidade_prospeccoes);
     }
 }

@@ -9,12 +9,8 @@ class CalendarioController extends Controller
 {
     //
     public function teste(){
-        $time = "1616783100919";
-        $time = strtotime("Fri Mar 26 2021 21:31:11 GMT+0300 (GMT+03:00)".' UTC');
-        $dateInLocal = date("Y-m-d H:i:s", $time);
-        // $date = new DateTime("Fri Mar 26 2021 21:31:11 GMT+0300 (GMT+03:00)");
-        dd($dateInLocal);
-        echo date("Y-m-d H:i", $time);
+        $atividades = \App\Models\JornadaAtividade::first();
+        return view("painel.teste", ["atividades" => $atividades]);
     }
     public function intervencoes(){
         if(session()->get("usuario")["admin"]){

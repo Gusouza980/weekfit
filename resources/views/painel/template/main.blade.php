@@ -415,6 +415,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                         <span key="t-dashboards">Comercial</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.prospeccoes.dashboard')}}" key="t-default">Dashboard</a></li>
                                         <li><a href="{{route('painel.prospeccoes')}}" key="t-default">Prospecções</a></li>
                                     </ul>
                                 </li>

@@ -10,6 +10,27 @@
     Leads: {{date("d/m/Y", strtotime($inicio))}} - {{date("d/m/Y", strtotime($fim))}}
 @endsection
 
+@section('botoes')
+    <form action="{{route('dashboard.leads')}}" method="POST">
+        @csrf
+        <div class="row justify-content-end">
+            <div class="form-group" style="width: 200px;">
+                <label for="">Início</label>
+                <input type="date" name="inicio" id="" class="form-control" value="{{date('Y-m-d', strtotime($inicio))}}" placeholder="" aria-describedby="helpId">
+            </div>
+            {{-- / --}}
+            <div class="form-group" style="width: 200px;">
+                <label for="">Fim</label>
+                <input type="date" name="fim" id="" class="form-control" value="{{date('Y-m-d', strtotime($fim))}}" placeholder="" max="{{date('Y-m-t')}}" aria-describedby="helpId">
+            </div>
+            <div class="form-group" style="width: 100px;">
+                <button class="btn btn-primary mt-4">Filtrar</button>
+            </div>
+        </div>
+        
+    </form>
+@endsection
+
 @section('conteudo')
 <div class="row mt-3">
     <div class="col-12">

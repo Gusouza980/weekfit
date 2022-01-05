@@ -69,6 +69,8 @@ class AcademiaController extends Controller
         $academia->estado = $request->estado;
         $academia->cep = $request->cep;
         $academia->url = $request->url;
+        $academia->cpf = $request->cpf;
+        $academia->cnpj = $request->cnpj;
 
         $academia->codigo = $request->codigo;
         $academia->ativo = $request->ativo;
@@ -175,7 +177,9 @@ class AcademiaController extends Controller
         $academia->estado = $request->estado;
         $academia->cep = $request->cep;
         $academia->url = $request->url;
-
+        $academia->cpf = $request->cpf;
+        $academia->cnpj = $request->cnpj;
+        
         $academia->observacoes = $request->observacoes;
 
         $academia->titulo_getree = $request->titulo_getree;
@@ -416,6 +420,9 @@ class AcademiaController extends Controller
             $mesano = date('m-Y');
             $inicio = $anomes . "-1 00:00:00";
             $fim = date('Y-m-t', strtotime($anomes)) . " 23:59:59";
+        }else{
+            $inicio = $request->inicio . " 00:00:00";
+            $fim = $request->fim . " 23:59:59";
         }
         if(session()->get("usuario")["admin"]){
             $leads = Lead::where([["academia_id", session()->get("academia")], ["created_at", ">=", $inicio], ["created_at", "<=", $fim]])->get();

@@ -5,7 +5,10 @@ option = null, option = {
     series: [{
         name: "Business indicator",
         type: "gauge",
-        detail: { formatter: "{value}%" },
+        detail: { 
+            formatter: "{value}%",
+            fontSize: 5 
+        },
         axisLine: {
             lineStyle: {
                 color: [

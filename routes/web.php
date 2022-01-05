@@ -122,6 +122,7 @@ Route::middleware(['painel'])->group(function () {
         
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
+        Route::get('/dashboard/checklist/api', [\App\Http\Controllers\DashboardController::class, 'api_checklist'])->name("dashboard.checklist.api");
         Route::get('/dashboard/jornada', [\App\Http\Controllers\DashboardController::class, 'jornada'])->name("dashboard.jornada");
         Route::match(['get','post'], '/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
         Route::post('/dashboard/lead/status/alterar', [\App\Http\Controllers\AcademiaController::class, 'lead_status_alterar'])->name("dashboard.lead.status.alterar");

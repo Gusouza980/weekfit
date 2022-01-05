@@ -156,6 +156,18 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="mb-3">
+                                        <label for="cpf" class="form-label">CPF</label>
+                                        <input type="text" class="form-control" name="cpf" id="cpf" value="{{$academia->cpf}}" maxlength="20">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="mb-3">
+                                        <label for="cnpj" class="form-label">CNPJ</label>
+                                        <input type="text" class="form-control" name="cnpj" id="cnpj" value="{{$academia->cnpj}}" maxlength="20">
+                                    </div>
+                                </div>
                             </div>
         
                             <hr>

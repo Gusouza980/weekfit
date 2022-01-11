@@ -397,16 +397,22 @@
 
                     <div class="row">
                         <h4 class="card-title mb-4 mt-4">Informações de Contrato</h4>
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="mb-3">
                                 <label for="inicio_contrato" class="form-label">Início do Contrato</label>
                                 <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-4 col-12">
                             <div class="mb-3">
                                 <label for="fim_contrato" class="form-label">Fim do Contrato</label>
                                 <input type="date" class="form-control" name="fim_contrato" id="fim_contrato">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="mb-3">
+                                <label for="valor_contrato" class="form-label">Valor do Contrato (R$)</label>
+                                <input type="number" class="form-control" name="valor_contrato" id="valor_contrato" value="" min="0" step="0.01">
                             </div>
                         </div>
 

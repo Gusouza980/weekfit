@@ -5038,4 +5038,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
     cursor: pointer;
 }
 
+.card-lancamento{
+    width: 180px;
+    padding: 30px 0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.card-lancamento:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
 /*# sourceMappingURL=app.min.css.map */

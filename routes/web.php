@@ -49,6 +49,30 @@ Route::middleware(['painel'])->group(function () {
         Route::post('/dashboard/academias/getree/salvar/{getree}', [\App\Http\Controllers\AcademiaController::class, 'salvar_getree'])->name("painel.academia.getree.salvar");
         Route::get('/dashboard/academias/getree/remover/{getree}', [\App\Http\Controllers\AcademiaController::class, 'remover_getree'])->name("painel.academia.getree.remover");
 
+        // ROTAS DE LANÇAMENTO DE DASHBOARD
+        Route::get('/dashboard/academia/lancamentos/{academia}', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamentos'])->name("painel.academia.dashboard.lancamentos");
+        Route::post('/dashboard/academia/lancamentos/calcular/{academia}/', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamentos_calcular'])->name("painel.academia.dashboard.lancamentos.calcular");
+
+        // ADMINISTRATIVO
+        Route::post('/dashboard/academia/lancamentos/administrativo/{academia}/lancar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_administrativo'])->name("painel.academia.dashboard.lancamentos.administrativo.lancar");
+        Route::post('/dashboard/academia/lancamentos/administrativo/{lancamento}/salvar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_administrativo_salvar'])->name("painel.academia.dashboard.lancamentos.administrativo.salvar");
+        Route::get('/dashboard/academia/lancamentos/administrativo/{lancamento}/remover', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_administrativo_remover'])->name("painel.academia.dashboard.lancamentos.administrativo.remover");
+
+        // TÉCNICO
+        Route::post('/dashboard/academia/lancamentos/tecnico/{academia}/lancar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_tecnico'])->name("painel.academia.dashboard.lancamentos.tecnico.lancar");
+        Route::post('/dashboard/academia/lancamentos/tecnico/{lancamento}/salvar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_tecnico_salvar'])->name("painel.academia.dashboard.lancamentos.tecnico.salvar");
+        Route::get('/dashboard/academia/lancamentos/tecnico/{lancamento}/remover', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_tecnico_remover'])->name("painel.academia.dashboard.lancamentos.tecnico.remover");
+
+        // COMERCIAL
+        Route::post('/dashboard/academia/lancamentos/comercial/{academia}/lancar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_comercial'])->name("painel.academia.dashboard.lancamentos.comercial.lancar");
+        Route::post('/dashboard/academia/lancamentos/comercial/{lancamento}/salvar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_comercial_salvar'])->name("painel.academia.dashboard.lancamentos.comercial.salvar");
+        Route::get('/dashboard/academia/lancamentos/comercial/{lancamento}/remover', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_comercial_remover'])->name("painel.academia.dashboard.lancamentos.comercial.remover");
+
+        // MARKETING
+        Route::post('/dashboard/academia/lancamentos/marketing/{academia}/lancar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_marketing'])->name("painel.academia.dashboard.lancamentos.marketing.lancar");
+        Route::post('/dashboard/academia/lancamentos/marketing/{lancamento}/salvar', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_marketing_salvar'])->name("painel.academia.dashboard.lancamentos.marketing.salvar");
+        Route::get('/dashboard/academia/lancamentos/marketing/{lancamento}/remover', [\App\Http\Controllers\AcademiaController::class, 'dashboard_lancamento_marketing_remover'])->name("painel.academia.dashboard.lancamentos.marketing.remover");
+        
         //ROTAS REFERENTES AOS GRUPOS
         Route::get('/dashboard/configuracoes/grupos', [\App\Http\Controllers\GruposController::class, 'index'])->name("painel.configuracoes.grupos");
         Route::post('/dashboard/configuracoes/grupo/salvar/{grupo}', [\App\Http\Controllers\GruposController::class, 'salvar'])->name("painel.configuracoes.grupo.salvar");
@@ -123,14 +147,17 @@ Route::middleware(['painel'])->group(function () {
         // ROTAS REFERENTES AS DASHBOARDS
         Route::get('/dashboard/checklist', [\App\Http\Controllers\DashboardController::class, 'checklist'])->name("dashboard.checklist");
         Route::get('/dashboard/checklist/api', [\App\Http\Controllers\DashboardController::class, 'api_checklist'])->name("dashboard.checklist.api");
+        Route::get('/dashboard/resultados/api', [\App\Http\Controllers\DashboardController::class, 'api_resultados'])->name("dashboard.resultados.api");
         Route::get('/dashboard/jornada', [\App\Http\Controllers\DashboardController::class, 'jornada'])->name("dashboard.jornada");
         Route::match(['get','post'], '/dashboard/leads', [\App\Http\Controllers\AcademiaController::class, 'leads'])->name("dashboard.leads");
         Route::post('/dashboard/lead/status/alterar', [\App\Http\Controllers\AcademiaController::class, 'lead_status_alterar'])->name("dashboard.lead.status.alterar");
 
+
+
         // ROTAS DE VIDEOS
         Route::get('/dashboard/videos/{slug}', [\App\Http\Controllers\VideosController::class, 'exibir'])->name("painel.videos.exibir");
 
-        Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academiaa.getree.relatorio");
+        Route::get('/dashboard/academia/getree/relatorio/{academia}', [\App\Http\Controllers\AcademiaController::class, 'relatorio_getree'])->name("painel.academia.getree.relatorio");
         
     });
     

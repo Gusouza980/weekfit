@@ -27,7 +27,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card" style="min-height: 100vh;">
             <div class="card-body" style="overflow-x: scroll;">
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
@@ -72,7 +72,8 @@
                                                     <a class="dropdown-item" href="{{route('painel.academia.jornada.rebaixar', ['academia' => $academia])}}"><i class="bx bx-down-arrow-alt px-2"></i>Rebaixar Jornada @if($academia->semana_jornada > 1) {{$academia->mes_jornada . "/" . ($academia->semana_jornada - 1)}} @else {{($academia->mes_jornada - 1) . "/" . 4}} @endif</a>
                                                 @endif
                                             @endif
-                                            <a class="dropdown-item" href="{{route('painel.academiaa.getree.relatorio', ['academia' => $academia])}}"><i class="fas fa-paste px-2"></i>Relatório Getree</a>
+                                            <a class="dropdown-item" href="{{route('painel.academia.dashboard.lancamentos', ['academia' => $academia])}}"><i class="fas fa-paste px-2"></i>Dashboard</a>
+                                            <a class="dropdown-item" href="{{route('painel.academia.getree.relatorio', ['academia' => $academia])}}"><i class="fas fa-paste px-2"></i>Relatório Getree</a>
                                         </div>
                                     </div>
                                 </td>

@@ -36,5 +36,25 @@ class Academia extends Model
     public function leads(){
         return $this->hasMany(Lead::class);
     }
+
+    public function lancamentos(){
+        return $this->hasMany(DashboardLancamento::class);
+    }
+
+    public function lancamentos_administrativos(){
+        return $this->hasMany(DashboardResultadoAdministrativo::class);
+    }
+
+    public function lancamentos_tecnicos(){
+        return $this->hasMany(DashboardResultadoTecnico::class);
+    }
+
+    public function lancamentos_comerciais(){
+        return $this->hasMany(DashboardResultadoComercial::class);
+    }
+
+    public function lancamentos_marketings(){
+        return $this->hasMany(DashboardResultadoMarketing::class);
+    }
     
 }

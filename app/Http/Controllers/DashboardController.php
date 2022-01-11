@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Academia;
 use App\Models\Grupo;
 use Illuminate\Support\Facades\DB;
+use App\Models\DashboardLancamento;
 
 class DashboardController extends Controller
 {
@@ -136,5 +137,33 @@ class DashboardController extends Controller
         }
 
         return response()->json($departamentos);
+    }
+
+    public function api_resultados(){
+        if(session()->get("usuario")["admin"]){
+            if(session()->get("academia")){
+                $academia = Academia::find(session()->get("academia"));
+            }else{
+                toastr()->error("Selecione uma academia antes de utilizar essa página");
+                return redirect()->route("painel.index");
+            }
+        }else{
+            $academia = Academia::find(session()->get("usuario")["academia_id"]);
+        }
+        
+        $resultados = DashboardLancamento::where("academia_id", $academia->id)->orderBy("data", "DESC")->take(12)->get();
+        $dados["datas"] = [];
+        $dados["contratos"] = [];
+        $dados["mercados"] = [];
+        $dados["total_contratos"] = 0;
+        $dados["total_mercados"] = 0;
+        foreach($resultados->sortBy("data") as $resultado){
+            $dados["datas"][] = date("m/y", strtotime($resultado->data));
+            $dados["contratos"][] = $resultado->contrato;
+            $dados["total_contratos"] += $resultado->contrato;
+            $dados["mercados"][] = $resultado->mercado;
+            $dados["total_mercados"] += $resultado->mercado;
+        }
+        return response()->json($dados);
     }
 }

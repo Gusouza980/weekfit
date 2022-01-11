@@ -262,7 +262,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     @csrf
                                     <select name="academia" id="select-academia" class="form-select">
                                         <option value="0">Administrativo</option>
-                                        @foreach(\App\Models\Academia::where("ativo", true)->get() as $academia)
+                                        @foreach(\App\Models\Academia::where("ativo", true)->orderBy("nome", "ASC")->get() as $academia)
                                             <option value="{{$academia->id}}" @if(session()->get("academia") && session()->get("academia") == $academia->id) selected @endif>{{$academia->nome}}</option>
                                         @endforeach
                                     </select>
@@ -285,9 +285,9 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                         <li><a href="{{route('dashboard.checklist')}}" key="t-default">Checklist</a></li>
                                         <li><a href="{{route('dashboard.jornada')}}" key="t-default">Jornada</a></li>
                                         @if(session()->get("academia"))
-                                            <li><a href="{{route('painel.academiaa.getree.relatorio', ['academia' => session()->get("academia")])}}" key="t-default">Getree</a></li>
+                                            <li><a href="{{route('painel.academia.getree.relatorio', ['academia' => session()->get("academia")])}}" key="t-default">Getree</a></li>
                                         @else
-                                            <li><a href="{{route('painel.academiaa.getree.relatorio', ['academia' => session()->get("usuario")["academia_id"]])}}" key="t-default">Getree</a></li>
+                                            <li><a href="{{route('painel.academia.getree.relatorio', ['academia' => session()->get("usuario")["academia_id"]])}}" key="t-default">Getree</a></li>
                                         @endif
                                     </ul>
                                 </li>

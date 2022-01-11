@@ -23,6 +23,9 @@
     </script>
     <script>
         $(document).ready(function(){
+            
+            // DEPARTAMENTOS
+            
             function carrega_progresso_departamentos() {
                 var _token = $('meta[name="_token"]').attr('content');
                 $.ajaxSetup({
@@ -98,8 +101,111 @@
                 }, option && "object" == typeof option && myChart.setOption(option, !0);
             }
 
-            carrega_progresso_departamentos();
+            // RESULTADOS
 
+            function carrega_resultados() {
+                var _token = $('meta[name="_token"]').attr('content');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': _token
+                    }
+                });
+                $.ajax({
+                    url: "{!! route('dashboard.resultados.api') !!}",
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function(dados) {
+                        carrega_grafico_resultados(dados.datas,dados.contratos,dados.mercados);
+                        carrega_grafico_resultados_pizza(dados.total_contratos, dados.total_mercados);
+                    },
+                    error: function(ret) {
+                        console.log(ret);
+                    }
+                });
+            }
+
+            function carrega_grafico_resultados(datas, contratos, mercados){
+                dom = document.getElementById("line-chart"), myChart = echarts.init(dom), app = {};
+                option = null, option = {
+                    xAxis: {
+                        type: 'category',
+                        data: datas
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    series: [
+                        {
+                            color: "#B22222",
+                            name: 'Contrato',
+                            data: contratos,
+                            type: 'line',
+                            smooth: false
+                        },
+                        {
+                            color: "#005b96",
+                            name: 'Mercado',
+                            data: mercados,
+                            type: 'line',
+                            smooth: false
+                        }
+                    ],
+                    legend: {
+                        data: ['Contrato', "Mercado"]
+                    },
+                }, option && "object" == typeof option && myChart.setOption(option, !0);
+            }
+
+            function carrega_grafico_resultados_pizza(contratos, mercados){
+                dom = document.getElementById("pizza-chart"), myChart = echarts.init(dom), app = {};
+                option = null, option = {
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        top: '5%',
+                        left: 'center'
+                    },
+                    series: [
+                        {
+                            name: 'Resultados',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            avoidLabelOverlap: false,
+                            colorBy: 'data',
+                            itemStyle: {
+                                borderRadius: 10,
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            },
+                            label: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                label: {
+                                show: true,
+                                fontSize: '15',
+                                fontWeight: 'bold'
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                { value: contratos, itemStyle:{color: "#B22222"}, name: 'Contrato' },
+                                { value: mercados, itemStyle:{color: "#005b96"}, name: 'Mercado' },
+                            ]
+                        }
+                    ],
+                }, option && "object" == typeof option && myChart.setOption(option, !0);
+            }
+
+            carrega_progresso_departamentos();
+            carrega_resultados();
         })
     </script>
 @endsection

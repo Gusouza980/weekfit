@@ -13,6 +13,11 @@ use App\Models\Atividade;
 use App\Models\AtividadeAcademia;
 use App\Models\Lead;
 use App\Models\GetreeElemento;
+use App\Models\DashboardLancamento;
+use App\Models\DashboardResultadoAdministrativo;
+use App\Models\DashboardResultadoTecnico;
+use App\Models\DashboardResultadoComercial;
+use App\Models\DashboardResultadoMarketing;
 
 class AcademiaController extends Controller
 {
@@ -119,6 +124,7 @@ class AcademiaController extends Controller
 
         $academia->inicio_contrato = $request->inicio_contrato;
         $academia->fim_contrato = $request->fim_contrato;
+        $academia->valor_contrato = $request->valor_contrato;
 
         if($request->file("logo")){
             $academia->logo = $request->file('logo')->store(
@@ -239,6 +245,7 @@ class AcademiaController extends Controller
 
         $academia->inicio_contrato = $request->inicio_contrato;
         $academia->fim_contrato = $request->fim_contrato;
+        $academia->valor_contrato = $request->valor_contrato;
 
         if($request->file("logo")){
             Storage::delete($academia->logo);
@@ -622,5 +629,359 @@ class AcademiaController extends Controller
             "dados" => $dados,
             "academia" => $academia,
         ]);
+    }
+
+    public function dashboard_lancamentos(Academia $academia){
+        return view("painel.academia.dashboard_anual", ["academia" => $academia]);   
+    }
+
+    public function dashboard_lancamentos_calcular(Request $request, Academia $academia){
+        $lancamento = DashboardLancamento::where([["data", $request->data . "-01"], ["academia_id", $academia->id]])->first();
+        if(!$lancamento){
+            $lancamento = new DashboardLancamento;
+            $lancamento->data = $request->data . "-01";
+            $lancamento->academia_id = $academia->id;
+        }
+
+        $lancamento->contrato = $request->contrato;
+
+        $total = 0;
+        
+        $resultados_administrativo = DashboardResultadoAdministrativo::where([["data", $lancamento->data], ["academia_id", $academia->id]])->first();
+        if($resultados_administrativo) $total = $resultados_administrativo->total;
+
+        
+        $resultados_tecnico = DashboardResultadoTecnico::where([["data", $lancamento->data], ["academia_id", $academia->id]])->first();
+        if($resultados_tecnico) $total += $resultados_tecnico->total;
+
+        $resultados_comercial = DashboardResultadoComercial::where([["data", $lancamento->data], ["academia_id", $academia->id]])->first();
+        if($resultados_comercial) $total += $resultados_comercial->total;
+
+        $resultados_marketing = DashboardResultadoMarketing::where([["data", $lancamento->data], ["academia_id", $academia->id]])->first();
+        if($resultados_marketing) $total += $resultados_marketing->total;
+
+        $lancamento->mercado = $total;
+        $lancamento->save();
+
+        toastr()->success("Lançamento realizado !");
+        return redirect()->back();
+    }
+
+    // RESULTADOS ADMINISTRATIVOS
+
+    public function dashboard_lancamento_administrativo(Request $request, Academia $academia){
+        $lancamento = DashboardResultadoAdministrativo::where([["data", $request->data . "-01"], ["academia_id", $academia->id]])->first();
+        if($lancamento){
+            toastr()->error("Já existe lançamento para esse período.");
+            session()->flash("aba", "administrativo");
+            return redirect()->back();
+        }
+        $lancamento = new DashboardResultadoAdministrativo;
+        $lancamento->data = $request->data . "-01";
+        $lancamento->academia_id = $academia->id;
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->checklist_preco = $request->checklist_preco;
+        $lancamento->checklist_quantidade = $request->checklist_quantidade;
+        $lancamento->juros = $request->juros;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->checklist_preco * $lancamento->checklist_quantidade;
+        $total = $total + ($total * $lancamento->juros) / 100;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "administrativo");
+        toastr()->success("Lançamento realizado !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_administrativo_salvar(Request $request, DashboardResultadoAdministrativo $lancamento){
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->checklist_preco = $request->checklist_preco;
+        $lancamento->checklist_quantidade = $request->checklist_quantidade;
+        $lancamento->juros = $request->juros;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->checklist_preco * $lancamento->checklist_quantidade;
+        $total = $total + ($total * $lancamento->juros) / 100;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "administrativo");
+        toastr()->success("Lançamento salvo !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_administrativo_remover(DashboardResultadoAdministrativo $lancamento){
+        $lancamento->delete();
+        session()->flash("aba", "administrativo");
+        toastr()->success("Lançamento removido !");
+        return redirect()->back();
+    }
+
+    // RESULTADOS TÉCNICOS
+
+    public function dashboard_lancamento_tecnico(Request $request, Academia $academia){
+        $lancamento = DashboardResultadoTecnico::where([["data", $request->data . "-01"], ["academia_id", $academia->id]])->first();
+        if($lancamento){
+            toastr()->error("Já existe lançamento para esse período.");
+            session()->flash("aba", "tecnico");
+            return redirect()->back();
+        }
+        $lancamento = new DashboardResultadoTecnico;
+        $lancamento->data = $request->data . "-01";
+        $lancamento->academia_id = $academia->id;
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->programa_resultados_preco = $request->programa_resultados_preco;
+        $lancamento->programa_resultados_quantidade = $request->programa_resultados_quantidade;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->programa_resultados_preco * $lancamento->programa_resultados_quantidade;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "tecnico");
+        toastr()->success("Lançamento realizado !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_tecnico_salvar(Request $request, DashboardResultadoTecnico $lancamento){
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->programa_resultados_preco = $request->programa_resultados_preco;
+        $lancamento->programa_resultados_quantidade = $request->programa_resultados_quantidade;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->programa_resultados_preco * $lancamento->programa_resultados_quantidade;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "tecnico");
+        toastr()->success("Lançamento salvo !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_tecnico_remover(DashboardResultadoTecnico $lancamento){
+        $lancamento->delete();
+        session()->flash("aba", "tecnico");
+        toastr()->success("Lançamento removido !");
+        return redirect()->back();
+    }
+
+    // RESULTADOS COMERCIAIS
+
+    public function dashboard_lancamento_comercial(Request $request, Academia $academia){
+        $lancamento = DashboardResultadoComercial::where([["data", $request->data . "-01"], ["academia_id", $academia->id]])->first();
+        if($lancamento){
+            toastr()->error("Já existe lançamento para esse período.");
+            session()->flash("aba", "comercial");
+            return redirect()->back();
+        }
+        $lancamento = new DashboardResultadoComercial;
+        $lancamento->data = $request->data . "-01";
+        $lancamento->academia_id = $academia->id;
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->precificacao_preco = $request->precificacao_preco;
+        $lancamento->precificacao_quantidade = $request->precificacao_quantidade;
+        $lancamento->scripts_ligacao_preco = $request->scripts_ligacao_preco;
+        $lancamento->scripts_ligacao_quantidade = $request->scripts_ligacao_quantidade;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->precificacao_preco * $lancamento->precificacao_quantidade;
+        $total += $lancamento->scripts_ligacao_preco * $lancamento->scripts_ligacao_quantidade;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "comercial");
+        toastr()->success("Lançamento realizado !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_comercial_salvar(Request $request, DashboardResultadoComercial $lancamento){
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+        $lancamento->precificacao_preco = $request->precificacao_preco;
+        $lancamento->precificacao_quantidade = $request->precificacao_quantidade;
+        $lancamento->scripts_ligacao_preco = $request->scripts_ligacao_preco;
+        $lancamento->scripts_ligacao_quantidade = $request->scripts_ligacao_quantidade;
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->precificacao_preco * $lancamento->precificacao_quantidade;
+        $total += $lancamento->scripts_ligacao_preco * $lancamento->scripts_ligacao_quantidade;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "comercial");
+        toastr()->success("Lançamento salvo !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_comercial_remover(DashboardResultadoComercial $lancamento){
+        $lancamento->delete();
+        session()->flash("aba", "comercial");
+        toastr()->success("Lançamento removido !");
+        return redirect()->back();
+    }
+
+    // RESULTADOS MARKETING
+
+    public function dashboard_lancamento_marketing(Request $request, Academia $academia){
+        $lancamento = DashboardResultadoMarketing::where([["data", $request->data . "-01"], ["academia_id", $academia->id]])->first();
+        if($lancamento){
+            toastr()->error("Já existe lançamento para esse período.");
+            session()->flash("aba", "marketing");
+            return redirect()->back();
+        }
+        $lancamento = new DashboardResultadoMarketing;
+        $lancamento->data = $request->data . "-01";
+        $lancamento->academia_id = $academia->id;
+
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+
+        $lancamento->editorial_preco = $request->editorial_preco;
+        $lancamento->editorial_quantidade = $request->editorial_quantidade;
+
+        $lancamento->post_imagem_padrao_preco = $request->post_imagem_padrao_preco;
+        $lancamento->post_imagem_padrao_quantidade = $request->post_imagem_padrao_quantidade;
+
+        $lancamento->post_video_padrao_preco = $request->post_video_padrao_preco;
+        $lancamento->post_video_padrao_quantidade = $request->post_video_padrao_quantidade;
+
+        $lancamento->post_metodologia_preco = $request->post_metodologia_preco;
+        $lancamento->post_metodologia_quantidade = $request->post_metodologia_quantidade;
+
+        $lancamento->post_imagem_personalizado_preco = $request->post_imagem_personalizado_preco;
+        $lancamento->post_imagem_personalizado_quantidade = $request->post_imagem_personalizado_quantidade;
+
+        $lancamento->post_video_personalizado_preco = $request->post_video_personalizado_preco;
+        $lancamento->post_video_personalizado_quantidade = $request->post_video_personalizado_quantidade;
+
+        $lancamento->artigo_tecnico_preco = $request->artigo_tecnico_preco;
+        $lancamento->artigo_tecnico_quantidade = $request->artigo_tecnico_quantidade;
+
+        $lancamento->agendamento_publicacoes_monitoramento_preco = $request->agendamento_publicacoes_monitoramento_preco;
+        $lancamento->agendamento_publicacoes_monitoramento_quantidade = $request->agendamento_publicacoes_monitoramento_quantidade;
+
+        $lancamento->campanha_online_preco = $request->campanha_online_preco;
+        $lancamento->campanha_online_quantidade = $request->campanha_online_quantidade;
+
+        $lancamento->campanha_offline_preco = $request->campanha_offline_preco;
+        $lancamento->campanha_offline_quantidade = $request->campanha_offline_quantidade;
+
+        $lancamento->proposta_ativacao_parceria_preco = $request->proposta_ativacao_parceria_preco;
+        $lancamento->proposta_ativacao_parceria_quantidade = $request->proposta_ativacao_parceria_quantidade;
+
+        $lancamento->getree_preco = $request->getree_preco;
+        $lancamento->getree_quantidade = $request->getree_quantidade;
+
+        $lancamento->site_institucional_preco = $request->site_institucional_preco;
+        $lancamento->site_institucional_quantidade = $request->site_institucional_quantidade;
+
+        $lancamento->pagina_captura_preco = $request->pagina_captura_preco;
+        $lancamento->pagina_captura_quantidade = $request->pagina_captura_quantidade;
+
+        $lancamento->email_personalizado_preco = $request->email_personalizado_preco;
+        $lancamento->email_personalizado_quantidade = $request->email_personalizado_quantidade;
+
+        $lancamento->guias_manuais_preco = $request->guias_manuais_preco;
+        $lancamento->guias_manuais_quantidade = $request->guias_manuais_quantidade;
+
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->editorial_preco * $lancamento->editorial_quantidade;
+        $total += $lancamento->post_imagem_padrao_preco * $lancamento->post_imagem_padrao_quantidade;
+        $total += $lancamento->post_video_padrao_preco * $lancamento->post_video_padrao_quantidade;
+        $total += $lancamento->post_metodologia_preco * $lancamento->post_metodologia_quantidade;
+        $total += $lancamento->post_imagem_personalizado_preco * $lancamento->post_imagem_personalizado_quantidade;
+        $total += $lancamento->post_video_personalizado_preco * $lancamento->post_imagem_padrao_quantidade;
+        $total += $lancamento->artigo_tecnico_preco * $lancamento->artigo_tecnico_quantidade;
+        $total += $lancamento->campanha_online_preco * $lancamento->campanha_online_quantidade;
+        $total += $lancamento->campanha_offline_preco * $lancamento->campanha_offline_quantidade;
+        $total += $lancamento->proposta_ativacao_parceria_preco * $lancamento->proposta_ativacao_parceria_quantidade;
+        $total += $lancamento->getree_preco * $lancamento->getree_quantidade;
+        $total += $lancamento->site_institucional_preco * $lancamento->site_institucional_quantidade;
+        $total += $lancamento->pagina_captura_preco * $lancamento->pagina_captura_quantidade;
+        $total += $lancamento->email_personalizado_preco * $lancamento->email_personalizado_quantidade;
+        $total += $lancamento->guias_manuais_preco * $lancamento->guias_manuais_quantidade;
+
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "marketing");
+        toastr()->success("Lançamento realizado !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_marketing_salvar(Request $request, DashboardResultadoMarketing $lancamento){
+        $lancamento->jornada_mentoria_preco = $request->jornada_mentoria_preco;
+        $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
+
+        $lancamento->editorial_preco = $request->editorial_preco;
+        $lancamento->editorial_quantidade = $request->editorial_quantidade;
+
+        $lancamento->post_imagem_padrao_preco = $request->post_imagem_padrao_preco;
+        $lancamento->post_imagem_padrao_quantidade = $request->post_imagem_padrao_quantidade;
+
+        $lancamento->post_video_padrao_preco = $request->post_video_padrao_preco;
+        $lancamento->post_video_padrao_quantidade = $request->post_video_padrao_quantidade;
+
+        $lancamento->post_metodologia_preco = $request->post_metodologia_preco;
+        $lancamento->post_metodologia_quantidade = $request->post_metodologia_quantidade;
+
+        $lancamento->post_imagem_personalizado_preco = $request->post_imagem_personalizado_preco;
+        $lancamento->post_imagem_personalizado_quantidade = $request->post_imagem_personalizado_quantidade;
+
+        $lancamento->post_video_personalizado_preco = $request->post_video_personalizado_preco;
+        $lancamento->post_video_personalizado_quantidade = $request->post_video_personalizado_quantidade;
+
+        $lancamento->artigo_tecnico_preco = $request->artigo_tecnico_preco;
+        $lancamento->artigo_tecnico_quantidade = $request->artigo_tecnico_quantidade;
+        
+        $lancamento->agendamento_publicacoes_monitoramento_preco = $request->agendamento_publicacoes_monitoramento_preco;
+        $lancamento->agendamento_publicacoes_monitoramento_quantidade = $request->agendamento_publicacoes_monitoramento_quantidade;
+
+        $lancamento->campanha_online_preco = $request->campanha_online_preco;
+        $lancamento->campanha_online_quantidade = $request->campanha_online_quantidade;
+
+        $lancamento->campanha_offline_preco = $request->campanha_offline_preco;
+        $lancamento->campanha_offline_quantidade = $request->campanha_offline_quantidade;
+
+        $lancamento->proposta_ativacao_parceria_preco = $request->proposta_ativacao_parceria_preco;
+        $lancamento->proposta_ativacao_parceria_quantidade = $request->proposta_ativacao_parceria_quantidade;
+
+        $lancamento->getree_preco = $request->getree_preco;
+        $lancamento->getree_quantidade = $request->getree_quantidade;
+
+        $lancamento->site_institucional_preco = $request->site_institucional_preco;
+        $lancamento->site_institucional_quantidade = $request->site_institucional_quantidade;
+
+        $lancamento->pagina_captura_preco = $request->pagina_captura_preco;
+        $lancamento->pagina_captura_quantidade = $request->pagina_captura_quantidade;
+
+        $lancamento->email_personalizado_preco = $request->email_personalizado_preco;
+        $lancamento->email_personalizado_quantidade = $request->email_personalizado_quantidade;
+
+        $lancamento->guias_manuais_preco = $request->guias_manuais_preco;
+        $lancamento->guias_manuais_quantidade = $request->guias_manuais_quantidade;
+
+        $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
+        $total += $lancamento->editorial_preco * $lancamento->editorial_quantidade;
+        $total += $lancamento->post_imagem_padrao_preco * $lancamento->post_imagem_padrao_quantidade;
+        $total += $lancamento->post_video_padrao_preco * $lancamento->post_video_padrao_quantidade;
+        $total += $lancamento->post_metodologia_preco * $lancamento->post_metodologia_quantidade;
+        $total += $lancamento->post_imagem_personalizado_preco * $lancamento->post_imagem_personalizado_quantidade;
+        $total += $lancamento->post_video_personalizado_preco * $lancamento->post_imagem_padrao_quantidade;
+        $total += $lancamento->artigo_tecnico_preco * $lancamento->artigo_tecnico_quantidade;
+        $total += $lancamento->campanha_online_preco * $lancamento->campanha_online_quantidade;
+        $total += $lancamento->campanha_offline_preco * $lancamento->campanha_offline_quantidade;
+        $total += $lancamento->proposta_ativacao_parceria_preco * $lancamento->proposta_ativacao_parceria_quantidade;
+        $total += $lancamento->getree_preco * $lancamento->getree_quantidade;
+        $total += $lancamento->site_institucional_preco * $lancamento->site_institucional_quantidade;
+        $total += $lancamento->pagina_captura_preco * $lancamento->pagina_captura_quantidade;
+        $total += $lancamento->email_personalizado_preco * $lancamento->email_personalizado_quantidade;
+        $total += $lancamento->guias_manuais_preco * $lancamento->guias_manuais_quantidade;
+        $lancamento->total = $total;
+        $lancamento->save();
+        session()->flash("aba", "marketing");
+        toastr()->success("Lançamento salvo !");
+        return redirect()->back();
+    }
+
+    public function dashboard_lancamento_marketing_remover(DashboardResultadoMarketing $lancamento){
+        $lancamento->delete();
+        session()->flash("aba", "marketing");
+        toastr()->success("Lançamento removido !");
+        return redirect()->back();
     }
 }

@@ -141,7 +141,7 @@
                 <h5 class="card-title mt-4">Histórico de Notas</h5>
                 <div class="hori-timeline mt-4">
                     <div class="owl-carousel owl-theme navs-carousel events" id="timeline-carousel">
-                        @foreach($prospeccao->notas as $nota)
+                        @foreach($prospeccao->notas->sortByDesc("created_at") as $nota)
                             <div class="item event-list">
                                 <div>
                                     <div class="event-date">
@@ -193,7 +193,7 @@
     
 
     $(document).ready(function(){
-        $("#timeline-carousel").owlCarousel({ items: 1, loop: !1, margin: 0, nav: !0, navText: ["<i class='mdi mdi-chevron-left'></i>", "<i class='mdi mdi-chevron-right'></i>"], dots: !1, responsive: { 576: { items: 2 }, 768: { items: 3 } } });            
+        $("#timeline-carousel").owlCarousel({ items: 1, loop: !1, mouseDrag: false, margin: 0, nav: !0, navText: ["<i class='mdi mdi-chevron-left'></i>", "<i class='mdi mdi-chevron-right'></i>"], dots: !1, responsive: { 576: { items: 2 }, 768: { items: 3 } } });            
 
         // carregaCarousel();
     });

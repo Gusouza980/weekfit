@@ -73,22 +73,34 @@ class ProspeccoesController extends Controller
     }
 
     public function quantidade_prospeccoes_diarias(){
-        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%d/%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        foreach($quantidade_prospeccoes as $prospeccao){
+            $prospeccao->data = date("d/m", strtotime($prospeccao->data));
+        }
         return response()->json($quantidade_prospeccoes);
     }
 
     public function quantidade_prospeccoes_mensais(){
-        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%m/%y') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        foreach($quantidade_prospeccoes as $prospeccao){
+            $prospeccao->data = date("m/Y", strtotime($prospeccao->data . "-01"));
+        }
         return response()->json($quantidade_prospeccoes);
     }
 
     public function quantidade_prospeccoes_interacoes_diarias(){
-        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%d/%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        foreach($quantidade_prospeccoes as $prospeccao){
+            $prospeccao->data = date("d/m", strtotime($prospeccao->data));
+        }
         return response()->json($quantidade_prospeccoes);
     }
 
     public function quantidade_prospeccoes_interacoes_mensais(){
-        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%m/%y') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        $quantidade_prospeccoes = ProspeccaoNota::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m') data"))->orderBy("data", "ASC")->groupBy('data')->get();
+        foreach($quantidade_prospeccoes as $prospeccao){
+            $prospeccao->data = date("m/Y", strtotime($prospeccao->data . "-01"));
+        }
         return response()->json($quantidade_prospeccoes);
     }
 }

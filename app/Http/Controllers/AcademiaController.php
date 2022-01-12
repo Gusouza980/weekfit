@@ -683,10 +683,11 @@ class AcademiaController extends Controller
         $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
         $lancamento->checklist_preco = $request->checklist_preco;
         $lancamento->checklist_quantidade = $request->checklist_quantidade;
+        $lancamento->juros_valor = $request->juros_valor;
         $lancamento->juros = $request->juros;
         $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
         $total += $lancamento->checklist_preco * $lancamento->checklist_quantidade;
-        $total = $total + ($total * $lancamento->juros) / 100;
+        $total += ($lancamento->juros_valor * $lancamento->juros) / 100;
         $lancamento->total = $total;
         $lancamento->save();
         session()->flash("aba", "administrativo");
@@ -699,10 +700,11 @@ class AcademiaController extends Controller
         $lancamento->jornada_mentoria_quantidade = $request->jornada_mentoria_quantidade;
         $lancamento->checklist_preco = $request->checklist_preco;
         $lancamento->checklist_quantidade = $request->checklist_quantidade;
+        $lancamento->juros_valor = $request->juros_valor;
         $lancamento->juros = $request->juros;
         $total = $lancamento->jornada_mentoria_preco * $lancamento->jornada_mentoria_quantidade;
         $total += $lancamento->checklist_preco * $lancamento->checklist_quantidade;
-        $total = $total + ($total * $lancamento->juros) / 100;
+        $total += ($lancamento->juros_valor * $lancamento->juros) / 100;
         $lancamento->total = $total;
         $lancamento->save();
         session()->flash("aba", "administrativo");

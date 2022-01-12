@@ -10,7 +10,11 @@
     </div>
 </div>
 @php
-    $academia = \App\Models\Academia::find(session()->get("usuario")["academia_id"]);
+    if(session()->get("academia")){
+        $academia = \App\Models\Academia::find(session()->get("academia"));
+    }else{
+        $academia = \App\Models\Academia::find(session()->get("usuario")["academia_id"]);
+    }
 @endphp
 <div class="row">
     <div class="col-12">

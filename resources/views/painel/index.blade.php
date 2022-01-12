@@ -2,7 +2,7 @@
 
 
 @section('conteudo')
-    @if(session()->get("usuario")["admin"])
+    @if(session()->get("usuario")["admin"] && !session()->get("academia"))
         @include('painel.includes.analytics')
     @else
         @include('painel.includes.dashboard_geral')

@@ -92,7 +92,7 @@
                                                 @php
                                                     $ultimo_valor = null
                                                 @endphp
-                                                @foreach($academia->lancamentos as $lancamento)
+                                                @foreach($academia->lancamentos->sortBy("data") as $lancamento)
                                                     @php
                                                         $valor = $lancamento->mercado - $lancamento->contrato;
                                                     @endphp
@@ -130,7 +130,7 @@
                                 @php
                                     $ultimo_valor = null
                                 @endphp
-                                @foreach($academia->lancamentos_administrativos as $lancamento)
+                                @foreach($academia->lancamentos_administrativos->sortBy("data") as $lancamento)
                                     @php
                                         $valor = $lancamento->total;
                                     @endphp
@@ -183,9 +183,14 @@
                                                                     <input type="number" class="form-control" name="checklist_quantidade"
                                                                         aria-describedby="helpId" step="1" placeholder="" value="{{$lancamento->checklist_quantidade}}" required>
                                                                 </div>
-                                                                <h5 class="card-title mt-4">Taxa de Juros do Cartão (%)</h5>
+                                                                <h5 class="card-title mt-4">Taxa de Juros do Cartão</h5>
                                                                 <div class="form-group col-12 col-md-6 mt-2">
                                                                     <label for="">Valor</label>
+                                                                    <input type="number" class="form-control" name="juros_valor"
+                                                                        aria-describedby="helpId" step="0.01" placeholder="" value="{{$lancamento->juros_valor}}" required>
+                                                                </div>
+                                                                <div class="form-group col-12 col-md-6 mt-2">
+                                                                    <label for="">Taxa (%)</label>
                                                                     <input type="number" class="form-control" name="juros"
                                                                         aria-describedby="helpId" step="0.01" placeholder="" value="{{$lancamento->juros}}" required>
                                                                 </div>
@@ -213,7 +218,7 @@
                                 @php
                                     $ultimo_valor = null
                                 @endphp
-                                @foreach($academia->lancamentos_tecnicos as $lancamento)
+                                @foreach($academia->lancamentos_tecnicos->sortBy("data") as $lancamento)
                                     @php
                                         $valor = $lancamento->total;
                                     @endphp
@@ -290,7 +295,7 @@
                                 @php
                                     $ultimo_valor = null
                                 @endphp
-                                @foreach($academia->lancamentos_comerciais as $lancamento)
+                                @foreach($academia->lancamentos_comerciais->sortBy("data") as $lancamento)
                                     @php
                                         $valor = $lancamento->total;
                                     @endphp
@@ -378,7 +383,7 @@
                                 @php
                                     $ultimo_valor = null
                                 @endphp
-                                @foreach($academia->lancamentos_marketings as $lancamento)
+                                @foreach($academia->lancamentos_marketings->sortBy("data") as $lancamento)
                                     @php
                                         $valor = $lancamento->total;
                                     @endphp
@@ -772,9 +777,14 @@
                                 <input type="number" class="form-control" name="checklist_quantidade"
                                     aria-describedby="helpId" step="1" placeholder="" value="0" required>
                             </div>
-                            <h5 class="card-title mt-4">Taxa de Juros do Cartão (%)</h5>
+                            <h5 class="card-title mt-4">Taxa de Juros do Cartão</h5>
                             <div class="form-group col-12 col-md-6 mt-2">
                                 <label for="">Valor</label>
+                                <input type="number" class="form-control" name="juros_valor"
+                                    aria-describedby="helpId" step="0.01" placeholder="" value="0" required>
+                            </div>
+                            <div class="form-group col-12 col-md-6 mt-2">
+                                <label for="">Taxa (%)</label>
                                 <input type="number" class="form-control" name="juros"
                                     aria-describedby="helpId" step="0.01" placeholder="" value="0" required>
                             </div>

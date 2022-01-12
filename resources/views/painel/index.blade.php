@@ -41,7 +41,8 @@
                         for(var i = 0; i < 4; i++){
                             if(data[i].total_atividades > 0){
                                 var resultado = (data[i].total_atividades_completas * 100) / data[i].total_atividades;
-                                $(".grafico_departamento[did='"+i+"']").val(resultado);
+                                $(".grafico_departamento[did='"+i+"']").val(resultado.toFixed(0)).trigger('change');
+                                $(".grafico_departamento[did='"+i+"']").val(resultado.toFixed(0) + "%");
                             }else{
                                 $(".grafico_departamento[did='"+i+"']").val("0")
                             }
@@ -96,7 +97,7 @@
                             length: '50%',
                             width: 5
                         },
-                        data: [{ value: valor, name: "" }]
+                        data: [{ value: valor.toFixed(2), name: "" }]
                     }]
                 }, option && "object" == typeof option && myChart.setOption(option, !0);
             }

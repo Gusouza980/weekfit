@@ -116,25 +116,25 @@
                             <div class="row mt-4">
                                 <div class="col-12 col-lg-3">
                                     <div class="text-center" dir="ltr">
-                                        <h5 class="font-size-14 mb-3">Administrativo</h5>
+                                        <h5 class="font-size-14 mb-3">Administrativo (%)</h5>
                                         <input class="knob grafico_departamento" did="0" data-width="150" data-fgcolor="{{\Functions::corDepartamento(0)}}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">
                                     <div class="text-center" dir="ltr">
-                                        <h5 class="font-size-14 mb-3">Técnico</h5>
+                                        <h5 class="font-size-14 mb-3">Técnico (%)</h5>
                                         <input class="knob grafico_departamento" did="1"data-width="150" data-fgcolor="{{\Functions::corDepartamento(1)}}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">
                                     <div class="text-center" dir="ltr">
-                                        <h5 class="font-size-14 mb-3">Comercial</h5>
+                                        <h5 class="font-size-14 mb-3">Comercial (%)</h5>
                                         <input class="knob grafico_departamento" did="2"data-width="150" data-fgcolor="{{\Functions::corDepartamento(2)}}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">
                                     <div class="text-center" dir="ltr">
-                                        <h5 class="font-size-14 mb-3">Marketing</h5>
+                                        <h5 class="font-size-14 mb-3">Marketing (%)</h5>
                                         <input class="knob grafico_departamento" did="3"data-width="150" data-fgcolor="{{\Functions::corDepartamento(3)}}">
                                     </div>
                                 </div>
@@ -147,3 +147,6 @@
         </div>
     </div>
 </div>
+@if($academia->jornada)
+
+@endif

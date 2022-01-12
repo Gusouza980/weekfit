@@ -33,6 +33,60 @@
 
 @section('conteudo')
 <div class="row mt-3">
+    <div class="col-12 col-md-4">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <p class="text-muted fw-medium">Aguardando</p>
+                        <h4 class="mb-0">{{$leads->where("status", 0)->count()}}</h4>
+                    </div>
+
+                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                        <span class="avatar-title">
+                            <i class="bx bx-time-five font-size-24"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <p class="text-muted fw-medium">Conversando</p>
+                        <h4 class="mb-0">{{$leads->where("status", 1)->count()}}</h4>
+                    </div>
+
+                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                        <span class="avatar-title">
+                            <i class="bx bxs-chat font-size-24"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <p class="text-muted fw-medium">Convertido</p>
+                        <h4 class="mb-0">{{$leads->where("status", 2)->count()}}</h4>
+                    </div>
+
+                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                        <span class="avatar-title">
+                            <i class="bx bx-check-double font-size-24"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-x: scroll;">

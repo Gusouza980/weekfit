@@ -68,6 +68,11 @@ class DashboardController extends Controller
             $academia = Academia::find(session()->get("usuario")["academia_id"]);
         }
 
+        if(!$academia->jornada){
+            toastr()->error("Você não está em uma jornada");
+            return redirect()->route("painel.index");
+        }
+
         $meses = [];
         $meses["total_atividades"] = 0;
         $meses["total_atividades_completas"] = 0;

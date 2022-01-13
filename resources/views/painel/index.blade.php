@@ -117,6 +117,13 @@
                     dataType: 'JSON',
                     success: function(dados) {
                         carrega_grafico_resultados(dados.datas,dados.contratos,dados.mercados);
+                        if(dados.total_mercados > dados.total_contratos){
+                            html = '<i class="fas fa-angle-up" style="color: green; margin: 0 8px 0 0px;"></i><span style="color: green;">R$' + number_format(dados.total_mercados - dados.total_contratos, 2, ",", ".") + '</span>'
+                            $("#resultado-pizza-titulo").html(html);
+                        }else{
+                            html = '<i class="fas fa-angle-down" style="color: red; margin: 0 8px 0 0px;"></i><span style="color: red;">R$' + number_format(dados.total_mercados - dados.total_contratos, 2, ",", ".") + '</span>'
+                            $("#resultado-pizza-titulo").html(html);
+                        }
                         carrega_grafico_resultados_pizza(dados.total_contratos, dados.total_mercados);
                     },
                     error: function(ret) {
@@ -164,7 +171,8 @@
                 dom = document.getElementById("pizza-chart"), myChart = echarts.init(dom), app = {};
                 option = null, option = {
                     tooltip: {
-                        trigger: 'item'
+                        trigger: 'item',
+                        formatter: 'R${c}' 
                     },
                     legend: {
                         top: '5%',
@@ -184,14 +192,17 @@
                             },
                             label: {
                                 show: false,
-                                position: 'center'
+                                position: 'center',
+                                formatter: '{d}%'
                             },
                             emphasis: {
                                 label: {
-                                show: true,
-                                fontSize: '15',
-                                fontWeight: 'bold'
-                                }
+                                    show: true,
+                                    fontSize: '15',
+                                    fontWeight: 'bold',
+                                    formatter: '{d}%'
+                                },
+                                focus: 'self',
                             },
                             labelLine: {
                                 show: false
@@ -203,6 +214,30 @@
                         }
                     ],
                 }, option && "object" == typeof option && myChart.setOption(option, !0);
+            }
+
+            function number_format (number, decimals, dec_point, thousands_sep) {
+                // Strip all characters but numerical ones.
+                number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+                var n = !isFinite(+number) ? 0 : +number,
+                    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                    s = '',
+                    toFixedFix = function (n, prec) {
+                        var k = Math.pow(10, prec);
+                        return '' + Math.round(n * k) / k;
+                    };
+                // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+                s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+                if (s[0].length > 3) {
+                    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+                }
+                if ((s[1] || '').length < prec) {
+                    s[1] = s[1] || '';
+                    s[1] += new Array(prec - s[1].length + 1).join('0');
+                }
+                return s.join(dec);
             }
 
             carrega_progresso_departamentos();

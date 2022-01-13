@@ -104,7 +104,7 @@
                                                                 @if($ultimo_valor < $valor)
                                                                     <i class="fas fa-angle-up" style="color: green; margin: 0 3px 0 5px;"></i><span style="color: green;">{{number_format((($valor * 100 / $ultimo_valor) - 100), 2, ",", ".")}}%</span>
                                                                 @else
-                                                                    <i class="fas fa-angle-down" style="color: red;"></i><span style="color: red;">{{number_format((($valor * 100 / $ultimo_valor) - 100) * -1, 2, ",", ".")}}%</span>
+                                                                    <i class="fas fa-angle-down" style="color: red; margin: 0 3px 0 5px;"></i><span style="color: red;">{{number_format((($valor * 100 / $ultimo_valor) - 100) * -1, 2, ",", ".")}}%</span>
                                                                 @endif
                                                             @endif
                                                             @php

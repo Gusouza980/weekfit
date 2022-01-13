@@ -94,7 +94,9 @@
                         <div id="line-chart" class="e-charts mt-5"></div>
                     </div>
                     <div class="col-3 text-center mt-5">
-                        <h5 class="font-size-14 mb-n3"></h5>
+                        <div class="mx-auto mb-3" style="width: 200px;">
+                            <h5 class="mb-n3 py-2" style="font-size: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);" id="resultado-pizza-titulo"></h5>
+                        </div>
                         <div id="pizza-chart" class="e-charts"></div>
                     </div>
                 </div>

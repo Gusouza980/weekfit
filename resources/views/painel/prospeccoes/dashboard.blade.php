@@ -121,6 +121,7 @@
                     type: 'GET',
                     dataType: 'JSON',
                     success: function(data) {
+                        console.log(data);
                         var datas = [];
                         var quantidades = [];
                         data.forEach(element => {

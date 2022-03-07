@@ -19,7 +19,7 @@
 
 @section('conteudo')
     <div class="row mt-3">
-        <div class="col-xl-6">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Gráfico diário de prospecções</h4>
@@ -27,11 +27,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Gráfico mensal de prospecções</h4>
-                    <div id="graficoQuantidadeProspeccoesMensais" class="e-charts"></div>
+                    <h4 class="card-title mb-4">Gráfico diário de interações</h4>
+                    <div id="graficoQuantidadeInteracoesDiarias" class="e-charts"></div>
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Gráfico diário de interações</h4>
-                    <div id="graficoQuantidadeInteracoesDiarias" class="e-charts"></div>
+                    <h4 class="card-title mb-4">Gráfico mensal de prospecções</h4>
+                    <div id="graficoQuantidadeProspeccoesMensais" class="e-charts"></div>
                 </div>
             </div>
         </div>

@@ -73,7 +73,7 @@ class ProspeccoesController extends Controller
     }
 
     public function quantidade_prospeccoes_diarias(){
-        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') data"))->where("data", ">=", date("Y-m-d", strtotime("- 15 days")))->orderBy("data", "ASC")->groupBy('data')->get();
+        $quantidade_prospeccoes = Prospeccao::select(DB::raw('count(id) as quantidade'), DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') data"))->where("created_at", ">=", date("Y-m-d", strtotime("- 15 days")))->orderBy("data", "ASC")->groupBy('data')->get();
         // dd($quantidade_prospeccoes);
         foreach($quantidade_prospeccoes as $prospeccao){
             $prospeccao->data = date("d/m", strtotime($prospeccao->data));

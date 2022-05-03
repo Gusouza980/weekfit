@@ -26,7 +26,7 @@
     }
 
     div.setor-nav div.row div.col {
-        background-color: rgba(255, 255, 255, 0.726);
+        background-color: #f4f4f4;
         transition: .32s;
         cursor: pointer;
     }
@@ -61,27 +61,27 @@ if (session()->get('academia')) {
                     <div class="row align-items-end">
                         <div class="col px-4 mt-3">
                             <img src="{{ asset('admin/images/niveis/skate.png') }}"
-                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 0) opacity: 0.6;   filter: grayscale(100%); @endif"
+                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 0) opacity: 0.1;   filter: grayscale(100%); @endif"
                                 alt="">
                         </div>
                         <div class="col px-4 mt-3">
                             <img src="{{ asset('admin/images/niveis/patinete.png') }}"
-                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 1) opacity: 0.6;   filter: grayscale(100%); @endif"
+                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 1) opacity: 0.1;   filter: grayscale(100%); @endif"
                                 alt="">
                         </div>
                         <div class="col px-4 mt-3">
                             <img src="{{ asset('admin/images/niveis/bicicleta.png') }}"
-                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 2) opacity: 0.6;   filter: grayscale(100%); @endif"
+                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 2) opacity: 0.1;   filter: grayscale(100%); @endif"
                                 alt="">
                         </div>
                         <div class="col px-4 mt-3">
                             <img src="{{ asset('admin/images/niveis/motocicleta.png') }}"
-                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 3) opacity: 0.6;   filter: grayscale(100%); @endif"
+                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 3) opacity: 0.1;   filter: grayscale(100%); @endif"
                                 alt="">
                         </div>
                         <div class="col px-4 mt-3">
                             <img src="{{ asset('admin/images/niveis/carro.png') }}"
-                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 4) opacity: 0.6;   filter: grayscale(100%); @endif"
+                                style="max-width: 65%; max-height: 80px; @if ($academia->nivel != 4) opacity: 0.1;   filter: grayscale(100%); @endif"
                                 alt="">
                         </div>
                     </div>

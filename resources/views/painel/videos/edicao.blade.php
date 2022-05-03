@@ -62,7 +62,10 @@
     </div>
     <!-- end col -->
 </div>
-<!-- end row -->
+
+@livewire('videos.editar.arquivos', ["video" => $video])
+@livewire('videos.editar.arquivos.modal-cadastro', ["video" => $video])
+
 @endsection
 
 @section('scripts')

@@ -27,6 +27,7 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     @toastr_css
     @yield("styles")
+    @livewireStyles
 </head>
 
 <body data-sidebar="dark">
@@ -596,12 +597,13 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
     <script src="{{ asset('admin/libs/node-waves/waves.min.js') }}"></script>
     @toastr_js
     @toastr_render
-
+    @livewireScripts
     <!-- dashboard init -->
     {{-- <script src="{{asset('admin/js/pages/dashboard.init.js')}}"></script> --}}
 
     <!-- App js -->
     @yield("scripts")
+    @stack("scripts")
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script>
         $(document).ready(function() {

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class VideoArquivo extends Model
 {
     use HasFactory;
 
-    public function arquivos(){
-        return $this->hasMany(VideoArquivo::class);
+    public function video(){
+        return $this->belongsTo(Video::class);
     }
 }

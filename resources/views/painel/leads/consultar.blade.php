@@ -2,150 +2,156 @@
 
 @section('styles')
     <!-- DataTables -->
-    <link href="{{asset('admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('admin/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('admin/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
 @endsection
 
 @section('titulo')
-    Leads: {{date("d/m/Y", strtotime($inicio))}} - {{date("d/m/Y", strtotime($fim))}}
+    Leads: {{ date('d/m/Y', strtotime($inicio)) }} - {{ date('d/m/Y', strtotime($fim)) }}
 @endsection
 
 @section('botoes')
-    <form action="{{route('dashboard.leads')}}" method="POST">
+    <form action="{{ route('dashboard.leads') }}" method="POST">
         @csrf
         <div class="row justify-content-end">
             <div class="form-group" style="width: 200px;">
                 <label for="">Início</label>
-                <input type="date" name="inicio" id="" class="form-control" value="{{date('Y-m-d', strtotime($inicio))}}" placeholder="" aria-describedby="helpId">
+                <input type="date" name="inicio" id="" class="form-control" value="{{ date('Y-m-d', strtotime($inicio)) }}"
+                    placeholder="" aria-describedby="helpId">
             </div>
             {{-- / --}}
             <div class="form-group" style="width: 200px;">
                 <label for="">Fim</label>
-                <input type="date" name="fim" id="" class="form-control" value="{{date('Y-m-d', strtotime($fim))}}" placeholder="" max="{{date('Y-m-t')}}" aria-describedby="helpId">
+                <input type="date" name="fim" id="" class="form-control" value="{{ date('Y-m-d', strtotime($fim)) }}"
+                    placeholder="" max="{{ date('Y-m-t') }}" aria-describedby="helpId">
             </div>
             <div class="form-group" style="width: 100px;">
                 <button class="btn btn-primary mt-4">Filtrar</button>
             </div>
         </div>
-        
+
     </form>
 @endsection
 
 @section('conteudo')
-<div class="row mt-3">
-    <div class="col-12 col-md-4">
-        <div class="card mini-stats-wid">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <p class="text-muted fw-medium">Aguardando</p>
-                        <h4 class="mb-0">{{$leads->where("status", 0)->count()}}</h4>
-                    </div>
+    <div class="row mt-3">
+        <div class="col-12 col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <p class="text-muted fw-medium">Aguardando</p>
+                            <h4 class="mb-0">{{ $leads->where('status', 0)->count() }}</h4>
+                        </div>
 
-                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
-                        <span class="avatar-title">
-                            <i class="bx bx-time-five font-size-24"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="card mini-stats-wid">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <p class="text-muted fw-medium">Conversando</p>
-                        <h4 class="mb-0">{{$leads->where("status", 1)->count()}}</h4>
-                    </div>
-
-                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
-                        <span class="avatar-title">
-                            <i class="bx bxs-chat font-size-24"></i>
-                        </span>
+                        <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                            <span class="avatar-title">
+                                <i class="bx bx-time-five font-size-24"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="card mini-stats-wid">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <p class="text-muted fw-medium">Convertido</p>
-                        <h4 class="mb-0">{{$leads->where("status", 2)->count()}}</h4>
-                    </div>
+        <div class="col-12 col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <p class="text-muted fw-medium">Conversando</p>
+                            <h4 class="mb-0">{{ $leads->where('status', 1)->count() }}</h4>
+                        </div>
 
-                    <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
-                        <span class="avatar-title">
-                            <i class="bx bx-check-double font-size-24"></i>
-                        </span>
+                        <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                            <span class="avatar-title">
+                                <i class="bx bxs-chat font-size-24"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body" style="overflow-x: scroll;">
-                <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                    <thead>
-                        <tr>
-                            <th>Formulário</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Celular</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>Data</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+        <div class="col-12 col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <p class="text-muted fw-medium">Convertido</p>
+                            <h4 class="mb-0">{{ $leads->where('status', 2)->count() }}</h4>
+                        </div>
 
-
-                    <tbody>
-
-                        @foreach($leads as $lead)
+                        <div class="mini-stat-icon avatar-sm rounded-circle bg-laranja align-self-center">
+                            <span class="avatar-title">
+                                <i class="bx bx-check-double font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="overflow-x: scroll;">
+                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                        <thead>
                             <tr>
-                                <td style="vertical-align: middle;">{{$lead->formulario}}</td>
-                                <td style="vertical-align: middle;">{{$lead->nome}}</td>
-                                <td style="vertical-align: middle;">{{$lead->email}}</td>
-                                <td style="vertical-align: middle;">{{$lead->celular}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_uf}}</td>
-                                <td style="vertical-align: middle;">{{$lead->ip_cidade}}</td>
-                                <td style="vertical-align: middle;">{{date("d/m/Y H:i:s", strtotime($lead->created_at))}}</td>
-                                <td style="vertical-align: middle;">
-                                    <select class="form-control" name="status" lid="{{$lead->id}}" id="">
-                                        @foreach(config("globals.lead_status") as $key => $status)
-                                            <option value="{{$key}}" @if($lead->status == $key) selected @endif>{{$status}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
+                                <th>Formulário</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Celular</th>
+                                <th>Cidade</th>
+                                <th>Estado</th>
+                                <th>Data</th>
+                                <th>Status</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> <!-- end col -->
-</div> <!-- end row -->
+                        </thead>
 
+
+                        <tbody>
+
+                            @foreach ($leads as $lead)
+                                <tr>
+                                    <td style="vertical-align: middle;">{{ $lead->formulario }}</td>
+                                    <td style="vertical-align: middle;">{{ $lead->nome }}</td>
+                                    <td style="vertical-align: middle;">{{ $lead->email }}</td>
+                                    <td style="vertical-align: middle;">{{ $lead->celular }}</td>
+                                    <td style="vertical-align: middle;">{{ $lead->ip_uf }}</td>
+                                    <td style="vertical-align: middle;">{{ $lead->ip_cidade }}</td>
+                                    <td style="vertical-align: middle;">
+                                        {{ date('d/m/Y H:i:s', strtotime($lead->created_at)) }}</td>
+                                    <td style="vertical-align: middle;">
+                                        <select class="form-control" name="status" lid="{{ $lead->id }}" id="">
+                                            @foreach (config('globals.lead_status') as $key => $status)
+                                                <option value="{{ $key }}"
+                                                    @if ($lead->status == $key) selected @endif>{{ $status }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
 @endsection
 
 @section('scripts')
     <!-- Required datatable js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script src="{{asset('admin/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('admin/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.10/sorting/datetime-moment.js"></script>
     <script>
         $(document).ready(function() {
-            $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm:ss' );    //Formatação com Hora
-            $.fn.dataTable.moment('DD/MM/YYYY');    //Formatação sem Hora
-            $('#datatable').DataTable( {
-                language:{
+            $.fn.dataTable.moment('DD/MM/YYYY HH:mm:ss'); //Formatação com Hora
+            $.fn.dataTable.moment('DD/MM/YYYY'); //Formatação sem Hora
+            $('#datatable').DataTable({
+                language: {
                     "emptyTable": "Nenhum registro encontrado",
                     "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
                     "infoEmpty": "Mostrando 0 até 0 de 0 registros",
@@ -276,9 +282,11 @@
                     "searchPlaceholder": "Digite um termo para pesquisar",
                     "thousands": "."
                 },
-                order: [[6, "desc"]] 
-            } );
-            $("select[name='status']").change(function(){
+                order: [
+                    [6, "desc"]
+                ]
+            });
+            $("select[name='status']").change(function() {
                 var status = $(this).val();
                 var lead = $(this).attr("lid");
                 var _token = $('meta[name="_token"]').attr('content');
@@ -305,6 +313,6 @@
                     },
                 });
             })
-        } );    
-    </script> 
+        });
+    </script>
 @endsection

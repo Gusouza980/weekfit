@@ -35,6 +35,10 @@
         background-color: #e9e9e9;
     }
 
+    main.aba-content:not(main.aba-content.aba1) {
+        display: none;
+    }
+
 </style>
 @php
 if (session()->get('academia')) {

@@ -30,7 +30,7 @@
                             <input type="file" class="form-control mt-2" name="" id="" placeholder="" wire:model="caminho">
                         </div>
                         <div class="d-grid gap-2 mt-3">
-                          <button type="submit" name="" id="" class="btn btn-primary" wire:loading.attr="disabled" wire:target="caminho">Salvar</button>
+                          <button type="submit" name="" id="" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
                 </form>

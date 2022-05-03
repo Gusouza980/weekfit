@@ -28,7 +28,7 @@
                         <div class="form-group col-12 col-lg-12">
                             <label for="" class="form-label"></label>
                             <input type="file" class="form-control mt-2" name="" id="" placeholder="" wire:model="caminho">
-                            <small>{{ $caminho }}</small>
+                            <small>{{ $this->caminho }}</small>
                         </div>
                         <div class="d-grid gap-2 mt-3">
                           <button type="submit" name="" id="" class="btn btn-primary">Salvar</button>

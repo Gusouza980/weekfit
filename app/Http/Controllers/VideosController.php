@@ -29,8 +29,8 @@ class VideosController extends Controller
     }
 
     public function editar(Video $video){
-        phpinfo();
-        die();
+        // phpinfo();
+        // die();
         return view("painel.videos.edicao", ["video" => $video]);
     }
 

@@ -10,7 +10,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row align-items-end">
                     @foreach($videos as $video)
                         <div class="col-xl-6 mb-3">
                             <h4 class="card-title">{{$video->titulo}}</h4>

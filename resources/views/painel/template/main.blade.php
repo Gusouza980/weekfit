@@ -131,7 +131,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="https://www.instagram.com/gefit.br"
                                             target="_blank">
-                                            <img src="{{ asset('admin/images/icone_instagram.png') }}" alt="Instagram">
+                                            <img src="{{ asset('admin/images/icone_instagram.png') }}"
+                                                alt="Instagram">
                                             <span>Instagram</span>
                                         </a>
                                     </div>
@@ -233,10 +234,10 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" @if ($usuario->academia && $usuario->academia->logo) src="{{ asset($usuario->academia->logo) }}"
-                        @else src="{{ asset('admin/images/logos/gefit.png') }}"
-                            @endif
-                            alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user"
+                                @if ($usuario->academia && $usuario->academia->logo) src="{{ asset($usuario->academia->logo) }}"
+                        @else src="{{ asset('admin/images/logos/gefit.png') }}" @endif
+                                alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1"
                                 key="t-henry">{{ session()->get('usuario')['nome'] }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -283,7 +284,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <option value="0">Administrativo</option>
                                     @foreach (\App\Models\Academia::where('ativo', true)->orderBy('nome', 'ASC')->get()
     as $academia)
-                                        <option value="{{ $academia->id }}" @if (session()->get('academia') && session()->get('academia') == $academia->id) selected @endif>
+                                        <option value="{{ $academia->id }}"
+                                            @if (session()->get('academia') && session()->get('academia') == $academia->id) selected @endif>
                                             {{ $academia->nome }}</option>
                                     @endforeach
                                 </select>
@@ -303,7 +305,9 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <span key="t-dashboards">Dashboards</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ route('dashboard.checklist') }}" key="t-default">Checklist</a></li>
+                                    <li><a href="{{ route('painel.index') }}" key="t-default">Geral</a></li>
+                                    <li><a href="{{ route('dashboard.checklist') }}" key="t-default">Checklist</a>
+                                    </li>
                                     <li><a href="{{ route('dashboard.jornada') }}" key="t-default">Jornada</a></li>
                                     @if (session()->get('academia'))
                                         <li><a href="{{ route('painel.academia.getree.relatorio', ['academia' => session()->get('academia')]) }}"
@@ -451,8 +455,6 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     </li>
                                 </ul>
                             </li>
-
-
                         @endif
 
                     </ul>

@@ -5,9 +5,9 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>Gefit - Painel Administrativo</title>
+        <title>Weekfit - Painel Administrativo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Painel de controle da Gefit" name="description" />
+        <meta content="Painel de controle da Weekfit" name="description" />
         <meta content="Luis Gustavo de Souza Carvalho" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
@@ -60,7 +60,7 @@
                                     <div class="mb-4 mb-md-5">
                                         <a href="index.html" class="md-block auth-logo">
                                             <img src="{{asset('admin/images/logo_laranja.svg')}}" alt="" width="200" class="mx-auto auth-logo-dark">
-                                            <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="200" class="mx-auto auth-logo-light">
+                                            <img src="{{asset('admin/images/logo_laranja.svg')}}" alt="" width="200" class="mx-auto auth-logo-light">
                                         </a>
                                     </div>
                                     <div class="my-auto">

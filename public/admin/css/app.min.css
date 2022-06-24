@@ -1,7 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap);
 :root {
-    --azul: rgba(0, 46, 130, 1.0);
+    --vermelho: rgba(0, 46, 130, 1.0);
     --verde: rgba(179,244,0,1);
+    --vermelho: rgba(99,4,35,1);
+    --laranja: rgba(231, 86, 34, 1);
+    --preto: rgba(0,0,0,1);
+    --branco: rgba(255,255,255,1);
 }
 
 .menu-icon{
@@ -14,7 +18,8 @@
     right: 0;
     left: 0;
     z-index: 1002;
-    background-color: #fff;
+    background-color: var(--vermelho);
+    color: white;
     -webkit-box-shadow: 0 .75rem 1.5rem rgba(18, 38, 63, .03);
     box-shadow: 0 .75rem 1.5rem rgba(18, 38, 63, .03)
 }
@@ -35,7 +40,7 @@
 }
 
 .navbar-header .dropdown .show.header-item {
-    background-color: #f8f9fa
+    background-color: var(--vermelho);
 }
 
 .navbar-brand-box {
@@ -110,13 +115,13 @@
     height: 70px;
     -webkit-box-shadow: none!important;
     box-shadow: none!important;
-    color: #555b6d;
+    color: white;
     border: 0;
     border-radius: 0
 }
 
 .header-item:hover {
-    color: #555b6d
+    color: var(--laranja);
 }
 
 .header-profile-user {
@@ -128,7 +133,7 @@
 
 .noti-icon i {
     font-size: 22px;
-    color: #555b6d
+    color: white;
 }
 
 .noti-icon .badge {
@@ -222,7 +227,7 @@ body[data-topbar=dark] .app-search span {
 }
 
 body[data-sidebar=dark] .navbar-brand-box {
-    background: var(--azul);
+    background: var(--vermelho);
 }
 
 body[data-sidebar=dark] .logo-dark {
@@ -703,7 +708,7 @@ body[data-layout=horizontal] .footer {
 }
 
 body[data-sidebar=dark] .vertical-menu {
-    background: var(--azul);
+    background: var(--vermelho);
 }
 
 body[data-sidebar=dark] #sidebar-menu ul li a {
@@ -3963,7 +3968,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
 }
 
 .auth-full-bg .bg-overlay {
-    background-image: linear-gradient(to right, rgba(179, 244, 0, 0.3), rgba(0, 46, 130, 1.0));
+    background-image: linear-gradient(to right, rgba(231, 86, 34, 0.5), var(--vermelho));
 }
 
 .auth-full-page-content {
@@ -5022,7 +5027,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
 
 .input-atividade>a {
     color: white !important;
-    background-color: var(--azul);
+    background-color: var(--vermelho);
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 10px;
@@ -5049,3 +5054,17 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before {
     background-color: rgba(0, 0, 0, 0.05);
 }
 /*# sourceMappingURL=app.min.css.map */
+
+.dropdown-menu.menu-superior{
+    background-color: var(--vermelho);
+    color: white;
+}
+
+.dropdown-menu.menu-superior .dropdown-item{
+    color: white;
+}
+
+.dropdown-menu.menu-superior .dropdown-item:hover{
+    background-color: var(--vermelho);
+    color: var(--laranja);
+}

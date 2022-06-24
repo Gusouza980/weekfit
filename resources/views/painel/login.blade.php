@@ -52,14 +52,14 @@
                     </div>
                     <!-- end col -->
 
-                    <div class="col-xl-3" style="background-color: #002e82;">
+                    <div class="col-xl-3" style="background-color: var(--vermelho);">
                         <div class="auth-full-page-content p-md-5 p-4">
                             <div class="w-100">
 
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index.html" class="md-block auth-logo">
-                                            <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="200" class="mx-auto auth-logo-dark">
+                                            <img src="{{asset('admin/images/logo_laranja.svg')}}" alt="" width="200" class="mx-auto auth-logo-dark">
                                             <img src="{{asset('admin/images/logo-gefit-branco.png')}}" alt="" width="200" class="mx-auto auth-logo-light">
                                         </a>
                                     </div>
@@ -94,41 +94,15 @@
                                                 </div> -->
                                                 
                                                 <div class="mt-3 d-grid">
-                                                    <button class="btn waves-effect waves-light" style="background-color: rgba(179,244,0,1); color:white;" type="submit">Entrar</button>
-                                                </div>
-                    
-                                                
-                                                <div class="mt-4 text-center">
-                                                    <h5 class="font-size-14 mb-3 text-white">Conecte-se com</h5>
-                    
-                                                    <ul class="list-inline">
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript::void()" class="social-list-item bg-primary text-white border-primary">
-                                                                <i class="mdi mdi-facebook"></i>
-                                                            </a>
-                                                        </li>
-                                                        <!-- <li class="list-inline-item">
-                                                            <a href="javascript::void()" class="social-list-item bg-info text-white border-info">
-                                                                <i class="mdi mdi-twitter"></i>
-                                                            </a>
-                                                        </li> -->
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript::void()" class="social-list-item bg-danger text-white border-danger">
-                                                                <i class="mdi mdi-google"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                                                    <button class="btn waves-effect waves-light" style="background-color: var(--preto); color:var(--laranja);" type="submit">Entrar</button>
                                                 </div>
 
                                             </form>
-                                            <div class="mt-5 text-center text-white">
-                                                <p>Ainda não possui uma conta ? <a href="auth-register-2.html" class="fw-medium text-white"> Cadastre-se Agora</a> </p>
-                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="mt-4 mt-md-5 text-center text-white">
-                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Gefit</p>
+                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Weekfit</p>
                                     </div>
                                 </div>
                                 

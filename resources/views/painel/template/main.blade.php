@@ -45,19 +45,19 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                     <div class="navbar-brand-box">
                         <a href="{{ route('painel.index') }}" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ asset('admin/images/logo-gefit-branco.png') }}" alt="" width="100">
+                                <img src="{{ asset('admin/images/logo_laranja.svg') }}" alt="" width="100">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('admin/images/logo-g.png') }}" alt="" width="100">
+                                {{-- <img  alt="" width="100"> --}}
                             </span>
                         </a>
 
                         <a href="{{ route('painel.index') }}" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ asset('admin/images/logo-g.png') }}" alt="" style="max-width: 25px;">
+                                {{-- <img  alt="" style="max-width: 25px;"> --}}
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('admin/images/logo-gefit-branco.png') }}" alt="" width="100">
+                                <img src="{{ asset('admin/images/logo_laranja.svg') }}" alt="" width="100">
                             </span>
                         </a>
                     </div>
@@ -241,7 +241,7 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                 key="t-henry">{{ session()->get('usuario')['nome'] }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end">
+                        <div class="dropdown-menu menu-superior dropdown-menu-end">
                             <!-- item-->
                             <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i>
                                 <span key="t-profile">Minha Conta</span></a>
@@ -499,7 +499,7 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                         <div class="col-sm-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> © GEFIT | Fitness Intelligence.
+                            </script> © Weekfit
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">

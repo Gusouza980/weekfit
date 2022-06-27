@@ -19,6 +19,22 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
+
+    <meta property="og:type" content="website">
+    <meta name="twitter:image" content="{{ asset('site/images/_og140.jpg') }}">
+    <meta property="og:image" content="{{ asset('site/images/_og140.jpg') }}">
+    <meta property="og:image:secure_url" content="{{ asset('site/images/_og140.jpg') }}">
+    <meta name="twitter:image:alt" content="Logo Weekfit">
+    <meta property="og:image:alt" content="Logo Weekfit">
+    <meta property="og:image:width" content="140">
+    <meta property="og:image:height" content="140">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:type" content="image/jpg">
+
+
+
+
+
     <!-- Bootstrap Css -->
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -26,7 +42,7 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
     <!-- App Css-->
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     @toastr_css
-    @yield("styles")
+    @yield('styles')
     @livewireStyles
 </head>
 
@@ -57,7 +73,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                 {{-- <img  alt="" style="max-width: 25px;"> --}}
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('admin/images/logo_laranja.svg') }}" alt="" width="100">
+                                <img src="{{ asset('admin/images/logo_laranja.svg') }}" alt=""
+                                    width="100">
                             </span>
                         </a>
                     </div>
@@ -139,14 +156,16 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="https://www.facebook.com/gefit.br"
                                             target="_blank">
-                                            <img src="{{ asset('admin/images/icone_facebook.png') }}" alt="Facebook">
+                                            <img src="{{ asset('admin/images/icone_facebook.png') }}"
+                                                alt="Facebook">
                                             <span>Facebook</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="https://twitter.com/gefit_br"
                                             target="_blank">
-                                            <img src="{{ asset('admin/images/icone_twitter.png') }}" alt="Twitter">
+                                            <img src="{{ asset('admin/images/icone_twitter.png') }}"
+                                                alt="Twitter">
                                             <span>Twitter</span>
                                         </a>
                                     </div>
@@ -155,7 +174,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#" target="_blank">
-                                            <img src="{{ asset('admin/images/icone_linkedin.png') }}" alt="Linkedin">
+                                            <img src="{{ asset('admin/images/icone_linkedin.png') }}"
+                                                alt="Linkedin">
                                             <span>Linkedin</span>
                                         </a>
                                     </div>
@@ -168,7 +188,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <div class="col">
                                         <a class="dropdown-icon-item"
                                             href="https://api.whatsapp.com/send?phone=5535997097707" target="_blank">
-                                            <img src="{{ asset('admin/images/icone_whatsapp.png') }}" alt="Whatsapp">
+                                            <img src="{{ asset('admin/images/icone_whatsapp.png') }}"
+                                                alt="Whatsapp">
                                             <span>Whatsapp</span>
                                         </a>
                                     </div>
@@ -178,7 +199,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                     </div>
 
                     <div class="dropdown d-none d-lg-inline-block ms-1">
-                        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                        <button type="button" class="btn header-item noti-icon waves-effect"
+                            data-toggle="fullscreen">
                             <i class="bx bx-fullscreen"></i>
                         </button>
                     </div>
@@ -244,9 +266,11 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                         </button>
                         <div class="dropdown-menu menu-superior dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+                            <a class="dropdown-item" href="#"><i
+                                    class="bx bx-user font-size-16 align-middle me-1"></i>
                                 <span key="t-profile">Minha Conta</span></a>
-                            <a class="dropdown-item" href="#"><i class="bx bx-key font-size-16 align-middle me-1"></i>
+                            <a class="dropdown-item" href="#"><i
+                                    class="bx bx-key font-size-16 align-middle me-1"></i>
                                 <span key="t-my-wallet">Senha</span></a>
                             <a class="dropdown-item" href="#"><i
                                     class="bx bx-wrench font-size-16 align-middle me-1"></i> <span
@@ -377,7 +401,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                                     <span key="t-dashboards">Academias</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ route('painel.academias') }}" key="t-default">Cadastros</a></li>
+                                    <li><a href="{{ route('painel.academias') }}" key="t-default">Cadastros</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -479,17 +504,17 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <div class="col-6 text-start">
-                                    <h4 class="mb-sm-0 font-size-18">@yield("titulo")</h4>
+                                    <h4 class="mb-sm-0 font-size-18">@yield('titulo')</h4>
                                 </div>
                                 <div class="col-6 text-end">
-                                    @yield("botoes")
+                                    @yield('botoes')
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- end page title -->
 
-                    @yield("conteudo")
+                    @yield('conteudo')
                 </div>
                 <!-- container-fluid -->
             </div>
@@ -604,8 +629,8 @@ $usuario = \App\Models\Usuario::find(session()->get('usuario')['id']);
     {{-- <script src="{{asset('admin/js/pages/dashboard.init.js')}}"></script> --}}
 
     <!-- App js -->
-    @yield("scripts")
-    @stack("scripts")
+    @yield('scripts')
+    @stack('scripts')
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script>
         $(document).ready(function() {
